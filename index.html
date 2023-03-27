@@ -77,6 +77,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SpringBoot/Knife4j的配置与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2023-03-27T11:56:27.000Z" itemprop="datePublished">2023-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">Knife4j配置与使用(OpenAPI2)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h3><p>maven 坐标如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.xiaoymin<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>knife4j-openapi2-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 具体版本自行选择 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Spring Boot 版本建议在 2.4.0 ~ 3.0.0 之间</p>
+</blockquote>
+<h3 id="2-配置-yml-属性"><a href="#2-配置-yml-属性" class="headerlink" title="2. 配置 yml 属性"></a>2. 配置 yml 属性</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">knife4j:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">openapi:</span></span><br><span class="line">    <span class="attr">title:</span> <span class="string">这是文档标题</span> <span class="comment"># 文档标题</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">这是简介</span> <span class="comment"># 简介</span></span><br><span class="line">    <span class="attr">email:</span> <span class="number">123456789</span><span class="string">@qq.com</span> <span class="comment"># 创建人邮件</span></span><br><span class="line">    <span class="attr">concat:</span> <span class="string">tur</span> <span class="comment"># 创建者</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://docs.xiaominfo.com</span> <span class="comment"># 项目文档地址</span></span><br><span class="line">    <span class="attr">version:</span> <span class="string">v4.0</span> <span class="comment"># 版本</span></span><br><span class="line">    <span class="attr">license:</span> <span class="string">Apache</span> <span class="number">2.0</span> <span class="comment"># 许可证</span></span><br><span class="line">    <span class="attr">license-url:</span> <span class="string">https://stackoverflow.com/</span> <span class="comment"># 许可证地址</span></span><br><span class="line">    <span class="attr">terms-of-service-url:</span> <span class="string">https://stackoverflow.com/</span></span><br><span class="line">    <span class="attr">group:</span> <span class="comment"># 分组</span></span><br><span class="line">      <span class="attr">test1:</span> <span class="comment"># 组名，用以区分其他组</span></span><br><span class="line">        <span class="attr">group-name:</span> <span class="string">分组名称</span> <span class="comment"># 组别名称</span></span><br><span class="line">        <span class="attr">api-rule:</span> <span class="string">package</span> <span class="comment"># api扫描方式</span></span><br><span class="line">        <span class="attr">api-rule-resources:</span> <span class="comment"># 指定扫描的位置</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">com.knife4j.demo.new3</span> <span class="comment"># 存放接口、对象的包</span></span><br></pre></td></tr></table></figure>
+
+<p>访问 Knife4j 的文档地址：<code>http://ip:sort/doc.html</code></p>
+<h3 id="3-Java注解"><a href="#3-Java注解" class="headerlink" title="3. Java注解"></a>3. Java注解</h3><ul>
+<li><code>@Api</code>：定义接口分组名称</li>
+<li><code>@ApiImplicitParam</code>：单个参数注释</li>
+<li><code>@ApiImplicitParams</code>：多个参数注释</li>
+<li><code>@ApiModel</code>：实体类定义</li>
+<li><code>@ApiModelProperty</code>：实体属性定义</li>
+<li><code>@ApiOperation</code>：接口定义</li>
+<li><code>@ApiParam</code>：参数注释</li>
+<li><code>@ApiResponse</code>：响应码</li>
+<li><code>@ApiResponses</code>：多个响应码</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="clfqsf3mx000768667qpxedcq" data-title="Knife4j配置与使用(OpenAPI2)" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tur-study/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Mybatis/Mybatis中select传递多个参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/tur-study/2023/03/27/Mybatis/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" class="article-date">
@@ -129,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://gitee.com/mathison-tur/2023/03/27/Mybatis/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" data-id="clfqrossr0004is6687bbcpcb" data-title="Mybatis中select传递多个参数" class="article-share-link">分享</a>
+      <a data-url="https://gitee.com/mathison-tur/2023/03/27/Mybatis/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" data-id="clfqsf3mq00016866aobg3g6i" data-title="Mybatis中select传递多个参数" class="article-share-link">分享</a>
       
       
       
@@ -208,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://gitee.com/mathison-tur/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/" data-id="clfqrossn0001is660a9xe518" data-title="Git Hexo 操作" class="article-share-link">分享</a>
+      <a data-url="https://gitee.com/mathison-tur/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/" data-id="clfqsf3mv000468663dd49emx" data-title="Git Hexo 操作" class="article-share-link">分享</a>
       
       
       
@@ -249,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://gitee.com/mathison-tur/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/" data-id="clfqrossp0002is66g3u05fqe" data-title="ThreadLocal详解" class="article-share-link">分享</a>
+      <a data-url="https://gitee.com/mathison-tur/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/" data-id="clfqsf3mw00056866cqrs2d0v" data-title="ThreadLocal详解" class="article-share-link">分享</a>
       
       
       
@@ -302,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://gitee.com/mathison-tur/2023/03/26/hello-world/" data-id="clfqrossi0000is660y8x8ywm" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="https://gitee.com/mathison-tur/2023/03/26/hello-world/" data-id="clfqsf3mm000068668ooy35il" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -327,7 +387,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/Java-ThreadLocal/" rel="tag">Java ThreadLocal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/hexo/" rel="tag">hexo</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/Java-ThreadLocal/" rel="tag">Java ThreadLocal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/hexo/" rel="tag">hexo</a></li></ul>
     </div>
   </div>
 
@@ -337,7 +397,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tur-study/tags/Java-ThreadLocal/" style="font-size: 10px;">Java ThreadLocal</a> <a href="/tur-study/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tur-study/tags/hexo/" style="font-size: 10px;">hexo</a>
+      <a href="/tur-study/tags/Java-ThreadLocal/" style="font-size: 10px;">Java ThreadLocal</a> <a href="/tur-study/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tur-study/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tur-study/tags/hexo/" style="font-size: 10px;">hexo</a>
     </div>
   </div>
 
@@ -357,6 +417,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">Knife4j配置与使用(OpenAPI2)</a>
+          </li>
         
           <li>
             <a href="/tur-study/2023/03/27/Mybatis/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">Mybatis中select传递多个参数</a>
