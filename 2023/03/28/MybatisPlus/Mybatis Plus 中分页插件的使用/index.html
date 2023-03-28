@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Mybatis Plus 分页插件的使用 | Tur的学习笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="官网：https:&#x2F;&#x2F;baomidou.com&#x2F;  Spring Boot 中的使用步骤如下： 1. 分页配置123456789101112@Configurationpublic class MybatisPlusConfig&amp;#123;        @Bean    public MybatisPlusInterceptor mybatisPlusInterceptor()&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis Plus 分页插件的使用">
+<meta property="og:url" content="https://gitee.com/mathison-tur/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Tur的学习笔记">
+<meta property="og:description" content="官网：https:&#x2F;&#x2F;baomidou.com&#x2F;  Spring Boot 中的使用步骤如下： 1. 分页配置123456789101112@Configurationpublic class MybatisPlusConfig&amp;#123;        @Bean    public MybatisPlusInterceptor mybatisPlusInterceptor()&amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-28T07:26:23.000Z">
+<meta property="article:modified_time" content="2023-03-28T07:42:04.709Z">
+<meta property="article:author" content="Tur">
+<meta property="article:tag" content="Mybatis Plus">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/tur-study/atom.xml" title="Tur的学习笔记" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/tur-study/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/tur-study/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/tur-study/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/tur-study/" id="logo">Tur的学习笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/tur-study/" id="subtitle">今天也要好好学习</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/tur-study/">Home</a>
+        
+          <a class="main-nav-link" href="/tur-study/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/tur-study/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://gitee.com/mathison-tur"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MybatisPlus/Mybatis Plus 中分页插件的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2023-03-28T07:26:23.000Z" itemprop="datePublished">2023-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Mybatis Plus 分页插件的使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://baomidou.com/">https://baomidou.com/</a></p>
+</blockquote>
+<p>Spring Boot 中的使用步骤如下：</p>
+<h3 id="1-分页配置"><a href="#1-分页配置" class="headerlink" title="1. 分页配置"></a>1. 分页配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisPlusConfig</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MybatisPlusInterceptor <span class="title function_">mybatisPlusInterceptor</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 1. 创建 MybatisPlusInterceptor 拦截器对象</span></span><br><span class="line">        <span class="type">MybatisPlusInterceptor</span> <span class="variable">mpInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();</span><br><span class="line">        <span class="comment">// 2. 添加分页拦截器，并声明使用的数据库类型</span></span><br><span class="line">        mpInterceptor.addInnerInterceptor(<span class="keyword">new</span> <span class="title class_">PaginationInnerInterceptor</span>(DbType.MYSQL));</span><br><span class="line">        <span class="keyword">return</span> mpInterceptor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用官方已实现的接口实现分页"><a href="#2-使用官方已实现的接口实现分页" class="headerlink" title="2 使用官方已实现的接口实现分页"></a>2 使用官方已实现的接口实现分页</h3><blockquote>
+<p>Service CRUD 接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无条件分页查询</span></span><br><span class="line">IPage&lt;T&gt; <span class="title function_">page</span><span class="params">(IPage&lt;T&gt; page)</span>;</span><br><span class="line"><span class="comment">// 条件分页查询</span></span><br><span class="line">IPage&lt;T&gt; <span class="title function_">page</span><span class="params">(IPage&lt;T&gt; page, Wrapper&lt;T&gt; queryWrapper)</span>;</span><br><span class="line"><span class="comment">// 无条件分页查询</span></span><br><span class="line">IPage&lt;Map&lt;String, Object&gt;&gt; <span class="title function_">pageMaps</span><span class="params">(IPage&lt;T&gt; page)</span>;</span><br><span class="line"><span class="comment">// 条件分页查询</span></span><br><span class="line">IPage&lt;Map&lt;String, Object&gt;&gt; <span class="title function_">pageMaps</span><span class="params">(IPage&lt;T&gt; page, Wrapper&lt;T&gt; queryWrapper)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">参数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">IPage<T></td>
+<td align="center">page</td>
+<td align="center">翻页对象</td>
+</tr>
+<tr>
+<td align="center">Wrapper<T></td>
+<td align="center">queryWrapper</td>
+<td align="center">实体对象封装操作类 QueryWrapper</td>
+</tr>
+</tbody></table>
+<h3 id="3-自定义-mapper-method-使用分页"><a href="#3-自定义-mapper-method-使用分页" class="headerlink" title="3. 自定义 mapper # method 使用分页"></a>3. 自定义 mapper # method 使用分页</h3><p>示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IPage&lt;UserVo&gt; <span class="title function_">selectPageVo</span><span class="params">(IPage&lt;?&gt; page, Integer state)</span>;</span><br><span class="line"><span class="comment">// or (class MyPage extends Ipage&lt;UserVo&gt;&#123; private Integer state; &#125;)</span></span><br><span class="line">MyPage <span class="title function_">selectPageVo</span><span class="params">(MyPage page)</span>;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">List&lt;UserVo&gt; <span class="title function_">selectPageVo</span><span class="params">(IPage&lt;UserVo&gt; page, Integer state)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectPageVo&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;xxx.xxx.xxx.UserVo&quot;</span>&gt;</span></span><br><span class="line">    SELECT id,name FROM user WHERE state=#&#123;state&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>如果返回类型是 IPage 则入参的 IPage 不能为null,因为 返回的IPage &#x3D;&#x3D; 入参的IPage; 如果想临时不分页,可以在初始化IPage时size参数传 &lt;0 的值;</li>
+<li>如果返回类型是 List 则入参的 IPage 可以为 null(为 null 则不分页),但需要你手动 入参的IPage.setRecords(返回的 List);</li>
+<li>如果 xml 需要从 page 里取值,需要 <code>page.属性</code> 获取</li>
+</ul>
+</blockquote>
+<h3 id="4-Page-类"><a href="#4-Page-类" class="headerlink" title="4. Page 类"></a>4. Page 类</h3><p>该类继承了 <code>IPage</code> 类，实现了 <code>简单分页模型</code> 如果要实现自己的分页模型可以继承 <code>Page</code> 类或者实现 <code>IPage</code> 类</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">records</td>
+<td align="center">List</td>
+<td align="center">emptyList</td>
+<td align="center">查询数据列表</td>
+</tr>
+<tr>
+<td align="center">total</td>
+<td align="center">Long</td>
+<td align="center">0</td>
+<td align="center">查询列表总记录数</td>
+</tr>
+<tr>
+<td align="center">size</td>
+<td align="center">Long</td>
+<td align="center">10</td>
+<td align="center">每页显示条数，默认 <code>10</code></td>
+</tr>
+<tr>
+<td align="center">current</td>
+<td align="center">Long</td>
+<td align="center">1</td>
+<td align="center">当前页</td>
+</tr>
+<tr>
+<td align="center">orders</td>
+<td align="center">List</td>
+<td align="center">emptyList</td>
+<td align="center">排序字段信息，允许前端传入的时候，注意 SQL 注入问题，可以使用 <code>SqlInjectionUtils.check(...)</code> 检查文本</td>
+</tr>
+<tr>
+<td align="center">optimizeCountSql</td>
+<td align="center">boolean</td>
+<td align="center">true</td>
+<td align="center">自动优化 COUNT SQL 如果遇到 <code>jSqlParser</code> 无法解析情况，设置该参数为 <code>false</code></td>
+</tr>
+<tr>
+<td align="center">optimizeJoinOfCountSql</td>
+<td align="center">boolean</td>
+<td align="center">true</td>
+<td align="center">自动优化 COUNT SQL 是否把 join 查询部分移除</td>
+</tr>
+<tr>
+<td align="center">searchCount</td>
+<td align="center">boolean</td>
+<td align="center">true</td>
+<td align="center">是否进行 count 查询，如果指向查询到列表不要查询总记录数，设置该参数为 <code>false</code></td>
+</tr>
+<tr>
+<td align="center">maxLimit</td>
+<td align="center">Long</td>
+<td align="center"></td>
+<td align="center">单页分页条数限制</td>
+</tr>
+<tr>
+<td align="center">countId</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"><code>xml</code> 自定义 <code>count</code> 查询的 <code>statementId</code></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://gitee.com/mathison-tur/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="clfryad4t00017o6634ysb0ws" data-title="Mybatis Plus 分页插件的使用" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tur-study/tags/Mybatis-Plus/" rel="tag">Mybatis Plus</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Knife4j配置与使用(OpenAPI2)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/Java-ThreadLocal/" rel="tag">Java ThreadLocal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/Mybatis-Plus/" rel="tag">Mybatis Plus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tur-study/tags/hexo/" rel="tag">hexo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tur-study/tags/Java-ThreadLocal/" style="font-size: 10px;">Java ThreadLocal</a> <a href="/tur-study/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tur-study/tags/Mybatis-Plus/" style="font-size: 10px;">Mybatis Plus</a> <a href="/tur-study/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tur-study/tags/hexo/" style="font-size: 10px;">hexo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/tur-study/archives/2023/03/">三月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">Mybatis Plus 分页插件的使用</a>
+          </li>
+        
+          <li>
+            <a href="/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">Knife4j配置与使用(OpenAPI2)</a>
+          </li>
+        
+          <li>
+            <a href="/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">Mybatis中select传递多个参数</a>
+          </li>
+        
+          <li>
+            <a href="/tur-study/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/">Git Hexo 操作</a>
+          </li>
+        
+          <li>
+            <a href="/tur-study/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/">ThreadLocal详解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Tur<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/tur-study/" class="mobile-nav-link">Home</a>
+  
+    <a href="/tur-study/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/tur-study/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/tur-study/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/tur-study/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
