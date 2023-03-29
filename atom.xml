@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Tur的学习笔记</title>
+  
+  <subtitle>今天也要好好学习</subtitle>
+  <link href="https://gitee.com/mathison-tur/atom.xml" rel="self"/>
+  
+  <link href="https://gitee.com/mathison-tur/"/>
+  <updated>2023-03-29T07:23:15.143Z</updated>
+  <id>https://gitee.com/mathison-tur/</id>
+  
+  <author>
+    <name>Tur</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL的一些使用技巧</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/29/mysql/mysql-de-yi-xie-shi-yong-ji-qiao/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/29/mysql/mysql-de-yi-xie-shi-yong-ji-qiao/</id>
+    <published>2023-03-29T07:04:32.000Z</published>
+    <updated>2023-03-29T07:23:15.143Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-获取指定id的上一个数据或下一个数据&quot;&gt;&lt;a href=&quot;#1-获取指定id的上一个数据或下一个数据&quot; class=&quot;headerlink&quot; title=&quot;1. 获取指定id的上一个数据或下一个数据&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="MySQL" scheme="https://gitee.com/mathison-tur/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Interceptor 拦截器的使用</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/springboot/interceptor-lan-jie-qi-de-shi-yong/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/springboot/interceptor-lan-jie-qi-de-shi-yong/</id>
+    <published>2023-03-28T10:19:34.000Z</published>
+    <updated>2023-03-28T10:19:34.874Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Filter 过滤器的使用</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/springboot/filter-de-shi-yong/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/springboot/filter-de-shi-yong/</id>
+    <published>2023-03-28T10:16:47.000Z</published>
+    <updated>2023-03-28T15:06:35.028Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-应用场景&quot;&gt;&lt;a href=&quot;#1-应用场景&quot; class=&quot;headerlink&quot; title=&quot;1. 应用场景&quot;&gt;&lt;/a&gt;1. 应用场景&lt;/h3&gt;&lt;p&gt;&lt;code&gt;SpringBoot &lt;/code&gt;的过滤器，在 &lt;code&gt;web</summary>
+        
+      
+    
+    
+    
+    
+    <category term="SpringBoot" scheme="https://gitee.com/mathison-tur/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis Plus 分页插件的使用</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/mybatisplus/mybatis-plus-zhong-fen-ye-cha-jian-de-shi-yong/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/mybatisplus/mybatis-plus-zhong-fen-ye-cha-jian-de-shi-yong/</id>
+    <published>2023-03-28T07:26:23.000Z</published>
+    <updated>2023-03-28T07:42:04.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;官网：&lt;a href=&quot;https://baomidou.com/&quot;&gt;https://baomidou.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Spring Boot 中的使用步骤如下：&lt;/p&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Mybatis Plus" scheme="https://gitee.com/mathison-tur/tags/Mybatis-Plus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Knife4j配置与使用(OpenAPI2)</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/</id>
+    <published>2023-03-27T11:56:27.000Z</published>
+    <updated>2023-03-28T01:11:55.172Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-引入&quot;&gt;&lt;a href=&quot;#1-引入&quot; class=&quot;headerlink&quot; title=&quot;1. 引入&quot;&gt;&lt;/a&gt;1. 引入&lt;/h3&gt;&lt;p&gt;maven 坐标如下&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-markup&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="SpringBoot" scheme="https://gitee.com/mathison-tur/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis中select传递多个参数</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/</id>
+    <published>2023-03-27T11:24:32.000Z</published>
+    <updated>2023-03-27T11:49:36.076Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-单个参数&quot;&gt;&lt;a href=&quot;#1-单个参数&quot; class=&quot;headerlink&quot; title=&quot;1. 单个参数&quot;&gt;&lt;/a&gt;1. 单个参数&lt;/h3&gt;&lt;p&gt;传递单个参数时，方法名中的参数和 sql 语句中的参数名一致&lt;/p&gt;
+&lt;p&gt;如下：方法参数为</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Mybatis" scheme="https://gitee.com/mathison-tur/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git Hexo 操作</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/java/git-hexo-cao-zuo/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/java/git-hexo-cao-zuo/</id>
+    <published>2023-03-27T00:27:52.000Z</published>
+    <updated>2023-03-27T00:39:16.343Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;1-Hexo-基本命令&quot;&gt;&lt;a href=&quot;#1-Hexo-基本命令&quot; class=&quot;headerlink&quot; title=&quot;1. Hexo 基本命令&quot;&gt;&lt;/a&gt;1. Hexo 基本命令&lt;/h4&gt;&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    
+    <category term="hexo" scheme="https://gitee.com/mathison-tur/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ThreadLocal详解</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/java/threadlocal-xiang-jie/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/java/threadlocal-xiang-jie/</id>
+    <published>2023-03-26T23:35:43.000Z</published>
+    <updated>2023-03-27T00:44:57.927Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、ThreadLocal-简介&quot;&gt;&lt;a href=&quot;#一、ThreadLocal-简介&quot; class=&quot;headerlink&quot; title=&quot;一、ThreadLocal 简介&quot;&gt;&lt;/a&gt;一、ThreadLocal 简介&lt;/h2&gt;&lt;p&gt;ThreadLocal</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Java ThreadLocal" scheme="https://gitee.com/mathison-tur/tags/Java-ThreadLocal/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/26/hello-world/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/26/hello-world/</id>
+    <published>2023-03-26T05:42:13.109Z</published>
+    <updated>2023-03-26T05:42:13.109Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
