@@ -4,11 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mybatis中select传递多个参数, Tur的学习笔记">
-    <meta name="description" content="1. 单个参数传递单个参数时，方法名中的参数和 sql 语句中的参数名一致
-如下：方法参数为 id，sql 中的参数也为 id
-// XXMapper.java
-public List&amp;lt;XXBean&amp;gt; getXXBeanList">
+    <meta name="keywords" content="ThreadLocal详解, Tur的学习笔记">
+    <meta name="description" content="一、ThreadLocal 简介ThreadLocal 叫做 线程变量，指 ThreadLocal 中填充的变量属于当前线程，该变量对于其他线程而言是隔离的，即该变量是当前线程独有的变量。ThreadLocal 为变量在每个线程中都创建了副">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +17,7 @@ public List&amp;lt;XXBean&amp;gt; getXXBeanList">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mybatis中select传递多个参数 | Tur的学习笔记</title>
+    <title>ThreadLocal详解 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -340,12 +337,12 @@ public List&amp;lt;XXBean&amp;gt; getXXBeanList">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mybatis中select传递多个参数</h1>
+                    <h1 class="description center-align post-title">ThreadLocal详解</h1>
                 </div>
             </div>
         </div>
@@ -369,8 +366,8 @@ public List&amp;lt;XXBean&amp;gt; getXXBeanList">
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/Mybatis/">
-                                <span class="chip bg-color">Mybatis</span>
+                            <a href="/tur-study/tags/Java-ThreadLocal/">
+                                <span class="chip bg-color">Java ThreadLocal</span>
                             </a>
                         
                     </div>
@@ -399,14 +396,14 @@ public List&amp;lt;XXBean&amp;gt; getXXBeanList">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    445
+                    90
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -429,75 +426,7 @@ public List&amp;lt;XXBean&amp;gt; getXXBeanList">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-单个参数"><a href="#1-单个参数" class="headerlink" title="1. 单个参数"></a>1. 单个参数</h3><p>传递单个参数时，方法名中的参数和 sql 语句中的参数名一致</p>
-<p>如下：方法参数为 id，sql 中的参数也为 id</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
-public List&lt;XXBean&gt; getXXBeanList(Long id);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>java.lang.Long<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-　　select t.* from tableName t where t.id= #{id}  
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-多参数"><a href="#2-多参数" class="headerlink" title="2. 多参数"></a>2. 多参数</h3><p>多参数传递时不能使用 <code>parameterType</code>，除非所有参数的类型都一致，改用<code>#{index}</code>，是第几个就用第几个的索引，索引从<code>0</code>开始</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
-public List&lt;XXBean&gt; getXXBeanList(Long id, String name);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-　　select * from tableName t where id=#{0} and name=#{1}  
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="3-Map封装多参数"><a href="#3-Map封装多参数" class="headerlink" title="3. Map封装多参数"></a>3. Map封装多参数</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
-public List&lt;XXBean&gt; getXXBeanList(HashMap map);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hashmap<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-　　select * from tableName t where id= #{id} and name=#{name}
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其中 <code>map </code>中的 <code>key </code>名即是在 <code>#{}</code> 中使用的</p>
-<h3 id="4-List-封装-in"><a href="#4-List-封装-in" class="headerlink" title="4. List 封装 in"></a>4. List 封装 in</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
-public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hashmap<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-　　select 字段... from tableName t where id in
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>foreach</span> <span class="token attr-name">item</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span> <span class="token attr-name">collection</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span> <span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(<span class="token punctuation">"</span></span> <span class="token attr-name">separator</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>,<span class="token punctuation">"</span></span> <span class="token attr-name">close</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    	#{item}
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>foreach</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>foreach 最后的效果是：<code>select 字段 from tableName where id in ('1', '2', '3',...)</code></p>
-<h3 id="5-使用注解方式"><a href="#5-使用注解方式" class="headerlink" title="5. 使用注解方式"></a>5. 使用注解方式</h3><p>在方法上使用 <code>@Param</code> 注解注明参数名</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">Page&lt;ArticleVO&gt; selectPreviewPage(
-            @Param("page") Page&lt;Object&gt; page,
-            @Param("publish") int publish,
-            @Param("categoryId") Long categoryId,
-            @Param("tagId") Long tagId);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectPreviewPage<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.blog.model.vo.ArticleVO<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>    
-    select                                                                  
-        a.id as id,                                                         
-        a.title as title,                                                   
-        a.avatar as avatar,                                                 
-        a.is_stick as isStick,                                              
-        a.create_time as createTime,                                        
-        c.id as categoryId,                                                 
-        c.name as categoryName                                              
-    from blog_article a JOIN blog_category c on a.category_id = c.id        
-    where a.is_publish = #{publish}                                         
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>categoryId != null<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>                                        
-        and a.category_id = #{categoryId}                                   
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>                                                                   
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>tagId != null<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>                                             
-        and a.id in (                                                       
-            select article_id from blog_article_tag where tag_id = #{tagId} 
-        )                                                                   
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>                                                                   
-    order by a.is_stick desc, a.create_time desc                            
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>                                                                   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+                <h2 id="一、ThreadLocal-简介"><a href="#一、ThreadLocal-简介" class="headerlink" title="一、ThreadLocal 简介"></a>一、ThreadLocal 简介</h2><p>ThreadLocal 叫做 <font color="red"><strong>线程变量</strong></font>，指 ThreadLocal 中<font color="red">填充的变量</font>属于<font color="red">当前线程</font>，该变量对于其他线程而言是隔离的，即该变量是当前线程独有的变量。ThreadLocal 为变量在每个线程中都创建了副本，那么每个线程都可以访问自己内部的副本变量</p>
 
                 
             </div>
@@ -524,7 +453,7 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/">https://gitee.com/mathison-tur/tur-study/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/</a>
+                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/">https://gitee.com/mathison-tur/tur-study/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -562,8 +491,8 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/Mybatis/">
-                                    <span class="chip bg-color">Mybatis</span>
+                                <a href="/tur-study/tags/Java-ThreadLocal/">
+                                    <span class="chip bg-color">Java ThreadLocal</span>
                                 </a>
                             
                         </div>
@@ -646,13 +575,13 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/">
+                <a href="/tur-study/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Knife4j配置与使用(OpenAPI2)">
+                        <img src="/tur-study/medias/featureimages/13.jpg" class="responsive-img" alt="Git Hexo 操作">
                         
-                        <span class="card-title">Knife4j配置与使用(OpenAPI2)</span>
+                        <span class="card-title">Git Hexo 操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -676,8 +605,8 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tur-study/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
@@ -691,13 +620,13 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/java/git-hexo-cao-zuo/">
+                <a href="/tur-study/2023/03/26/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/13.jpg" class="responsive-img" alt="Git Hexo 操作">
+                        <img src="/tur-study/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">Git Hexo 操作</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -708,7 +637,7 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-26
                             </span>
                         <span class="publish-author">
                             
@@ -717,14 +646,6 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tur-study/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -850,60 +771,6 @@ public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidd
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/tur-study/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="5041721844"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/tur-study/libs/aplayer/APlayer.min.js"></script>
-<script src="/tur-study/libs/aplayer/Meting.min.js"></script>
-
     
 
     <div class="container row center-align"

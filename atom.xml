@@ -18,8 +18,8 @@
   
   <entry>
     <title>MySQL的一些使用技巧</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/29/mysql/mysql-de-yi-xie-shi-yong-ji-qiao/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/29/mysql/mysql-de-yi-xie-shi-yong-ji-qiao/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/29/MySQL/MySQL%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/29/MySQL/MySQL%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</id>
     <published>2023-03-29T07:04:32.000Z</published>
     <updated>2023-03-29T07:23:15.143Z</updated>
     
@@ -41,8 +41,8 @@
   
   <entry>
     <title>Interceptor 拦截器的使用</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/28/springboot/interceptor-lan-jie-qi-de-shi-yong/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/28/springboot/interceptor-lan-jie-qi-de-shi-yong/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2023-03-28T10:19:34.000Z</published>
     <updated>2023-03-30T08:21:22.219Z</updated>
     
@@ -64,8 +64,8 @@
   
   <entry>
     <title>Filter 过滤器的使用</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/28/springboot/filter-de-shi-yong/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/28/springboot/filter-de-shi-yong/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter%20%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter%20%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2023-03-28T10:16:47.000Z</published>
     <updated>2023-03-28T15:06:35.028Z</updated>
     
@@ -87,8 +87,8 @@
   
   <entry>
     <title>Mybatis Plus 分页插件的使用</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/28/mybatisplus/mybatis-plus-zhong-fen-ye-cha-jian-de-shi-yong/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/28/mybatisplus/mybatis-plus-zhong-fen-ye-cha-jian-de-shi-yong/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2023-03-28T07:26:23.000Z</published>
     <updated>2023-03-28T07:42:04.709Z</updated>
     
@@ -114,8 +114,8 @@
   
   <entry>
     <title>Knife4j配置与使用(OpenAPI2)</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
     <published>2023-03-27T11:56:27.000Z</published>
     <updated>2023-03-28T01:11:55.172Z</updated>
     
@@ -138,8 +138,8 @@
   
   <entry>
     <title>Mybatis中select传递多个参数</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</id>
     <published>2023-03-27T11:24:32.000Z</published>
     <updated>2023-03-27T11:49:36.076Z</updated>
     
@@ -162,8 +162,8 @@
   
   <entry>
     <title>Git Hexo 操作</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/27/java/git-hexo-cao-zuo/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/27/java/git-hexo-cao-zuo/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/</id>
     <published>2023-03-27T00:27:52.000Z</published>
     <updated>2023-03-27T00:39:16.343Z</updated>
     
@@ -185,8 +185,8 @@
   
   <entry>
     <title>ThreadLocal详解</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/27/java/threadlocal-xiang-jie/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/27/java/threadlocal-xiang-jie/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/</id>
     <published>2023-03-26T23:35:43.000Z</published>
     <updated>2023-03-27T00:44:57.927Z</updated>
     

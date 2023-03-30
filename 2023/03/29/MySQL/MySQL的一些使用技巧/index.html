@@ -4,16 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mybatis Plus 分页插件的使用, Tur的学习笔记">
-    <meta name="description" content="
-官网：https://baomidou.com/
+    <meta name="keywords" content="MySQL的一些使用技巧, Tur的学习笔记">
+    <meta name="description" content="1. 获取指定id的上一个数据或下一个数据示例如下：
 
-Spring Boot 中的使用步骤如下：
-1. 分页配置@Configuration
-public class MybatisPlusConfig{
-    
-    @Bean
-  ">
+获取上一个数据
+
+select * 
+from blog_article 
+where id &amp;lt; 123 
+order by id desc 
+limit 1          ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +25,7 @@ public class MybatisPlusConfig{
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mybatis Plus 分页插件的使用 | Tur的学习笔记</title>
+    <title>MySQL的一些使用技巧 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -345,12 +345,12 @@ public class MybatisPlusConfig{
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mybatis Plus 分页插件的使用</h1>
+                    <h1 class="description center-align post-title">MySQL的一些使用技巧</h1>
                 </div>
             </div>
         </div>
@@ -374,8 +374,8 @@ public class MybatisPlusConfig{
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/Mybatis-Plus/">
-                                <span class="chip bg-color">Mybatis Plus</span>
+                            <a href="/tur-study/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
                             </a>
                         
                     </div>
@@ -390,28 +390,28 @@ public class MybatisPlusConfig{
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-28
+                    2023-03-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-28
+                    2023-03-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    606
+                    172
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -434,144 +434,35 @@ public class MybatisPlusConfig{
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>官网：<a target="_blank" rel="noopener" href="https://baomidou.com/">https://baomidou.com/</a></p>
-</blockquote>
-<p>Spring Boot 中的使用步骤如下：</p>
-<h3 id="1-分页配置"><a href="#1-分页配置" class="headerlink" title="1. 分页配置"></a>1. 分页配置</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-public class MybatisPlusConfig{
-    
-    @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor(){
-        // 1. 创建 MybatisPlusInterceptor 拦截器对象
-        MybatisPlusInterceptor mpInterceptor = new MybatisPlusInterceptor();
-        // 2. 添加分页拦截器，并声明使用的数据库类型
-        mpInterceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
-        return mpInterceptor;
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-使用官方已实现的接口实现分页"><a href="#2-使用官方已实现的接口实现分页" class="headerlink" title="2 使用官方已实现的接口实现分页"></a>2 使用官方已实现的接口实现分页</h3><blockquote>
-<p>Service CRUD 接口</p>
-</blockquote>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// 无条件分页查询
-IPage&lt;T&gt; page(IPage&lt;T&gt; page);
-// 条件分页查询
-IPage&lt;T&gt; page(IPage&lt;T&gt; page, Wrapper&lt;T&gt; queryWrapper);
-// 无条件分页查询
-IPage&lt;Map&lt;String, Object&gt;&gt; pageMaps(IPage&lt;T&gt; page);
-// 条件分页查询
-IPage&lt;Map&lt;String, Object&gt;&gt; pageMaps(IPage&lt;T&gt; page, Wrapper&lt;T&gt; queryWrapper);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>参数说明</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th align="center">参数名</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">IPage<t></t></td>
-<td align="center">page</td>
-<td align="center">翻页对象</td>
-</tr>
-<tr>
-<td align="center">Wrapper<t></t></td>
-<td align="center">queryWrapper</td>
-<td align="center">实体对象封装操作类 QueryWrapper</td>
-</tr>
-</tbody></table>
-<h3 id="3-自定义-mapper-method-使用分页"><a href="#3-自定义-mapper-method-使用分页" class="headerlink" title="3. 自定义 mapper # method 使用分页"></a>3. 自定义 mapper # method 使用分页</h3><p>示例如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">IPage&lt;UserVo&gt; selectPageVo(IPage&lt;?&gt; page, Integer state);
-// or (class MyPage extends Ipage&lt;UserVo&gt;{ private Integer state; })
-MyPage selectPageVo(MyPage page);
-// or
-List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectPageVo<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xxx.xxx.xxx.UserVo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    SELECT id,name FROM user WHERE state=#{state}
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
+                <h3 id="1-获取指定id的上一个数据或下一个数据"><a href="#1-获取指定id的上一个数据或下一个数据" class="headerlink" title="1. 获取指定id的上一个数据或下一个数据"></a>1. 获取指定id的上一个数据或下一个数据</h3><p>示例如下：</p>
 <ul>
-<li>如果返回类型是 IPage 则入参的 IPage 不能为null,因为 返回的IPage == 入参的IPage; 如果想临时不分页,可以在初始化IPage时size参数传 &lt;0 的值;</li>
-<li>如果返回类型是 List 则入参的 IPage 可以为 null(为 null 则不分页),但需要你手动 入参的IPage.setRecords(返回的 List);</li>
-<li>如果 xml 需要从 page 里取值,需要 <code>page.属性</code> 获取</li>
+<li>获取上一个数据</li>
 </ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * 
+from blog_article 
+where id &lt; 123 
+order by id desc 
+limit 1                                                 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>具体实现思想如下：</p>
+<p>将表中数据进行倒序排列即 <code>desc</code>，选择 <code>id </code>小于指定值的数据即 <code>id $lt; 123</code>，并指定输出数据为1即 <code>limit 1</code></p>
+<blockquote>
+<p><code>$lt;</code> 代表小于号<code> &lt;</code></p>
 </blockquote>
-<h3 id="4-Page-类"><a href="#4-Page-类" class="headerlink" title="4. Page 类"></a>4. Page 类</h3><p>该类继承了 <code>IPage</code> 类，实现了 <code>简单分页模型</code> 如果要实现自己的分页模型可以继承 <code>Page</code> 类或者实现 <code>IPage</code> 类</p>
-<table>
-<thead>
-<tr>
-<th align="center">属性名</th>
-<th align="center">类型</th>
-<th align="center">默认值</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">records</td>
-<td align="center">List</td>
-<td align="center">emptyList</td>
-<td align="center">查询数据列表</td>
-</tr>
-<tr>
-<td align="center">total</td>
-<td align="center">Long</td>
-<td align="center">0</td>
-<td align="center">查询列表总记录数</td>
-</tr>
-<tr>
-<td align="center">size</td>
-<td align="center">Long</td>
-<td align="center">10</td>
-<td align="center">每页显示条数，默认 <code>10</code></td>
-</tr>
-<tr>
-<td align="center">current</td>
-<td align="center">Long</td>
-<td align="center">1</td>
-<td align="center">当前页</td>
-</tr>
-<tr>
-<td align="center">orders</td>
-<td align="center">List</td>
-<td align="center">emptyList</td>
-<td align="center">排序字段信息，允许前端传入的时候，注意 SQL 注入问题，可以使用 <code>SqlInjectionUtils.check(...)</code> 检查文本</td>
-</tr>
-<tr>
-<td align="center">optimizeCountSql</td>
-<td align="center">boolean</td>
-<td align="center">true</td>
-<td align="center">自动优化 COUNT SQL 如果遇到 <code>jSqlParser</code> 无法解析情况，设置该参数为 <code>false</code></td>
-</tr>
-<tr>
-<td align="center">optimizeJoinOfCountSql</td>
-<td align="center">boolean</td>
-<td align="center">true</td>
-<td align="center">自动优化 COUNT SQL 是否把 join 查询部分移除</td>
-</tr>
-<tr>
-<td align="center">searchCount</td>
-<td align="center">boolean</td>
-<td align="center">true</td>
-<td align="center">是否进行 count 查询，如果指向查询到列表不要查询总记录数，设置该参数为 <code>false</code></td>
-</tr>
-<tr>
-<td align="center">maxLimit</td>
-<td align="center">Long</td>
-<td align="center"></td>
-<td align="center">单页分页条数限制</td>
-</tr>
-<tr>
-<td align="center">countId</td>
-<td align="center">String</td>
-<td align="center"></td>
-<td align="center"><code>xml</code> 自定义 <code>count</code> 查询的 <code>statementId</code></td>
-</tr>
-</tbody></table>
+<ul>
+<li>获取上一个数据</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select * 
+from blog_article 
+where id &gt; 123 
+order by id asc 
+limit 1    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>具体实现思想如下：</p>
+<p>将表中数据进行正序排列即 <code>asc</code>，选择 <code>id </code>大于指定值的数据即 <code>id $gt; 123</code>，并指定输出数据为1即 <code>limit 1</code></p>
+<blockquote>
+<p><code>$gt;</code> 代表小于号 <code>&gt;</code></p>
+</blockquote>
 
                 
             </div>
@@ -598,7 +489,7 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/28/mybatisplus/mybatis-plus-zhong-fen-ye-cha-jian-de-shi-yong/">https://gitee.com/mathison-tur/tur-study/2023/03/28/mybatisplus/mybatis-plus-zhong-fen-ye-cha-jian-de-shi-yong/</a>
+                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/29/MySQL/MySQL%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">https://gitee.com/mathison-tur/tur-study/2023/03/29/MySQL/MySQL%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -636,8 +527,8 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/Mybatis-Plus/">
-                                    <span class="chip bg-color">Mybatis Plus</span>
+                                <a href="/tur-study/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
                                 </a>
                             
                         </div>
@@ -716,17 +607,18 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/tur-study/2023/03/28/springboot/filter-de-shi-yong/">
+                <a href="/tur-study/2023/03/29/MySQL/MySQL%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/14.jpg" class="responsive-img" alt="Filter 过滤器的使用">
+                        <img src="/tur-study/medias/featureimages/19.jpg" class="responsive-img" alt="MySQL的一些使用技巧">
                         
-                        <span class="card-title">Filter 过滤器的使用</span>
+                        <span class="card-title">MySQL的一些使用技巧</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -736,9 +628,9 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -747,11 +639,12 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tur-study/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -765,13 +658,13 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/">
+                <a href="/tur-study/2023/03/28/SpringBoot/Interceptor-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Knife4j配置与使用(OpenAPI2)">
+                        <img src="/tur-study/medias/featureimages/20.jpg" class="responsive-img" alt="Interceptor 拦截器的使用">
                         
-                        <span class="card-title">Knife4j配置与使用(OpenAPI2)</span>
+                        <span class="card-title">Interceptor 拦截器的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -782,7 +675,7 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
                             </span>
                         <span class="publish-author">
                             
@@ -924,60 +817,6 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/tur-study/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="5041721844"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/tur-study/libs/aplayer/APlayer.min.js"></script>
-<script src="/tur-study/libs/aplayer/Meting.min.js"></script>
-
     
 
     <div class="container row center-align"

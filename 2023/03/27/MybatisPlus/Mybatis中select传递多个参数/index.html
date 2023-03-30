@@ -4,12 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git Hexo 操作, Tur的学习笔记">
-    <meta name="description" content="1. Hexo 基本命令hexo init --新建一个网站，若没有设置folder，默认在当前文件夹建立网站
-
-hexo generate --生成个人博客所需的静态页面
-
-hexo server --启动服务器，默认访问端口：locla">
+    <meta name="keywords" content="Mybatis中select传递多个参数, Tur的学习笔记">
+    <meta name="description" content="1. 单个参数传递单个参数时，方法名中的参数和 sql 语句中的参数名一致
+如下：方法参数为 id，sql 中的参数也为 id
+// XXMapper.java
+public List&amp;lt;XXBean&amp;gt; getXXBeanList">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +20,7 @@ hexo server --启动服务器，默认访问端口：locla">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git Hexo 操作 | Tur的学习笔记</title>
+    <title>Mybatis中select传递多个参数 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -341,12 +340,12 @@ hexo server --启动服务器，默认访问端口：locla">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git Hexo 操作</h1>
+                    <h1 class="description center-align post-title">Mybatis中select传递多个参数</h1>
                 </div>
             </div>
         </div>
@@ -370,8 +369,8 @@ hexo server --启动服务器，默认访问端口：locla">
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/hexo/">
-                                <span class="chip bg-color">hexo</span>
+                            <a href="/tur-study/tags/Mybatis/">
+                                <span class="chip bg-color">Mybatis</span>
                             </a>
                         
                     </div>
@@ -400,14 +399,14 @@ hexo server --启动服务器，默认访问端口：locla">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    805
+                    445
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
 
@@ -430,217 +429,74 @@ hexo server --启动服务器，默认访问端口：locla">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1-Hexo-基本命令"><a href="#1-Hexo-基本命令" class="headerlink" title="1. Hexo 基本命令"></a>1. Hexo 基本命令</h4><pre class="line-numbers language-none"><code class="language-none">hexo init --新建一个网站，若没有设置folder，默认在当前文件夹建立网站
-
-hexo generate --生成个人博客所需的静态页面
-
-hexo server --启动服务器，默认访问端口：loclahost:4000
-
-hexo deploy --部署个人博客
-
-hexo clean --清除缓存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>以上命令都能用首字母缩写完成</p>
-<pre class="line-numbers language-none"><code class="language-none">hexo g --generate 生成个人博客所需的静态页面
-
-hexo s --server
-
-hexo d --deploy 部署个人博客
-
-hexo c --clean 清除缓存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-写文章用到的命令"><a href="#2-写文章用到的命令" class="headerlink" title="2. 写文章用到的命令"></a>2. 写文章用到的命令</h4><pre class="line-numbers language-none"><code class="language-none">hexo new --path java/ "文章标题" --新建文章
-
-hexo new page "页面名" -- 新建页面<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">-p, –path</td>
-<td align="left">自定义新文章的路径</td>
-</tr>
-<tr>
-<td align="left">-r, –replace</td>
-<td align="left">如果存在同名文章，将其替换</td>
-</tr>
-<tr>
-<td align="left">-s, –slug</td>
-<td align="left">文章的Slug，作为新文章的文件名和发布后的URL</td>
-</tr>
-</tbody></table>
-<p>编辑博客时使用如下命令</p>
-<pre class="line-numbers language-none"><code class="language-none">hexo s --debug<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>然后访问<a target="_blank" rel="noopener" href="http://localhost:4000/%E6%9D%A5%E8%BF%9B%E5%85%A5%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%9B%B4%E6%94%B9%E4%BA%86%E9%85%8D%E7%BD%AE%E6%88%96%E6%96%87%E7%AB%A0%E5%90%8E%E9%9A%8F%E6%97%B6%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2%E6%9D%A5%E6%9F%A5%E7%9C%8B%E6%95%88%E6%9E%9C%E3%80%82">http://localhost:4000/来进入调试模式，更改了配置或文章后随时刷新页面来查看效果。</a></p>
-<h4 id="3-部署博客的步骤"><a href="#3-部署博客的步骤" class="headerlink" title="3. 部署博客的步骤"></a>3. 部署博客的步骤</h4><pre class="line-numbers language-none"><code class="language-none">hexo clean
-hexo generate
-hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>后两步可以简写为<code>hexo g -d</code></p>
-<h4 id="4-目录结构说明"><a href="#4-目录结构说明" class="headerlink" title="4. 目录结构说明"></a>4. 目录结构说明</h4><pre class="line-numbers language-none"><code class="language-none">|  +-- .deploy      #hexo deploy生成的文件
-
-|  +-- node_modules  #npm组件
-
-|  +-- public        #生成的静态网页文件
-
-|  +--scaffolds      #模板
-
-|  +-- source        #博客正文和其他源文件
-
-|  |  +-- _posts    #我们自己写的文章以md结尾
-
-|  +-- themes        #主题
-
-|  +-- _config.yml  #全局配置文件
-
-|  `-- package.json  #定义了hexo所需要的各种模块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="5-配置文件"><a href="#5-配置文件" class="headerlink" title="5. 配置文件"></a>5. 配置文件</h4><p>在文件夹跟目录下的<code>_config.yml</code>叫做<strong>站点配置文件</strong>,同样的文件名我们可以在<code>theme</code>文件夹下的主题文件夹里面也找的。而主题文件夹下的<code>_config.yml</code>叫做主题配置文件。这里说明一下站点配置文件：</p>
-<pre class="line-numbers language-none"><code class="language-none">
-# Hexo Configuration
-
-## Docs: http://hexo.io/docs/configuration.html
-
-## Source: https://github.com/hexojs/hexo/
-
-# Site #站点信息
-
-title:  #标题
-
-subtitle:  #副标题
-
-description:  #站点描述，给搜索引擎看的
-
-author:  #作者
-
-email:  #电子邮箱
-
-language: zh-CN #语言
-
-# URL #链接格式
-
-url:  #网址
-
-root: / #根目录
-
-permalink: :year/:month/:day/:title/ #文章的链接格式
-
-tag_dir: tags #标签目录
-
-archive_dir: archives #存档目录
-
-category_dir: categories #分类目录
-
-code_dir: downloads/code
-
-permalink_defaults:
-
-# Directory #目录
-
-source_dir: source #源文件目录
-
-public_dir: public #生成的网页文件目录
-
-# Writing #写作
-
-new_post_name: :title.md #新文章标题
-
-default_layout: post #默认的模板，包括 post、page、photo、draft（文章、页面、照片、草稿）
-
-titlecase: false #标题转换成大写
-
-external_link: true #在新选项卡中打开连接
-
-filename_case: 0
-
-render_drafts: false
-
-post_asset_folder: false
-
-relative_link: false
-
-highlight: #语法高亮
-
-enable: true #是否启用
-
-line_number: true #显示行号
-
-tab_replace:
-
-# Category &amp; Tag #分类和标签
-
-default_category: uncategorized #默认分类
-
-category_map:
-
-tag_map:
-
-# Archives
-
-2: 开启分页
-
-1: 禁用分页
-
-0: 全部禁用
-
-archive: 2
-
-category: 2
-
-tag: 2
-
-# Server #本地服务器
-
-port: 4000 #端口号
-
-server_ip: localhost #IP 地址
-
-logger: false
-
-logger_format: dev
-
-# Date / Time format #日期时间格式
-
-date_format: YYYY-MM-DD #参考http://momentjs.com/docs/#/displaying/format/
-
-time_format: H:mm:ss
-
-# Pagination #分页
-
-per_page: 10 #每页文章数，设置成 0 禁用分页
-
-pagination_dir: page
-
-# Disqus #Disqus评论，替换为多说
-
-disqus_shortname:
-
-# Extensions #拓展插件
-
-theme: landscape-plus #主题
-
-exclude_generator:
-
-plugins: #插件，例如生成 RSS 和站点地图的
-
-- hexo-generator-feed
-
-- hexo-generator-sitemap
-
-# Deployment #部署，将 lmintlcx 改成用户名
-
-deploy:
-
-type: git
-
-repo: github创库地址.git
-
-branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h3 id="1-单个参数"><a href="#1-单个参数" class="headerlink" title="1. 单个参数"></a>1. 单个参数</h3><p>传递单个参数时，方法名中的参数和 sql 语句中的参数名一致</p>
+<p>如下：方法参数为 id，sql 中的参数也为 id</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
+public List&lt;XXBean&gt; getXXBeanList(Long id);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>java.lang.Long<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+　　select t.* from tableName t where t.id= #{id}  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-多参数"><a href="#2-多参数" class="headerlink" title="2. 多参数"></a>2. 多参数</h3><p>多参数传递时不能使用 <code>parameterType</code>，除非所有参数的类型都一致，改用<code>#{index}</code>，是第几个就用第几个的索引，索引从<code>0</code>开始</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
+public List&lt;XXBean&gt; getXXBeanList(Long id, String name);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+　　select * from tableName t where id=#{0} and name=#{1}  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-Map封装多参数"><a href="#3-Map封装多参数" class="headerlink" title="3. Map封装多参数"></a>3. Map封装多参数</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
+public List&lt;XXBean&gt; getXXBeanList(HashMap map);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hashmap<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+　　select * from tableName t where id= #{id} and name=#{name}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中 <code>map </code>中的 <code>key </code>名即是在 <code>#{}</code> 中使用的</p>
+<h3 id="4-List-封装-in"><a href="#4-List-封装-in" class="headerlink" title="4. List 封装 in"></a>4. List 封装 in</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">// XXMapper.java
+public List&lt;XXBean&gt; getXXBeanList(List&lt;String&gt; list);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- XXMapper.xml --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getXXXBeanList<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hashmap<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXBean<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+　　select 字段... from tableName t where id in
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>foreach</span> <span class="token attr-name">item</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span> <span class="token attr-name">collection</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span> <span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(<span class="token punctuation">"</span></span> <span class="token attr-name">separator</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>,<span class="token punctuation">"</span></span> <span class="token attr-name">close</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    	#{item}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>foreach</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>foreach 最后的效果是：<code>select 字段 from tableName where id in ('1', '2', '3',...)</code></p>
+<h3 id="5-使用注解方式"><a href="#5-使用注解方式" class="headerlink" title="5. 使用注解方式"></a>5. 使用注解方式</h3><p>在方法上使用 <code>@Param</code> 注解注明参数名</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">Page&lt;ArticleVO&gt; selectPreviewPage(
+            @Param("page") Page&lt;Object&gt; page,
+            @Param("publish") int publish,
+            @Param("categoryId") Long categoryId,
+            @Param("tagId") Long tagId);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectPreviewPage<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.blog.model.vo.ArticleVO<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>    
+    select                                                                  
+        a.id as id,                                                         
+        a.title as title,                                                   
+        a.avatar as avatar,                                                 
+        a.is_stick as isStick,                                              
+        a.create_time as createTime,                                        
+        c.id as categoryId,                                                 
+        c.name as categoryName                                              
+    from blog_article a JOIN blog_category c on a.category_id = c.id        
+    where a.is_publish = #{publish}                                         
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>categoryId != null<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>                                        
+        and a.category_id = #{categoryId}                                   
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>                                                                   
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>tagId != null<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>                                             
+        and a.id in (                                                       
+            select article_id from blog_article_tag where tag_id = #{tagId} 
+        )                                                                   
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>                                                                   
+    order by a.is_stick desc, a.create_time desc                            
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>                                                                   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -668,7 +524,7 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/java/git-hexo-cao-zuo/">https://gitee.com/mathison-tur/tur-study/2023/03/27/java/git-hexo-cao-zuo/</a>
+                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">https://gitee.com/mathison-tur/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -706,8 +562,8 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/hexo/">
-                                    <span class="chip bg-color">hexo</span>
+                                <a href="/tur-study/tags/Mybatis/">
+                                    <span class="chip bg-color">Mybatis</span>
                                 </a>
                             
                         </div>
@@ -790,13 +646,13 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/">
+                <a href="/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Mybatis中select传递多个参数">
+                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Knife4j配置与使用(OpenAPI2)">
                         
-                        <span class="card-title">Mybatis中select传递多个参数</span>
+                        <span class="card-title">Knife4j配置与使用(OpenAPI2)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -820,8 +676,8 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
+                    <a href="/tur-study/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
                 </div>
@@ -835,13 +691,13 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/java/threadlocal-xiang-jie/">
+                <a href="/tur-study/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/6.jpg" class="responsive-img" alt="ThreadLocal详解">
+                        <img src="/tur-study/medias/featureimages/13.jpg" class="responsive-img" alt="Git Hexo 操作">
                         
-                        <span class="card-title">ThreadLocal详解</span>
+                        <span class="card-title">Git Hexo 操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -865,8 +721,8 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Java-ThreadLocal/">
-                        <span class="chip bg-color">Java ThreadLocal</span>
+                    <a href="/tur-study/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
@@ -994,60 +850,6 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/tur-study/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="5041721844"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/tur-study/libs/aplayer/APlayer.min.js"></script>
-<script src="/tur-study/libs/aplayer/Meting.min.js"></script>
-
     
 
     <div class="container row center-align"

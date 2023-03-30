@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Knife4j配置与使用(OpenAPI2), Tur的学习笔记">
-    <meta name="description" content="1. 引入maven 坐标如下
-&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;knife4j-">
+    <meta name="keywords" content="Git Hexo 操作, Tur的学习笔记">
+    <meta name="description" content="1. Hexo 基本命令hexo init --新建一个网站，若没有设置folder，默认在当前文件夹建立网站
+
+hexo generate --生成个人博客所需的静态页面
+
+hexo server --启动服务器，默认访问端口：locla">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Knife4j配置与使用(OpenAPI2) | Tur的学习笔记</title>
+    <title>Git Hexo 操作 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -340,12 +341,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Knife4j配置与使用(OpenAPI2)</h1>
+                    <h1 class="description center-align post-title">Git Hexo 操作</h1>
                 </div>
             </div>
         </div>
@@ -369,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/SpringBoot/">
-                                <span class="chip bg-color">SpringBoot</span>
+                            <a href="/tur-study/tags/hexo/">
+                                <span class="chip bg-color">hexo</span>
                             </a>
                         
                     </div>
@@ -392,21 +393,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-28
+                    2023-03-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    551
+                    805
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -429,80 +430,218 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h3><p>maven 坐标如下</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.xiaoymin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>knife4j-openapi2-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-    <span class="token comment">&lt;!-- 具体版本自行选择 --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h4 id="1-Hexo-基本命令"><a href="#1-Hexo-基本命令" class="headerlink" title="1. Hexo 基本命令"></a>1. Hexo 基本命令</h4><pre class="line-numbers language-none"><code class="language-none">hexo init --新建一个网站，若没有设置folder，默认在当前文件夹建立网站
 
-<blockquote>
-<p>Spring Boot 版本建议在 2.4.0 ~ 3.0.0 之间</p>
-</blockquote>
-<h3 id="2-配置-yml-属性"><a href="#2-配置-yml-属性" class="headerlink" title="2. 配置 yml 属性"></a>2. 配置 yml 属性</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">knife4j:
-  enable: true
-  openapi:
-    title: 这是文档标题 # 文档标题
-    description: 这是简介 # 简介
-    email: 123456789@qq.com # 创建人邮件
-    concat: tur # 创建者
-    url: https://docs.xiaominfo.com # 项目文档地址
-    version: v4.0 # 版本
-    license: Apache 2.0 # 许可证
-    license-url: https://stackoverflow.com/ # 许可证地址
-    terms-of-service-url: https://stackoverflow.com/
-    group: # 分组
-      test1: # 组名，用以区分其他组
-        group-name: 分组名称 # 组别名称
-        api-rule: package # api扫描方式
-        api-rule-resources: # 指定扫描的位置
-          - com.knife4j.demo.new3 # 存放接口、对象的包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+hexo generate --生成个人博客所需的静态页面
 
-<p>访问 Knife4j 的文档地址：<code>http://ip:sort/doc.html</code></p>
-<h3 id="3-Java注解"><a href="#3-Java注解" class="headerlink" title="3. Java注解"></a>3. Java注解</h3><h5 id="1-Api：定义接口分组名称"><a href="#1-Api：定义接口分组名称" class="headerlink" title="1. @Api：定义接口分组名称"></a>1. <code>@Api</code>：定义接口分组名称</h5><p>参数说明：</p>
-<ul>
-<li><code>tags</code>:说明该类的作用，可以在 UI 界面上看到的注解</li>
-<li><code>value</code>：一般会自动获取接口分组的名称，可以不用设置</li>
-</ul>
-<h5 id="2-ApiImplicitParam：单个参数注释"><a href="#2-ApiImplicitParam：单个参数注释" class="headerlink" title="2. @ApiImplicitParam：单个参数注释"></a>2. <code>@ApiImplicitParam</code>：单个参数注释</h5><p>用在 <code>@ApiImplicitParams</code> 中，指定一个请求参数的各个方面</p>
-<ul>
-<li><code>name</code>：参数名</li>
-<li><code>value</code>：参数说明</li>
-<li><code>required</code>：参数时是否必须传</li>
-<li><code>paramType</code>：参数位置，有以下可选值<ul>
-<li><code>header</code>：请求头 <code>@RequestHeader</code></li>
-<li><code>query</code>：?param=value格式 <code>@RequestParam</code></li>
-<li><code>path</code>：路径，Restful风格接口 <code>@PathVariable</code></li>
-<li><code>body</code>：请求体</li>
-<li><code>form</code>：以form表单的形式提交</li>
-</ul>
-</li>
-<li><code>dataType</code>：参数类型，默认 String，其他值为 Integer</li>
-<li><code>defaultValue</code>：参数的默认值</li>
-</ul>
-<h5 id="3-ApiImplicitParams：多个参数注释"><a href="#3-ApiImplicitParams：多个参数注释" class="headerlink" title="3. @ApiImplicitParams：多个参数注释"></a>3. <code>@ApiImplicitParams</code>：多个参数注释</h5><p>用在请求方法上，表示一组参数的说明</p>
-<h5 id="4-ApiModel：实体类定义"><a href="#4-ApiModel：实体类定义" class="headerlink" title="4. @ApiModel：实体类定义"></a>4. <code>@ApiModel</code>：实体类定义</h5><h5 id="5-ApiModelProperty：实体属性定义"><a href="#5-ApiModelProperty：实体属性定义" class="headerlink" title="5. @ApiModelProperty：实体属性定义"></a>5. <code>@ApiModelProperty</code>：实体属性定义</h5><ul>
-<li><code>value</code>：字段说明</li>
-<li><code>name</code>：属性名</li>
-<li><code>dataType</code>：属性类型</li>
-<li><code>required</code>：是否必填</li>
-<li><code>example</code>：举例说明</li>
-<li><code>hidden</code>：隐藏</li>
-</ul>
-<h5 id="6-ApiOperation：接口定义"><a href="#6-ApiOperation：接口定义" class="headerlink" title="6. @ApiOperation：接口定义"></a>6. <code>@ApiOperation</code>：接口定义</h5><ul>
-<li><code>value</code>：接口说明</li>
-<li><code>httpMethod</code>：接口请求方式</li>
-<li><code>response</code>：接口返回参数类型</li>
-<li><code>notes</code>：接口发布说明</li>
-</ul>
-<h5 id="7-ApiParam：参数注释"><a href="#7-ApiParam：参数注释" class="headerlink" title="7. @ApiParam：参数注释"></a>7. <code>@ApiParam</code>：参数注释</h5><h5 id="8-ApiResponse：响应码"><a href="#8-ApiResponse：响应码" class="headerlink" title="8. @ApiResponse：响应码"></a>8. <code>@ApiResponse</code>：响应码</h5><p>用在 <code>@ApiResponses</code> 中，一般用于表达一个错误或正确的响应信息</p>
-<ul>
-<li><code>code</code>：响应码</li>
-<li><code>message</code>：响应信息</li>
-<li><code>resposne</code>：抛出异常类</li>
-</ul>
-<h5 id="9-ApiResponses：多个响应码"><a href="#9-ApiResponses：多个响应码" class="headerlink" title="9. @ApiResponses：多个响应码"></a>9. <code>@ApiResponses</code>：多个响应码</h5><p>用在请求的方法上，表示一组响应</p>
+hexo server --启动服务器，默认访问端口：loclahost:4000
+
+hexo deploy --部署个人博客
+
+hexo clean --清除缓存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>以上命令都能用首字母缩写完成</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo g --generate 生成个人博客所需的静态页面
+
+hexo s --server
+
+hexo d --deploy 部署个人博客
+
+hexo c --clean 清除缓存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-写文章用到的命令"><a href="#2-写文章用到的命令" class="headerlink" title="2. 写文章用到的命令"></a>2. 写文章用到的命令</h4><pre class="line-numbers language-none"><code class="language-none">hexo new --path java/ "文章标题" --新建文章
+
+hexo new page "页面名" -- 新建页面<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-p, –path</td>
+<td align="left">自定义新文章的路径</td>
+</tr>
+<tr>
+<td align="left">-r, –replace</td>
+<td align="left">如果存在同名文章，将其替换</td>
+</tr>
+<tr>
+<td align="left">-s, –slug</td>
+<td align="left">文章的Slug，作为新文章的文件名和发布后的URL</td>
+</tr>
+</tbody></table>
+<p>编辑博客时使用如下命令</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo s --debug<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后访问<a target="_blank" rel="noopener" href="http://localhost:4000/%E6%9D%A5%E8%BF%9B%E5%85%A5%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%9B%B4%E6%94%B9%E4%BA%86%E9%85%8D%E7%BD%AE%E6%88%96%E6%96%87%E7%AB%A0%E5%90%8E%E9%9A%8F%E6%97%B6%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2%E6%9D%A5%E6%9F%A5%E7%9C%8B%E6%95%88%E6%9E%9C%E3%80%82">http://localhost:4000/来进入调试模式，更改了配置或文章后随时刷新页面来查看效果。</a></p>
+<h4 id="3-部署博客的步骤"><a href="#3-部署博客的步骤" class="headerlink" title="3. 部署博客的步骤"></a>3. 部署博客的步骤</h4><pre class="line-numbers language-none"><code class="language-none">hexo clean
+hexo generate
+hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>后两步可以简写为<code>hexo g -d</code></p>
+<h4 id="4-目录结构说明"><a href="#4-目录结构说明" class="headerlink" title="4. 目录结构说明"></a>4. 目录结构说明</h4><pre class="line-numbers language-none"><code class="language-none">|  +-- .deploy      #hexo deploy生成的文件
+
+|  +-- node_modules  #npm组件
+
+|  +-- public        #生成的静态网页文件
+
+|  +--scaffolds      #模板
+
+|  +-- source        #博客正文和其他源文件
+
+|  |  +-- _posts    #我们自己写的文章以md结尾
+
+|  +-- themes        #主题
+
+|  +-- _config.yml  #全局配置文件
+
+|  `-- package.json  #定义了hexo所需要的各种模块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-配置文件"><a href="#5-配置文件" class="headerlink" title="5. 配置文件"></a>5. 配置文件</h4><p>在文件夹跟目录下的<code>_config.yml</code>叫做<strong>站点配置文件</strong>,同样的文件名我们可以在<code>theme</code>文件夹下的主题文件夹里面也找的。而主题文件夹下的<code>_config.yml</code>叫做主题配置文件。这里说明一下站点配置文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">
+# Hexo Configuration
+
+## Docs: http://hexo.io/docs/configuration.html
+
+## Source: https://github.com/hexojs/hexo/
+
+# Site #站点信息
+
+title:  #标题
+
+subtitle:  #副标题
+
+description:  #站点描述，给搜索引擎看的
+
+author:  #作者
+
+email:  #电子邮箱
+
+language: zh-CN #语言
+
+# URL #链接格式
+
+url:  #网址
+
+root: / #根目录
+
+permalink: :year/:month/:day/:title/ #文章的链接格式
+
+tag_dir: tags #标签目录
+
+archive_dir: archives #存档目录
+
+category_dir: categories #分类目录
+
+code_dir: downloads/code
+
+permalink_defaults:
+
+# Directory #目录
+
+source_dir: source #源文件目录
+
+public_dir: public #生成的网页文件目录
+
+# Writing #写作
+
+new_post_name: :title.md #新文章标题
+
+default_layout: post #默认的模板，包括 post、page、photo、draft（文章、页面、照片、草稿）
+
+titlecase: false #标题转换成大写
+
+external_link: true #在新选项卡中打开连接
+
+filename_case: 0
+
+render_drafts: false
+
+post_asset_folder: false
+
+relative_link: false
+
+highlight: #语法高亮
+
+enable: true #是否启用
+
+line_number: true #显示行号
+
+tab_replace:
+
+# Category &amp; Tag #分类和标签
+
+default_category: uncategorized #默认分类
+
+category_map:
+
+tag_map:
+
+# Archives
+
+2: 开启分页
+
+1: 禁用分页
+
+0: 全部禁用
+
+archive: 2
+
+category: 2
+
+tag: 2
+
+# Server #本地服务器
+
+port: 4000 #端口号
+
+server_ip: localhost #IP 地址
+
+logger: false
+
+logger_format: dev
+
+# Date / Time format #日期时间格式
+
+date_format: YYYY-MM-DD #参考http://momentjs.com/docs/#/displaying/format/
+
+time_format: H:mm:ss
+
+# Pagination #分页
+
+per_page: 10 #每页文章数，设置成 0 禁用分页
+
+pagination_dir: page
+
+# Disqus #Disqus评论，替换为多说
+
+disqus_shortname:
+
+# Extensions #拓展插件
+
+theme: landscape-plus #主题
+
+exclude_generator:
+
+plugins: #插件，例如生成 RSS 和站点地图的
+
+- hexo-generator-feed
+
+- hexo-generator-sitemap
+
+# Deployment #部署，将 lmintlcx 改成用户名
+
+deploy:
+
+type: git
+
+repo: github创库地址.git
+
+branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -529,7 +668,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/">https://gitee.com/mathison-tur/tur-study/2023/03/27/springboot/knife4j-de-pei-zhi-yu-shi-yong/</a>
+                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/">https://gitee.com/mathison-tur/tur-study/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -567,8 +706,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/SpringBoot/">
-                                    <span class="chip bg-color">SpringBoot</span>
+                                <a href="/tur-study/tags/hexo/">
+                                    <span class="chip bg-color">hexo</span>
                                 </a>
                             
                         </div>
@@ -651,13 +790,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/03/28/mybatisplus/mybatis-plus-zhong-fen-ye-cha-jian-de-shi-yong/">
+                <a href="/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Mybatis Plus 分页插件的使用">
+                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Mybatis中select传递多个参数">
                         
-                        <span class="card-title">Mybatis Plus 分页插件的使用</span>
+                        <span class="card-title">Mybatis中select传递多个参数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -668,7 +807,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
                         </span>
                         <span class="publish-author">
                             
@@ -681,8 +820,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis-Plus/">
-                        <span class="chip bg-color">Mybatis Plus</span>
+                    <a href="/tur-study/tags/Mybatis/">
+                        <span class="chip bg-color">Mybatis</span>
                     </a>
                     
                 </div>
@@ -696,13 +835,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/mybatisplus/mybatis-zhong-select-chuan-di-duo-ge-can-shu/">
+                <a href="/tur-study/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Mybatis中select传递多个参数">
+                        <img src="/tur-study/medias/featureimages/6.jpg" class="responsive-img" alt="ThreadLocal详解">
                         
-                        <span class="card-title">Mybatis中select传递多个参数</span>
+                        <span class="card-title">ThreadLocal详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -726,8 +865,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
+                    <a href="/tur-study/tags/Java-ThreadLocal/">
+                        <span class="chip bg-color">Java ThreadLocal</span>
                     </a>
                     
                 </div>
@@ -855,60 +994,6 @@
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/tur-study/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="5041721844"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/tur-study/libs/aplayer/APlayer.min.js"></script>
-<script src="/tur-study/libs/aplayer/Meting.min.js"></script>
-
     
 
     <div class="container row center-align"
