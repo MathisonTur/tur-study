@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Knife4j配置与使用(OpenAPI2), Tur的学习笔记">
-    <meta name="description" content="1. 引入maven 坐标如下
-&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;knife4j-">
+    <meta name="keywords" content="Filter 过滤器的使用, Tur的学习笔记">
+    <meta name="description" content="1. 应用场景SpringBoot 的过滤器，在 web 开发中可以过滤指定的 url，如过滤掉不需要的接口请求，同时也可以修改 request 和 response 内容
+过滤器的应用场景：
+
+过滤敏感词汇（防止sql注入）
+设置字符编码">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Knife4j配置与使用(OpenAPI2) | Tur的学习笔记</title>
+    <title>Filter 过滤器的使用 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -340,12 +341,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Knife4j配置与使用(OpenAPI2)</h1>
+                    <h1 class="description center-align post-title">Filter 过滤器的使用</h1>
                 </div>
             </div>
         </div>
@@ -385,7 +386,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-27
+                    2023-03-28
                 </div>
                 
 
@@ -399,7 +400,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    551
+                    602
                 </div>
                 
 
@@ -429,80 +430,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h3><p>maven 坐标如下</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.xiaoymin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>knife4j-openapi2-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-    <span class="token comment">&lt;!-- 具体版本自行选择 --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h3 id="1-应用场景"><a href="#1-应用场景" class="headerlink" title="1. 应用场景"></a>1. 应用场景</h3><p><code>SpringBoot </code>的过滤器，在 <code>web </code>开发中可以过滤指定的 <code>url</code>，如过滤掉不需要的接口请求，同时也可以修改 <code>request </code>和 <code>response </code>内容</p>
+<p>过滤器的应用场景：</p>
+<ul>
+<li>过滤敏感词汇（防止sql注入）</li>
+<li>设置字符编码</li>
+<li>URL级别的权限访问控制</li>
+<li>压缩相应信息</li>
+</ul>
+<h3 id="2-实现方法"><a href="#2-实现方法" class="headerlink" title="2. 实现方法"></a>2. 实现方法</h3><p>实现方式有以下两种：</p>
+<ol>
+<li>使用<code> spring boot</code> 提供的 <code>FilterRegistrationBean </code>注册 <code>Filter</code></li>
+<li>使用原生 <code>servlet </code>注解定义 <code>Filter</code></li>
+</ol>
+<blockquote>
+<p>两种方式的本质都是一样的，都是去FilterRegistrationBean 注册自定义 Filter</p>
+</blockquote>
+<h4 id="2-1-使用-SpringBoot-提供的-FIlterRegitrationBean-注册-Filter"><a href="#2-1-使用-SpringBoot-提供的-FIlterRegitrationBean-注册-Filter" class="headerlink" title="2.1 使用 SpringBoot 提供的 FIlterRegitrationBean 注册 Filter"></a>2.1 使用 SpringBoot 提供的 FIlterRegitrationBean 注册 Filter</h4><ol>
+<li>定义 Filter</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">import lombok.extern.slf4j.Slf4j;
+import javax.servlet.*;
+import javax.servlet.FilterConfig;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+@Slf4j
+public class MyCorsFilter implements Filter {
+
+    // 令牌
+    static final String TOKEN = "1234567890";
+
+    // 内部接口
+    public static List&lt;String&gt; INSIDE_URLS = List.of("/web/article/list", "/web//article/condition");
+
+    // 白名单
+    public static List&lt;String&gt; WHITE_PATH = List.of("/white", "/login");
+
+    /**
+     * 核心过滤方法
+     * */
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        // doFilter 方法中的 request 和 response 需要转换为对应的 HttpServletRequest 和 HttpServletResponse 方便调用某些方法
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+        String ip = request.getRemoteAddr();
+        String requestURI = request.getRequestURI();
+        log.info("ip = {}, requestURI = {}", ip, requestURI);
+        if (INSIDE_URLS.contains(requestURI)){
+            // 内部接口，直接通过
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+        if (WHITE_PATH.contains(requestURI)){
+            // 白名单接口，直接通过
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+        String token = request.getHeader("token");
+        if (TOKEN.equals(token)){
+            // 令牌校验通过，允许接口通过
+            filterChain.doFilter(servletRequest, servletResponse);
+        }else {
+            // 令牌校验不通过，重定向到登陆界面
+        }
+    }
+
+
+    /**
+     * 初始化
+     * */
+    public void init(FilterConfig filterConfig) {}
+    /**
+     * 销毁方法
+     * */
+    public void destroy() {}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>注册自定义Filter过滤器配置类</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class FilterConfig {
+
+    /**
+     * 基础过滤器
+     * */
+    @Bean
+    public FilterRegistrationBean&lt;Filter&gt; baseFilter(){
+        FilterRegistrationBean&lt;Filter&gt; filterRegistrationBean = new FilterRegistrationBean&lt;&gt;();
+        filterRegistrationBean.setFilter(new MyCorsFilter());
+        filterRegistrationBean.setUrlPatterns(List.of("/*"));
+        filterRegistrationBean.setOrder(1);
+        return filterRegistrationBean;
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>测试可以发现白名单和内部接口可以通过，而不在这两个范围内的接口若令牌token不对应，则不能通过</p>
+<h3 id="3-跨域请求的实现"><a href="#3-跨域请求的实现" class="headerlink" title="3. 跨域请求的实现"></a>3. 跨域请求的实现</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Component
+public class MyCorsFilter implements Filter {
+
+    public void doFilter(ServletRequest req, ServletResponse res,
+                         FilterChain chain) throws IOException, ServletException {
+
+        HttpServletResponse response = (HttpServletResponse) res;
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type,Access-Token,Authorization");
+        response.setHeader("Access-Control-Expose-Headers", "*");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        chain.doFilter(req, res);
+    }
+
+    public void init(FilterConfig filterConfig) {}
+    public void destroy() {}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
-<p>Spring Boot 版本建议在 2.4.0 ~ 3.0.0 之间</p>
+<p>在接口分组添加<code> @CrossOrigin</code>注解可以实现该接口分组的所有接口允许跨域请求</p>
 </blockquote>
-<h3 id="2-配置-yml-属性"><a href="#2-配置-yml-属性" class="headerlink" title="2. 配置 yml 属性"></a>2. 配置 yml 属性</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">knife4j:
-  enable: true
-  openapi:
-    title: 这是文档标题 # 文档标题
-    description: 这是简介 # 简介
-    email: 123456789@qq.com # 创建人邮件
-    concat: tur # 创建者
-    url: https://docs.xiaominfo.com # 项目文档地址
-    version: v4.0 # 版本
-    license: Apache 2.0 # 许可证
-    license-url: https://stackoverflow.com/ # 许可证地址
-    terms-of-service-url: https://stackoverflow.com/
-    group: # 分组
-      test1: # 组名，用以区分其他组
-        group-name: 分组名称 # 组别名称
-        api-rule: package # api扫描方式
-        api-rule-resources: # 指定扫描的位置
-          - com.knife4j.demo.new3 # 存放接口、对象的包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>访问 Knife4j 的文档地址：<code>http://ip:sort/doc.html</code></p>
-<h3 id="3-Java注解"><a href="#3-Java注解" class="headerlink" title="3. Java注解"></a>3. Java注解</h3><h5 id="1-Api：定义接口分组名称"><a href="#1-Api：定义接口分组名称" class="headerlink" title="1. @Api：定义接口分组名称"></a>1. <code>@Api</code>：定义接口分组名称</h5><p>参数说明：</p>
-<ul>
-<li><code>tags</code>:说明该类的作用，可以在 UI 界面上看到的注解</li>
-<li><code>value</code>：一般会自动获取接口分组的名称，可以不用设置</li>
-</ul>
-<h5 id="2-ApiImplicitParam：单个参数注释"><a href="#2-ApiImplicitParam：单个参数注释" class="headerlink" title="2. @ApiImplicitParam：单个参数注释"></a>2. <code>@ApiImplicitParam</code>：单个参数注释</h5><p>用在 <code>@ApiImplicitParams</code> 中，指定一个请求参数的各个方面</p>
-<ul>
-<li><code>name</code>：参数名</li>
-<li><code>value</code>：参数说明</li>
-<li><code>required</code>：参数时是否必须传</li>
-<li><code>paramType</code>：参数位置，有以下可选值<ul>
-<li><code>header</code>：请求头 <code>@RequestHeader</code></li>
-<li><code>query</code>：?param=value格式 <code>@RequestParam</code></li>
-<li><code>path</code>：路径，Restful风格接口 <code>@PathVariable</code></li>
-<li><code>body</code>：请求体</li>
-<li><code>form</code>：以form表单的形式提交</li>
-</ul>
-</li>
-<li><code>dataType</code>：参数类型，默认 String，其他值为 Integer</li>
-<li><code>defaultValue</code>：参数的默认值</li>
-</ul>
-<h5 id="3-ApiImplicitParams：多个参数注释"><a href="#3-ApiImplicitParams：多个参数注释" class="headerlink" title="3. @ApiImplicitParams：多个参数注释"></a>3. <code>@ApiImplicitParams</code>：多个参数注释</h5><p>用在请求方法上，表示一组参数的说明</p>
-<h5 id="4-ApiModel：实体类定义"><a href="#4-ApiModel：实体类定义" class="headerlink" title="4. @ApiModel：实体类定义"></a>4. <code>@ApiModel</code>：实体类定义</h5><h5 id="5-ApiModelProperty：实体属性定义"><a href="#5-ApiModelProperty：实体属性定义" class="headerlink" title="5. @ApiModelProperty：实体属性定义"></a>5. <code>@ApiModelProperty</code>：实体属性定义</h5><ul>
-<li><code>value</code>：字段说明</li>
-<li><code>name</code>：属性名</li>
-<li><code>dataType</code>：属性类型</li>
-<li><code>required</code>：是否必填</li>
-<li><code>example</code>：举例说明</li>
-<li><code>hidden</code>：隐藏</li>
-</ul>
-<h5 id="6-ApiOperation：接口定义"><a href="#6-ApiOperation：接口定义" class="headerlink" title="6. @ApiOperation：接口定义"></a>6. <code>@ApiOperation</code>：接口定义</h5><ul>
-<li><code>value</code>：接口说明</li>
-<li><code>httpMethod</code>：接口请求方式</li>
-<li><code>response</code>：接口返回参数类型</li>
-<li><code>notes</code>：接口发布说明</li>
-</ul>
-<h5 id="7-ApiParam：参数注释"><a href="#7-ApiParam：参数注释" class="headerlink" title="7. @ApiParam：参数注释"></a>7. <code>@ApiParam</code>：参数注释</h5><h5 id="8-ApiResponse：响应码"><a href="#8-ApiResponse：响应码" class="headerlink" title="8. @ApiResponse：响应码"></a>8. <code>@ApiResponse</code>：响应码</h5><p>用在 <code>@ApiResponses</code> 中，一般用于表达一个错误或正确的响应信息</p>
-<ul>
-<li><code>code</code>：响应码</li>
-<li><code>message</code>：响应信息</li>
-<li><code>resposne</code>：抛出异常类</li>
-</ul>
-<h5 id="9-ApiResponses：多个响应码"><a href="#9-ApiResponses：多个响应码" class="headerlink" title="9. @ApiResponses：多个响应码"></a>9. <code>@ApiResponses</code>：多个响应码</h5><p>用在请求的方法上，表示一组响应</p>
 
                 
             </div>
@@ -529,7 +580,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">https://gitee.com/mathison-tur/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</a>
+                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/28/SpringBoot/Filter-using/">https://gitee.com/mathison-tur/tur-study/2023/03/28/SpringBoot/Filter-using/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -651,13 +702,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                <a href="/tur-study/2023/03/28/SpringBoot/Interceptor-using/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Mybatis Plus 分页插件的使用">
+                        <img src="/tur-study/medias/featureimages/20.jpg" class="responsive-img" alt="Interceptor 拦截器的使用">
                         
-                        <span class="card-title">Mybatis Plus 分页插件的使用</span>
+                        <span class="card-title">Interceptor 拦截器的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -681,8 +732,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis-Plus/">
-                        <span class="chip bg-color">Mybatis Plus</span>
+                    <a href="/tur-study/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
                 </div>
@@ -696,13 +747,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">
+                <a href="/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Mybatis中select传递多个参数">
+                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Mybatis Plus 分页插件的使用">
                         
-                        <span class="card-title">Mybatis中select传递多个参数</span>
+                        <span class="card-title">Mybatis Plus 分页插件的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,7 +764,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
                             </span>
                         <span class="publish-author">
                             
@@ -726,8 +777,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
+                    <a href="/tur-study/tags/Mybatis-Plus/">
+                        <span class="chip bg-color">Mybatis Plus</span>
                     </a>
                     
                 </div>

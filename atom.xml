@@ -41,8 +41,8 @@
   
   <entry>
     <title>Interceptor 拦截器的使用</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-using/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-using/</id>
     <published>2023-03-28T10:19:34.000Z</published>
     <updated>2023-03-30T08:21:22.219Z</updated>
     
@@ -64,8 +64,8 @@
   
   <entry>
     <title>Filter 过滤器的使用</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter%20%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter%20%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter-using/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter-using/</id>
     <published>2023-03-28T10:16:47.000Z</published>
     <updated>2023-03-28T15:06:35.028Z</updated>
     
@@ -114,8 +114,8 @@
   
   <entry>
     <title>Knife4j配置与使用(OpenAPI2)</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j-configuration-use/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j-configuration-use/</id>
     <published>2023-03-27T11:56:27.000Z</published>
     <updated>2023-03-28T01:11:55.172Z</updated>
     
