@@ -6,7 +6,7 @@
   <link href="https://gitee.com/mathison-tur/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/mathison-tur/"/>
-  <updated>2023-03-31T07:25:59.888Z</updated>
+  <updated>2023-03-31T12:43:26.810Z</updated>
   <id>https://gitee.com/mathison-tur/</id>
   
   <author>
@@ -17,11 +17,65 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SpringBoot整合Redis</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/31/Redis/SpringBoot%E6%95%B4%E5%90%88Redis/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/31/Redis/SpringBoot%E6%95%B4%E5%90%88Redis/</id>
+    <published>2023-03-31T10:00:00.000Z</published>
+    <updated>2023-03-31T12:43:26.810Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;code&gt;SpringBoot &lt;/code&gt;中对 &lt;code&gt;Redis &lt;/code&gt;的集成模块为 &lt;code&gt;SpringDataRedis&lt;/code&gt;。官网地址：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Redis" scheme="https://gitee.com/mathison-tur/categories/Redis/"/>
+    
+    <category term="SpringBoot" scheme="https://gitee.com/mathison-tur/categories/Redis/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://gitee.com/mathison-tur/tags/SpringBoot/"/>
+    
+    <category term="Redis" scheme="https://gitee.com/mathison-tur/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux常用命令</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/31/linux/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/31/linux/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <published>2023-03-31T09:08:22.000Z</published>
+    <updated>2023-03-31T09:20:23.935Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;防火墙相关命令&quot;&gt;&lt;a href=&quot;#防火墙相关命令&quot; class=&quot;headerlink&quot; title=&quot;防火墙相关命令&quot;&gt;&lt;/a&gt;防火墙相关命令&lt;/h3&gt;&lt;h4 id=&quot;1-查看防火墙状态&quot;&gt;&lt;a href=&quot;#1-查看防火墙状态&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://gitee.com/mathison-tur/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://gitee.com/mathison-tur/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Sa-Token权限认证</title>
     <link href="https://gitee.com/mathison-tur/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/"/>
     <id>https://gitee.com/mathison-tur/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/</id>
     <published>2023-03-31T05:00:00.000Z</published>
-    <updated>2023-03-31T07:25:59.888Z</updated>
+    <updated>2023-03-31T08:40:24.956Z</updated>
     
     
       
@@ -50,13 +104,23 @@
     <link href="https://gitee.com/mathison-tur/2023/03/30/Redis/Redis%E5%9F%BA%E7%A1%80/"/>
     <id>https://gitee.com/mathison-tur/2023/03/30/Redis/Redis%E5%9F%BA%E7%A1%80/</id>
     <published>2023-03-30T08:56:04.000Z</published>
-    <updated>2023-03-31T04:42:27.062Z</updated>
+    <updated>2023-03-31T12:38:42.444Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、初识-Redis&quot;&gt;&lt;a href=&quot;#一、初识-Redis&quot; class=&quot;headerlink&quot; title=&quot;一、初识 Redis&quot;&gt;&lt;/a&gt;一、初识 Redis&lt;/h2&gt;&lt;h3 id=&quot;1-1-NoSQL&quot;&gt;&lt;a href=&quot;#1-1-NoSQL&quot;</summary>
+        
+      
     
     
     
     
     <category term="Redis" scheme="https://gitee.com/mathison-tur/tags/Redis/"/>
+    
+    <category term="基础" scheme="https://gitee.com/mathison-tur/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   

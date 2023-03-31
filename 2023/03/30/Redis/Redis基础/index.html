@@ -4,8 +4,23 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Redis">
-    <meta name="description" content="">
+    <meta name="keywords" content="Redis,基础">
+    <meta name="description" content="一、初识 Redis1.1 NoSQL
+对比 SQL 与 NoSQL 的区别
+
+
+SQL：关系型数据库
+NoSQL：非关系型数据库
+
+1. 1.1 数据结构1. SQL
+结构化（Structured）
+
+
+2. NoSQL
+非结构化
+
+
+1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -370,6 +385,10 @@
                                 <span class="chip bg-color">Redis</span>
                             </a>
                         
+                            <a href="/tur-study/tags/%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">基础</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -396,14 +415,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    10 分
                 </div>
                 
 
@@ -426,7 +445,344 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="一、初识-Redis"><a href="#一、初识-Redis" class="headerlink" title="一、初识 Redis"></a>一、初识 Redis</h2><h3 id="1-1-NoSQL"><a href="#1-1-NoSQL" class="headerlink" title="1.1 NoSQL"></a>1.1 NoSQL</h3><blockquote>
+<p>对比 SQL 与 NoSQL 的区别</p>
+</blockquote>
+<ul>
+<li>SQL：关系型数据库</li>
+<li>NoSQL：非关系型数据库</li>
+</ul>
+<h4 id="1-1-1-数据结构"><a href="#1-1-1-数据结构" class="headerlink" title="1. 1.1 数据结构"></a>1. 1.1 数据结构</h4><h5 id="1-SQL"><a href="#1-SQL" class="headerlink" title="1. SQL"></a>1. SQL</h5><ul>
+<li>结构化（Structured）</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312030264.png" alt="image-20221129224752320"></p>
+<h5 id="2-NoSQL"><a href="#2-NoSQL" class="headerlink" title="2. NoSQL"></a>2. NoSQL</h5><ul>
+<li>非结构化</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312030531.png" alt="image-20221129225146820"></p>
+<h4 id="1-1-2-数据关联"><a href="#1-1-2-数据关联" class="headerlink" title="1.1.2 数据关联"></a>1.1.2 数据关联</h4><h5 id="1-SQL-1"><a href="#1-SQL-1" class="headerlink" title="1. SQL"></a>1. SQL</h5><ul>
+<li>关联的（Relational）</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312030421.png" alt="image-20221129225809198"></p>
+<h5 id="2-NoSQL-1"><a href="#2-NoSQL-1" class="headerlink" title="2. NoSQL"></a>2. NoSQL</h5><ul>
+<li>无关联的</li>
+</ul>
+<h4 id="1-1-3-查询方式"><a href="#1-1-3-查询方式" class="headerlink" title="1.1.3 查询方式"></a>1.1.3 查询方式</h4><h5 id="1-SQL-2"><a href="#1-SQL-2" class="headerlink" title="1. SQL"></a>1. SQL</h5><ul>
+<li>SQL 查询</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312031329.png" alt="image-20221129225909052"></p>
+<h5 id="2-NoSQL-2"><a href="#2-NoSQL-2" class="headerlink" title="2. NoSQL"></a>2. NoSQL</h5><ul>
+<li>非 SQL</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312031303.png" alt="image-20221129225951166"></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312031649.png" alt="image-20221129230007224"></p>
+<h4 id="1-1-4-事务特性"><a href="#1-1-4-事务特性" class="headerlink" title="1.1.4 事务特性"></a>1.1.4 事务特性</h4><h5 id="1-SQL-3"><a href="#1-SQL-3" class="headerlink" title="1. SQL"></a>1. SQL</h5><ul>
+<li>ACID</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312032750.png" alt="image-20221129230120185"></p>
+<h5 id="2-NoSQL-3"><a href="#2-NoSQL-3" class="headerlink" title="2. NoSQL"></a>2. NoSQL</h5><ul>
+<li>BASE</li>
+</ul>
+<blockquote>
+<ul>
+<li>键值类型（Redis）</li>
+<li>文档类型（MongoDB）</li>
+<li>列类型（HBase）</li>
+<li>Graph 类型（Neo4j）</li>
+</ul>
+</blockquote>
+<h3 id="1-2-Redis-简介"><a href="#1-2-Redis-简介" class="headerlink" title="1.2 Redis 简介"></a>1.2 Redis 简介</h3><p><code>Redis</code>（Remote Dictionary Server），远程词典服务器，是一个基于内存的键值型 NoSQL 数据库</p>
+<p>特征：</p>
+<ul>
+<li>键值（<code>key-value</code>）型，value 支持多种不同数据结构，功能丰富</li>
+<li>单线程，每个命令具备原子性</li>
+<li>低延迟，速度快（基于内存、IO多路复用、良好的编码）</li>
+<li>支持数据持久化</li>
+<li>支持主从集群、分片集群</li>
+<li>支持多语音客户端</li>
+</ul>
+<h2 id="二、Redis-常见命令"><a href="#二、Redis-常见命令" class="headerlink" title="二、Redis 常见命令"></a>二、Redis 常见命令</h2><h3 id="2-1-Redis-数据结构"><a href="#2-1-Redis-数据结构" class="headerlink" title="2.1 Redis 数据结构"></a>2.1 Redis 数据结构</h3><p><code>Redis </code>是一个<code>key-value</code>的数据库，<code>key </code>一般是 <code>String </code>类型，不过 <code>value </code>的类型多种多样</p>
+<ul>
+<li><p>String：如 “hello world”</p>
+</li>
+<li><p>Hash：{ name: “Jack”, age: 21 }</p>
+</li>
+<li><p>List：[ A -&gt; B -&gt; C -&gt; C ]</p>
+</li>
+<li><p>Set：{ A, B, C}</p>
+</li>
+<li><p>SortedSet：{ A: 1, B: 2, C: 3 }</p>
+</li>
+<li><p>GEO：{ A: (120.3, 30.5 ) }</p>
+</li>
+<li><p>BitMap：0110110101110101011</p>
+</li>
+<li><p>HyperLog：0110110101110101011</p>
+</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312033258.png" alt="image-20230329163417027"></p>
+<p>Redis 将操作不同数据类型的命令做了分组，在官网（<a target="_blank" rel="noopener" href="https://redis.io/commands%EF%BC%89%E5%8F%AF%E4%BB%A5%E6%9F%A5%E5%88%B0%E4%B8%8D%E5%90%8C%E5%91%BD%E4%BB%A4">https://redis.io/commands）可以查到不同命令</a></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312033087.png" alt="image-20221130095432799"></p>
+<h3 id="2-2-Redis-通用命令"><a href="#2-2-Redis-通用命令" class="headerlink" title="2.2 Redis 通用命令"></a>2.2 Redis 通用命令</h3><p>通用指令是部分数据类型都可用使用的指令，常见的有：</p>
+<ul>
+<li><p><code>KEYS</code>：查看复合模板的所有 <code>key</code>，<font color="red">不建议在生产环境设备上使用</font></p>
+</li>
+<li><p><code>DEL</code>：删除一个指定的 <code>key</code></p>
+</li>
+<li><p><code>EXISTS</code>：判断 <code>key </code>是否存在</p>
+</li>
+<li><p><code>EXPIRE</code>：给一个 <code>key</code> 设置有效期，有效期到期时，该 <code>key </code>会被自动删除</p>
+</li>
+<li><p><code>TTL</code>：查看一个 <code>key </code>的剩余有效期</p>
+</li>
+<li></li>
+</ul>
+<blockquote>
+<p>通过 <code>help [command]</code> 可以查看一个命令的具体用法</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312034035.png" alt="image-20221130101123021"></p>
+</blockquote>
+<h3 id="2-3-String-类型"><a href="#2-3-String-类型" class="headerlink" title="2.3 String 类型"></a>2.3 String 类型</h3><h4 id="2-3-1-String-类型的三种格式"><a href="#2-3-1-String-类型的三种格式" class="headerlink" title="2.3.1 String 类型的三种格式"></a>2.3.1 String 类型的三种格式</h4><p><code>String </code>类型，即字符串类型，是 <code>Redis </code>中最简单的存储类型，其 <code>value</code> 是字符串，不过根据字符串的格式不同，可以分为如下3类：</p>
+<ul>
+<li><code>string</code>：普通字符串</li>
+<li><code>int</code>：整数类型，可以做自增、自减操作</li>
+<li><code>float</code>：浮点类型，可以做自增、自减操作</li>
+</ul>
+<blockquote>
+<p>不管是哪种格式，底层都是字节数组形式存储，只不过编码方式不同。字符串类型的最大空间不能超过 512m</p>
+</blockquote>
+<h4 id="2-3-2-String-类型的常见命令"><a href="#2-3-2-String-类型的常见命令" class="headerlink" title="2.3.2 String 类型的常见命令"></a>2.3.2 String 类型的常见命令</h4><p><code>String </code>的常见命令有：</p>
+<ul>
+<li><code>SET</code>：添加或者修改已经存在的一个 String 类型的键值对</li>
+<li><code>GET</code>：根据 key 获取 String 类型的 value</li>
+<li><code>MSET</code>：批量添加多个 String 类型的键值对</li>
+<li><code>MGET</code>：根据多个 key 获取多个 String 类型的 value</li>
+<li><code>INCR</code>：让一个整型的 key 自增1</li>
+<li><code>INCRBY</code>：让一个整型的 key 自增并指定步长。例如：incrby num 2 让 num 值自增 2</li>
+<li><code>INCRBYFLOAT</code>：让一个浮点类型的数字自增并指定步长</li>
+<li><code>SETNX</code>：添加一个 String 类型的键值对，前提是这个 key 不存在，否则不执行</li>
+<li><code>SETEX</code>：添加一个 String 类型的键值对，并且指定有效期</li>
+</ul>
+<h4 id="2-3-3-key的结构"><a href="#2-3-3-key的结构" class="headerlink" title="2.3.3 key的结构"></a>2.3.3 key的结构</h4><blockquote>
+<p>问题：如何区分不同类型的 key。例如：需要存储用户、商品信息到redis，有一个用户id是1，有一个商品id恰好也是1</p>
+</blockquote>
+<p><code>Redis </code>的 <code>key </code>允许有多个单词形成层级结构，多个单词之间用 <code>: </code>隔开，格式如下：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312034365.png" alt="image-20221130150154494"></p>
+<blockquote>
+<p>格式并非固定，可以根据需求来删除或添加词条</p>
+</blockquote>
+<p>示例如下：</p>
+<p>项目名称：hotel，有 user 和 product 两种不同类型的数据，定义 key 如下：</p>
+<ul>
+<li>user 相关的 key：hotel:user:1</li>
+<li>product 相关的 key：hotel:product:1</li>
+</ul>
+<p>若 Value 是一个 Java 对象，如一个 User 对象，则可由将对象序列化为 JSON 字符串后存储</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312034736.png" alt="image-20221130185855534"></p>
+<h3 id="2-4-Hash-类型"><a href="#2-4-Hash-类型" class="headerlink" title="2.4 Hash 类型"></a>2.4 Hash 类型</h3><h4 id="2-4-1-Hash-结构"><a href="#2-4-1-Hash-结构" class="headerlink" title="2.4.1 Hash 结构"></a>2.4.1 Hash 结构</h4><p>Hash 类型，也叫散列，其 value 是一个无序字典，类似于 Java 中的 HashMap 结构</p>
+<blockquote>
+<p>问题：String 结构是将对象序列化为 JSON 字符串后存储，当需要修改对象的某个字段时很不方便：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312035565.png" alt="image-20221130190238185"></p>
+</blockquote>
+<p>Hash 结构可以将对象中的的每个字段独立存储，可以针对单个字段做 CRUD</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312035131.png" alt="image-20221130191443785"></p>
+<h4 id="2-4-2-Hash-类型常用命令"><a href="#2-4-2-Hash-类型常用命令" class="headerlink" title="2.4.2 Hash 类型常用命令"></a>2.4.2 Hash 类型常用命令</h4><p><code>Hash </code>的常见命令有：</p>
+<ul>
+<li><code>HSET key field value</code>：添加或者修改 hash 类型 key 的 field 的值</li>
+<li><code>HGET key field</code>：获取一个 hash 类型 key field 的值</li>
+<li><code>HMSET</code>：批量添加多个 hash类型 key 的 field 的值</li>
+<li><code>HMGET</code>：批量获取多个 hash 类型 key 的 field 的值</li>
+<li><code>HGETALL</code>：获取一个 hash 类型的 key 中的所有的 field 和 value</li>
+<li><code>HKEYS</code>：获取一个 hash 类型的 key 中的所有的 field</li>
+<li><code>HVALS</code>：获取一个 hash 类型的 key 中的所有的 value</li>
+<li><code>HINCRBY</code>：让一个 hash 类型 key 的字段值自增并指定步长</li>
+<li><code>HSETNX</code>：添加一个 hash 类型的 key 的 field 值，前提是这个 field 不存在，否则不执行</li>
+</ul>
+<h3 id="2-5-List-类型"><a href="#2-5-List-类型" class="headerlink" title="2.5 List 类型"></a>2.5 List 类型</h3><h4 id="2-5-1-List-类型简介"><a href="#2-5-1-List-类型简介" class="headerlink" title="2.5.1 List 类型简介"></a>2.5.1 List 类型简介</h4><p>Redis 中的 <code>List </code>类型与 Java 中的 <code>LinkedList </code>类似，可以看做是一个<font color="red">双向链表结构</font>，即支持正向检索也支持方向检索</p>
+<p><code>List </code>类型的特征也与 <code>LinkedList </code>类似：</p>
+<ul>
+<li>有序</li>
+<li>元素可以重复</li>
+<li>插入和删除快</li>
+<li>查询速度一般</li>
+</ul>
+<p>常用来存储一个<font color="red">有序数据</font>，例如：朋友圈点赞列表，评论列表</p>
+<h4 id="2-5-2-List-类型的常见命令"><a href="#2-5-2-List-类型的常见命令" class="headerlink" title="2.5.2 List 类型的常见命令"></a>2.5.2 List 类型的常见命令</h4><ul>
+<li><code>lpush key element … </code>：项列表左侧插入一个或多个元素</li>
+<li><code>lpop key</code>：移除并返回列表左侧的第一个元素，没有则返回 nil</li>
+<li><code>rpush key elemnt … </code>： 项列表右侧插入一个或多个元素</li>
+<li><code>rpop key</code>：移除并返回列表右侧的第一个元素</li>
+<li><code>lrange key star end</code>：返回一段角标范围内的所有元素</li>
+<li><code>blpop 和 brpop</code>：与 lpop 和 rpop 类似，只不过在没有元素时等待指定时间，而不是直接返回 nil</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312036626.png" alt="image-20221130200304385"></p>
+<blockquote>
+<ol>
+<li>如何利用 List 结构模拟一个栈：<ul>
+<li>入口和出口在同一边</li>
+</ul>
+</li>
+<li>如何利用 List 结构模拟一个队列：<ul>
+<li>入口和出口不在同一边</li>
+</ul>
+</li>
+<li>如何利用 List 结构模拟一个阻塞队列：<ul>
+<li>入口和出口在不同边</li>
+<li>出队时 <code>BLPOP </code>或 <code>BRPOP</code></li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="2-6-Set-类型"><a href="#2-6-Set-类型" class="headerlink" title="2.6 Set 类型"></a>2.6 Set 类型</h3><h4 id="2-6-1-Set-结构"><a href="#2-6-1-Set-结构" class="headerlink" title="2.6.1 Set 结构"></a>2.6.1 Set 结构</h4><p>Redis 的 Set 结构与 Java 中的 HashSet 类似，可以看做是一个 value 为 null 的 HashMap</p>
+<p>具备与 Hash Set 类似的特征：</p>
+<ul>
+<li>无序</li>
+<li>元素不可重复</li>
+<li>查找快</li>
+<li>支持交集、并集、差集等功能</li>
+</ul>
+<h4 id="2-6-2-Set-的常见命令"><a href="#2-6-2-Set-的常见命令" class="headerlink" title="2.6.2 Set 的常见命令"></a>2.6.2 Set 的常见命令</h4><ul>
+<li><code>sadd key member …</code> ： 向 set 中添加一个或多个元素</li>
+<li><code>srem key member …</code> ：移除 set 中的指定元素</li>
+<li><code>scard key</code>：返回 se 中元素的个数</li>
+<li><code>sismember key member</code>：判断一个元素是否存在于 set 中</li>
+<li><code>smembers</code>：获取 set 中的所有元素</li>
+<li><code>sinter key1 key2 …</code> ： 求 key1 和 key2 的交集</li>
+<li><code>sdiff key1 key2 … </code>：求 key1 和 key2 的差集</li>
+<li><code>sunion key1 ke2 … </code>：求 key1 和 key2 的并集</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312036207.png" alt="image-20221130210806789"></p>
+<h3 id="2-7-SortedSet-类型"><a href="#2-7-SortedSet-类型" class="headerlink" title="2.7 SortedSet 类型"></a>2.7 SortedSet 类型</h3><h4 id="2-7-1-SortedSet-类型"><a href="#2-7-1-SortedSet-类型" class="headerlink" title="2.7.1 SortedSet 类型"></a>2.7.1 SortedSet 类型</h4><p>Redis 的 SortedSet 是一个可排序的 set 集合，与 Java 中的 TreeSet 有些类似，但底层数据结构差别很大</p>
+<p>SortedSet 中的每个元素都带有一个 score 属性，可以基于 score 属性对元素进行排序，底层的实现是一个跳表（SkipList）加 hash 表</p>
+<p>SortedSet 具备以下特性：</p>
+<ul>
+<li>可排序</li>
+<li>元素不重复</li>
+<li>查询速度快</li>
+</ul>
+<blockquote>
+<p>因为 SortedSet 的可排序特性，经常被用来实现排行榜这样的功能</p>
+</blockquote>
+<h4 id="2-7-2-SortedSet-的常见命令"><a href="#2-7-2-SortedSet-的常见命令" class="headerlink" title="2.7.2 SortedSet 的常见命令"></a>2.7.2 SortedSet 的常见命令</h4><ul>
+<li><code>zadd key score member</code>：添加一个或多个元素到 sorted set， 若已经存在则更新其 score 值</li>
+<li><code>zrem key member </code>：删除 sorted set 中的一个指定元素</li>
+<li><code>zscore key member</code>：获取 sorted set 中的指定元素的 score 值</li>
+<li><code>zrank key member</code>：获取 sorted set 中指定元素的排名</li>
+<li><code>zcard key</code>：获取 sorted set 的元素个数</li>
+<li><code>zcount key min max</code>：统计 score 值在给定范围内的所有元素的个数</li>
+<li><code>zincrby key increment member</code>：让 sorted set 中的指定元素自增，步长为指定的 increment 值</li>
+<li><code>zrange key min max</code>：按照 score 排序后，获取指定排名范围内的元素，这是个左开右闭的区间</li>
+<li><code>zrangebyscore key min max</code>：按照 score 排序后，获取指定 score 范围内的元素</li>
+<li><code>zdiff、zinter、zunion</code>：求差集、交集、并集</li>
+</ul>
+<blockquote>
+<p>==注意：==所有的排名都是默认升序，若需要降序则在命令的 Z 后面添加 rev 即可</p>
+</blockquote>
+<h2 id="三、Redis-的-Java-客户端"><a href="#三、Redis-的-Java-客户端" class="headerlink" title="三、Redis 的 Java 客户端"></a>三、Redis 的 Java 客户端</h2><p>在Redis官网中提供了各种语言的客户端，地址：<a target="_blank" rel="noopener" href="https://redis.io/clients">https://redis.io/clients</a></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312037116.png" alt="image-20221201095200934"></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312037112.png" alt="image-20221201095300937"></p>
+<h3 id="3-1-Jedis"><a href="#3-1-Jedis" class="headerlink" title="3.1 Jedis"></a>3.1 Jedis</h3><blockquote>
+<p>jedis 官网地址：<a target="_blank" rel="noopener" href="https://github.com/redis/jedis">https://github.com/redis/jedis</a></p>
+</blockquote>
+<h4 id="3-1-1-Jedis-的基本使用"><a href="#3-1-1-Jedis-的基本使用" class="headerlink" title="3.1.1 Jedis 的基本使用"></a>3.1.1 Jedis 的基本使用</h4><p>Jedis 的使用步骤如下：</p>
+<ul>
+<li>引入依赖</li>
+<li>创建 Jedis 对象，建立连接</li>
+<li>使用 Jedis，方法名与 Redis 命令一致</li>
+<li>释放资源</li>
+</ul>
+<p>具体如下：</p>
+<ol>
+<li><p>引入依赖：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- redis 依赖 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>redis.clients<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jedis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.3.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>建立连接：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">import org.junit.jupiter.api.BeforeEach;
+import redis.clients.jedis.Jedis;
+
+public class RedisTest {
+    private Jedis jedis;
+
+    /**
+     * 建立连接
+     * */
+    @BeforeEach
+    public void setUp(){
+        // 建立连接
+        jedis = new Jedis("127.0.0.1", 6379);
+        // 设置密码
+        jedis.auth("123456");
+        // 选择库
+        jedis.select(0);
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>测试 String</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">import org.junit.jupiter.api.Test;
+....
+public class RedisTest {
+    ...
+    /**
+     * 测试 String
+     * */
+    @Test
+    void testString(){
+        // 插入数据，方法名称即redis命令的名称
+        String result = jedis.set("name", "张三");
+        System.out.println("result = " + result);
+        // 获取数据
+        String name = jedis.get("name");
+        System.out.println("name = " + name);
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>释放资源：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">import org.junit.jupiter.api.AfterEach;
+public class RedisTest {
+	...
+    /**
+     * 释放资源
+     * */
+    @AfterEach
+    public void tearDown(){
+        // 释放资源
+        if(jedis != null){
+            jedis.close();
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303312038309.png" alt="image-20221201100027562"></p>
+<h4 id="3-1-2-Jedis-连接池"><a href="#3-1-2-Jedis-连接池" class="headerlink" title="3.1.2 Jedis 连接池"></a>3.1.2 Jedis 连接池</h4><p>Jedis 本身是线程不安全的，并且频繁的创建和销毁连接会有性能损耗，因此推荐使用 Jedis 连接池代替 Jedis 的直连方式</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class JedisConnectionFactory {
+    private static final JedisPool jedisPool;
+    
+    static {
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        // 最大连接数
+        jedisPoolConfig.setMaxTotal(8);
+        // 最大空闲连接
+        jedisPoolConfig.setMaxIdle(8);
+        // 最小空闲连接
+        jedisPoolConfig.setMinIdle(0);
+        // 设置最长等待时间，ms
+        jedisPoolConfig.setMaxWaitMillis(200);
+        jedisPool = new JedisPool(jedisPoolConfig, "127.0.0.1", 6379, 1000, "123456");
+    }
+
+    /**
+     * 获取Jedis对象
+     * */
+    public static Jedis getJedis() {
+        return jedisPool.getResource();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>
@@ -492,6 +848,10 @@
                             
                                 <a href="/tur-study/tags/Redis/">
                                     <span class="chip bg-color">Redis</span>
+                                </a>
+                            
+                                <a href="/tur-study/tags/%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">基础</span>
                                 </a>
                             
                         </div>
@@ -806,7 +1166,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">3.7k</span>
+                        class="white-color">8.5k</span>
             
             
             
