@@ -6,7 +6,7 @@
   <link href="https://gitee.com/mathison-tur/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/mathison-tur/"/>
-  <updated>2023-03-29T07:23:15.143Z</updated>
+  <updated>2023-03-31T07:25:59.888Z</updated>
   <id>https://gitee.com/mathison-tur/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sa-Token权限认证</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/</id>
+    <published>2023-03-31T05:00:00.000Z</published>
+    <updated>2023-03-31T07:25:59.888Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、SpringBoot-集成-Sa-Token-示例&quot;&gt;&lt;a href=&quot;#一、SpringBoot-集成-Sa-Token-示例&quot; class=&quot;headerlink&quot; title=&quot;一、SpringBoot 集成 Sa-Token</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot" scheme="https://gitee.com/mathison-tur/categories/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://gitee.com/mathison-tur/tags/SpringBoot/"/>
+    
+    <category term="Sa-token" scheme="https://gitee.com/mathison-tur/tags/Sa-token/"/>
+    
+    <category term="权限认证" scheme="https://gitee.com/mathison-tur/tags/%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis基础</title>
+    <link href="https://gitee.com/mathison-tur/2023/03/30/Redis/Redis%E5%9F%BA%E7%A1%80/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/30/Redis/Redis%E5%9F%BA%E7%A1%80/</id>
+    <published>2023-03-30T08:56:04.000Z</published>
+    <updated>2023-03-31T04:42:27.062Z</updated>
+    
+    
+    
+    
+    
+    <category term="Redis" scheme="https://gitee.com/mathison-tur/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL的一些使用技巧</title>
@@ -41,8 +85,8 @@
   
   <entry>
     <title>Interceptor 拦截器的使用</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-using/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor-using/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Interceptor%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2023-03-28T10:19:34.000Z</published>
     <updated>2023-03-30T08:21:22.219Z</updated>
     
@@ -64,10 +108,10 @@
   
   <entry>
     <title>Filter 过滤器的使用</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter-using/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter-using/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/28/SpringBoot/Filter%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2023-03-28T10:16:47.000Z</published>
-    <updated>2023-03-28T15:06:35.028Z</updated>
+    <updated>2023-03-31T05:01:32.159Z</updated>
     
     
       
@@ -114,8 +158,8 @@
   
   <entry>
     <title>Knife4j配置与使用(OpenAPI2)</title>
-    <link href="https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j-configuration-use/"/>
-    <id>https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j-configuration-use/</id>
+    <link href="https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>https://gitee.com/mathison-tur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
     <published>2023-03-27T11:56:27.000Z</published>
     <updated>2023-03-28T01:11:55.172Z</updated>
     

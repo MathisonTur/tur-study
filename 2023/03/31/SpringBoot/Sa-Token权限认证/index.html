@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Knife4j配置与使用(OpenAPI2), Tur的学习笔记">
-    <meta name="description" content="1. 引入maven 坐标如下
+    <meta name="keywords" content="Sa-Token权限认证, Tur的学习笔记">
+    <meta name="description" content="一、SpringBoot 集成 Sa-Token 示例
+添加依赖
+
+&amp;lt;!-- Sa-Token 权限认证，在线文档：https://sa-token.cc --&amp;gt;
 &amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;knife4j-">
+    &amp;lt;group">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Knife4j配置与使用(OpenAPI2) | Tur的学习笔记</title>
+    <title>Sa-Token权限认证 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -340,12 +342,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Knife4j配置与使用(OpenAPI2)</h1>
+                    <h1 class="description center-align post-title">Sa-Token权限认证</h1>
                 </div>
             </div>
         </div>
@@ -373,10 +375,27 @@
                                 <span class="chip bg-color">SpringBoot</span>
                             </a>
                         
+                            <a href="/tur-study/tags/Sa-token/">
+                                <span class="chip bg-color">Sa-token</span>
+                            </a>
+                        
+                            <a href="/tur-study/tags/%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/">
+                                <span class="chip bg-color">权限认证</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/tur-study/categories/SpringBoot/" class="post-category">
+                                SpringBoot
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -385,28 +404,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-27
+                    2023-03-31
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-28
+                    2023-03-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    551
+                    358
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -429,81 +448,68 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h3><p>maven 坐标如下</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.xiaoymin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>knife4j-openapi2-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-    <span class="token comment">&lt;!-- 具体版本自行选择 --&gt;</span>
+                <h2 id="一、SpringBoot-集成-Sa-Token-示例"><a href="#一、SpringBoot-集成-Sa-Token-示例" class="headerlink" title="一、SpringBoot 集成 Sa-Token 示例"></a>一、SpringBoot 集成 Sa-Token 示例</h2><ol>
+<li>添加依赖</li>
+</ol>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- Sa-Token 权限认证，在线文档：https://sa-token.cc --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>cn.dev33<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>sa-token-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.34.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<blockquote>
-<p>Spring Boot 版本建议在 2.4.0 ~ 3.0.0 之间</p>
-</blockquote>
-<h3 id="2-配置-yml-属性"><a href="#2-配置-yml-属性" class="headerlink" title="2. 配置 yml 属性"></a>2. 配置 yml 属性</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">knife4j:
-  enable: true
-  openapi:
-    title: 这是文档标题 # 文档标题
-    description: 这是简介 # 简介
-    email: 123456789@qq.com # 创建人邮件
-    concat: tur # 创建者
-    url: https://docs.xiaominfo.com # 项目文档地址
-    version: v4.0 # 版本
-    license: Apache 2.0 # 许可证
-    license-url: https://stackoverflow.com/ # 许可证地址
-    terms-of-service-url: https://stackoverflow.com/
-    group: # 分组
-      test1: # 组名，用以区分其他组
-        group-name: 分组名称 # 组别名称
-        api-rule: package # api扫描方式
-        api-rule-resources: # 指定扫描的位置
-          - com.knife4j.demo.new3 # 存放接口、对象的包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>设置配置文件</li>
+</ol>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">#=================== Sa-Token 配置 ========================
+sa-token:
+  # token名称，同时也是cookie名称
+  token-name: satoken
+  # token有效期，单位s，默认30天。-1代表永不过期
+  timeout: 2592000 
+  # token临时有效期，指定时间内无操作就视为token过期，单位s
+  activity-timeout: -1
+  # 是否允许同一账号并发登录，true：允许一起登录。false：新登录挤掉旧登陆
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token。true：所有登录共用一个token
+  is-share: true
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>访问 Knife4j 的文档地址：<code>http://ip:sort/doc.html</code></p>
-<h3 id="3-Java注解"><a href="#3-Java注解" class="headerlink" title="3. Java注解"></a>3. Java注解</h3><h5 id="1-Api：定义接口分组名称"><a href="#1-Api：定义接口分组名称" class="headerlink" title="1. @Api：定义接口分组名称"></a>1. <code>@Api</code>：定义接口分组名称</h5><p>参数说明：</p>
-<ul>
-<li><code>tags</code>:说明该类的作用，可以在 UI 界面上看到的注解</li>
-<li><code>value</code>：一般会自动获取接口分组的名称，可以不用设置</li>
-</ul>
-<h5 id="2-ApiImplicitParam：单个参数注释"><a href="#2-ApiImplicitParam：单个参数注释" class="headerlink" title="2. @ApiImplicitParam：单个参数注释"></a>2. <code>@ApiImplicitParam</code>：单个参数注释</h5><p>用在 <code>@ApiImplicitParams</code> 中，指定一个请求参数的各个方面</p>
-<ul>
-<li><code>name</code>：参数名</li>
-<li><code>value</code>：参数说明</li>
-<li><code>required</code>：参数时是否必须传</li>
-<li><code>paramType</code>：参数位置，有以下可选值<ul>
-<li><code>header</code>：请求头 <code>@RequestHeader</code></li>
-<li><code>query</code>：?param=value格式 <code>@RequestParam</code></li>
-<li><code>path</code>：路径，Restful风格接口 <code>@PathVariable</code></li>
-<li><code>body</code>：请求体</li>
-<li><code>form</code>：以form表单的形式提交</li>
-</ul>
-</li>
-<li><code>dataType</code>：参数类型，默认 String，其他值为 Integer</li>
-<li><code>defaultValue</code>：参数的默认值</li>
-</ul>
-<h5 id="3-ApiImplicitParams：多个参数注释"><a href="#3-ApiImplicitParams：多个参数注释" class="headerlink" title="3. @ApiImplicitParams：多个参数注释"></a>3. <code>@ApiImplicitParams</code>：多个参数注释</h5><p>用在请求方法上，表示一组参数的说明</p>
-<h5 id="4-ApiModel：实体类定义"><a href="#4-ApiModel：实体类定义" class="headerlink" title="4. @ApiModel：实体类定义"></a>4. <code>@ApiModel</code>：实体类定义</h5><h5 id="5-ApiModelProperty：实体属性定义"><a href="#5-ApiModelProperty：实体属性定义" class="headerlink" title="5. @ApiModelProperty：实体属性定义"></a>5. <code>@ApiModelProperty</code>：实体属性定义</h5><ul>
-<li><code>value</code>：字段说明</li>
-<li><code>name</code>：属性名</li>
-<li><code>dataType</code>：属性类型</li>
-<li><code>required</code>：是否必填</li>
-<li><code>example</code>：举例说明</li>
-<li><code>hidden</code>：隐藏</li>
-</ul>
-<h5 id="6-ApiOperation：接口定义"><a href="#6-ApiOperation：接口定义" class="headerlink" title="6. @ApiOperation：接口定义"></a>6. <code>@ApiOperation</code>：接口定义</h5><ul>
-<li><code>value</code>：接口说明</li>
-<li><code>httpMethod</code>：接口请求方式</li>
-<li><code>response</code>：接口返回参数类型</li>
-<li><code>notes</code>：接口发布说明</li>
-</ul>
-<h5 id="7-ApiParam：参数注释"><a href="#7-ApiParam：参数注释" class="headerlink" title="7. @ApiParam：参数注释"></a>7. <code>@ApiParam</code>：参数注释</h5><h5 id="8-ApiResponse：响应码"><a href="#8-ApiResponse：响应码" class="headerlink" title="8. @ApiResponse：响应码"></a>8. <code>@ApiResponse</code>：响应码</h5><p>用在 <code>@ApiResponses</code> 中，一般用于表达一个错误或正确的响应信息</p>
-<ul>
-<li><code>code</code>：响应码</li>
-<li><code>message</code>：响应信息</li>
-<li><code>resposne</code>：抛出异常类</li>
-</ul>
-<h5 id="9-ApiResponses：多个响应码"><a href="#9-ApiResponses：多个响应码" class="headerlink" title="9. @ApiResponses：多个响应码"></a>9. <code>@ApiResponses</code>：多个响应码</h5><p>用在请求的方法上，表示一组响应</p>
+<ol start="3">
+<li>创建测试 Controller</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping("/user/")
+public class UserController {
 
+    // 测试登录，浏览器访问： http://localhost:8081/user/doLogin?username=zhang&amp;password=123456
+    @RequestMapping("doLogin")
+    public String doLogin(String username, String password) {
+        // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对 
+        if("zhang".equals(username) &amp;&amp; "123456".equals(password)) {
+            StpUtil.login(10001);
+            return "登录成功";
+        }
+        return "登录失败";
+    }
+
+    // 查询登录状态，浏览器访问： http://localhost:8081/user/isLogin
+    @RequestMapping("isLogin")
+    public String isLogin() {
+        return "当前会话是否登录：" + StpUtil.isLogin();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="4">
+<li>测试：</li>
+</ol>
+<p>从浏览器一次访问上述测试接口：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202303311524572.png" alt="image-20230331152444384"></p>
+<hr>
+<h2 id="二、Sa-Token-基础"><a href="#二、Sa-Token-基础" class="headerlink" title="二、Sa-Token 基础"></a>二、Sa-Token 基础</h2><h3 id="2-1-登录认证"><a href="#2-1-登录认证" class="headerlink" title="2.1 登录认证"></a>2.1 登录认证</h3>
                 
             </div>
             <hr/>
@@ -529,7 +535,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/27/SpringBoot/Knife4j-configuration-use/">https://gitee.com/mathison-tur/tur-study/2023/03/27/SpringBoot/Knife4j-configuration-use/</a>
+                    <a href="https://gitee.com/mathison-tur/tur-study/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/">https://gitee.com/mathison-tur/tur-study/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -569,6 +575,14 @@
                             
                                 <a href="/tur-study/tags/SpringBoot/">
                                     <span class="chip bg-color">SpringBoot</span>
+                                </a>
+                            
+                                <a href="/tur-study/tags/Sa-token/">
+                                    <span class="chip bg-color">Sa-token</span>
+                                </a>
+                            
+                                <a href="/tur-study/tags/%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/">
+                                    <span class="chip bg-color">权限认证</span>
                                 </a>
                             
                         </div>
@@ -647,17 +661,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                <a href="/tur-study/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Mybatis Plus 分页插件的使用">
+                        <img src="/tur-study/medias/featureimages/12.jpg" class="responsive-img" alt="Sa-Token权限认证">
                         
-                        <span class="card-title">Mybatis Plus 分页插件的使用</span>
+                        <span class="card-title">Sa-Token权限认证</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -667,22 +682,35 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis-Plus/">
-                        <span class="chip bg-color">Mybatis Plus</span>
+                    <a href="/tur-study/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/Sa-token/">
+                        <span class="chip bg-color">Sa-token</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/">
+                        <span class="chip bg-color">权限认证</span>
                     </a>
                     
                 </div>
@@ -696,13 +724,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">
+                <a href="/tur-study/2023/03/30/Redis/Redis%E5%9F%BA%E7%A1%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Mybatis中select传递多个参数">
+                        <img src="/tur-study/medias/featureimages/23.jpg" class="responsive-img" alt="Redis基础">
                         
-                        <span class="card-title">Mybatis中select传递多个参数</span>
+                        <span class="card-title">Redis基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,7 +741,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-30
                             </span>
                         <span class="publish-author">
                             
@@ -726,8 +754,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
+                    <a href="/tur-study/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
                 </div>
@@ -871,7 +899,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">3.3k</span>
+                        class="white-color">3.7k</span>
             
             
             
