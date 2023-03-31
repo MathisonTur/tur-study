@@ -414,14 +414,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    5 分
                 </div>
                 
 
@@ -481,7 +481,7 @@ sa-token:
 @RequestMapping("/user/")
 public class UserController {
 
-    // 测试登录，浏览器访问： http://localhost:8081/user/doLogin?username=zhang&amp;password=123456
+    // 测试登录
     @RequestMapping("doLogin")
     public String doLogin(String username, String password) {
         // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对 
@@ -493,7 +493,7 @@ public class UserController {
         return "登录失败";
     }
 
-    // 查询登录状态，浏览器访问： http://localhost:8081/user/isLogin
+    // 查询登录状态
     @RequestMapping("isLogin")
     public String isLogin() {
         return "当前会话是否登录：" + StpUtil.isLogin();
@@ -608,7 +608,7 @@ StpUtil.getTokenInfo();<span aria-hidden="true" class="line-numbers-rows"><span>
 @RequestMapping("/acc/")
 public class LoginController {
 
-    // 测试登录  ---- http://localhost:8081/acc/doLogin?name=zhang&amp;pwd=123456
+    // 测试登录
     @RequestMapping("doLogin")
     public SaResult doLogin(String name, String pwd) {
         // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对 
@@ -619,19 +619,19 @@ public class LoginController {
         return SaResult.error("登录失败");
     }
 
-    // 查询登录状态  ---- http://localhost:8081/acc/isLogin
+    // 查询登录状态
     @RequestMapping("isLogin")
     public SaResult isLogin() {
         return SaResult.ok("是否登录：" + StpUtil.isLogin());
     }
 
-    // 查询 Token 信息  ---- http://localhost:8081/acc/tokenInfo
+    // 查询 Token 信息
     @RequestMapping("tokenInfo")
     public SaResult tokenInfo() {
         return SaResult.data(StpUtil.getTokenInfo());
     }
 
-    // 测试注销  ---- http://localhost:8081/acc/logout
+    // 测试注销
     @RequestMapping("logout")
     public SaResult logout() {
         StpUtil.logout();
