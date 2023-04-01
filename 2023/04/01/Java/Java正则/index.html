@@ -4,12 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git Hexo Using, Tur的学习笔记">
-    <meta name="description" content="1. Hexo 基本命令hexo init --新建一个网站，若没有设置folder，默认在当前文件夹建立网站
+    <meta name="keywords" content="Pattern,Matcher,正则">
+    <meta name="description" content="一、正则表达式1.1 特殊字符
+1.2 限定符限定符用来指针正则表达式的一个给定组件必须要出现次才能满足适配，有 *、+、?、{n}、{n,}、{n, m}共六种
 
-hexo generate --生成个人博客所需的静态页面
-
-hexo server --启动服务器，默认访问端口：locla">
+示例：以下正则表达式匹配一个正整数，[1-9]设置第一个数字不是0，[0-">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +20,7 @@ hexo server --启动服务器，默认访问端口：locla">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git Hexo Using | Tur的学习笔记</title>
+    <title>Java正则 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -341,12 +340,12 @@ hexo server --启动服务器，默认访问端口：locla">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git Hexo Using</h1>
+                    <h1 class="description center-align post-title">Java正则</h1>
                 </div>
             </div>
         </div>
@@ -370,14 +369,27 @@ hexo server --启动服务器，默认访问端口：locla">
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/hexo/">
-                                <span class="chip bg-color">hexo</span>
+                            <a href="/tur-study/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tur-study/tags/%E6%AD%A3%E5%88%99/">
+                                <span class="chip bg-color">正则</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/tur-study/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -386,28 +398,28 @@ hexo server --启动服务器，默认访问端口：locla">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-27
+                    2023-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-30
+                    2023-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    805
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    7 分
                 </div>
                 
 
@@ -430,218 +442,193 @@ hexo server --启动服务器，默认访问端口：locla">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1-Hexo-基本命令"><a href="#1-Hexo-基本命令" class="headerlink" title="1. Hexo 基本命令"></a>1. Hexo 基本命令</h4><pre class="line-numbers language-none"><code class="language-none">hexo init --新建一个网站，若没有设置folder，默认在当前文件夹建立网站
+                <h2 id="一、正则表达式"><a href="#一、正则表达式" class="headerlink" title="一、正则表达式"></a>一、正则表达式</h2><h3 id="1-1-特殊字符"><a href="#1-1-特殊字符" class="headerlink" title="1.1 特殊字符"></a>1.1 特殊字符</h3><p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304011503699.png" alt="image-20230401150341463"></p>
+<h3 id="1-2-限定符"><a href="#1-2-限定符" class="headerlink" title="1.2 限定符"></a>1.2 限定符</h3><p>限定符用来指针正则表达式的一个给定组件必须要出现次才能满足适配，有 <code>*、+、?、{n}、{n,}、{n, m}</code>共六种</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304011505216.png" alt="image-20230401150555170"></p>
+<p>示例：以下正则表达式匹配一个正整数，<code>[1-9]</code>设置第一个数字不是0，<code>[0-9]* </code>表示任意多个数字：</p>
+<pre class="line-numbers language-none"><code class="language-none">/[1-9][0-9]*/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-hexo generate --生成个人博客所需的静态页面
+<h2 id="二、Pattern-类和-Matcher-类"><a href="#二、Pattern-类和-Matcher-类" class="headerlink" title="二、Pattern 类和 Matcher 类"></a>二、Pattern 类和 Matcher 类</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>Pattern 对象是正则表达式编译后再内存中的表现形式。即正则表达式字符串必须先被编译为 Pattern 对象，然后再利用该 Pattern 对象创建对应的 Matcher 对象</p>
+<p>Matcher 对象保留匹配的结果，多个 Matcher 对象可共享同一个 Pattern 对象</p>
+<h3 id="2-Pattern-类常用方法"><a href="#2-Pattern-类常用方法" class="headerlink" title="2. Pattern 类常用方法"></a>2. Pattern 类常用方法</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">// 将一个字符串编译成 Pattern 对象
+Pattern pattern = Pattern.compile("a*c");
+// 使用 Pattern 对象创建 Matcher 对象
+Matcher matcher = pattern.matcher("abc");
+// 返回 true
+boolean result = matcher.matches();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-hexo server --启动服务器，默认访问端口：loclahost:4000
+<p>上面定义的 Pattern 对象可以多次重复使用。如果某个正则表达式仅需一次使用，则可直接使用 Pattern 类的静态 <code>matches()</code>方法，此方法自动把指定字符串编译成匿名的 Pattern 对象，并执行匹配，代码如下所示：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">// 返回 true
+boolean result = Pattern.matches ("a*c","abc");<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-hexo deploy --部署个人博客
-
-hexo clean --清除缓存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>以上命令都能用首字母缩写完成</p>
-<pre class="line-numbers language-none"><code class="language-none">hexo g --generate 生成个人博客所需的静态页面
-
-hexo s --server
-
-hexo d --deploy 部署个人博客
-
-hexo c --clean 清除缓存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-写文章用到的命令"><a href="#2-写文章用到的命令" class="headerlink" title="2. 写文章用到的命令"></a>2. 写文章用到的命令</h4><pre class="line-numbers language-none"><code class="language-none">hexo new --path java/ "文章标题" --新建文章
-
-hexo new page "页面名" -- 新建页面<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<table>
+<h3 id="3-Matcher-类常用方法"><a href="#3-Matcher-类常用方法" class="headerlink" title="3. Matcher 类常用方法"></a>3. Matcher 类常用方法</h3><table>
 <thead>
 <tr>
-<th align="left">参数</th>
-<th align="left">描述</th>
+<th align="center">名称</th>
+<th align="center">说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">-p, –path</td>
-<td align="left">自定义新文章的路径</td>
+<td align="center">find()</td>
+<td align="center">返回目标字符串中是否包含与 Pattern 匹配的子串</td>
 </tr>
 <tr>
-<td align="left">-r, –replace</td>
-<td align="left">如果存在同名文章，将其替换</td>
+<td align="center">group()</td>
+<td align="center">返回上一次与 Pattern 匹配的子串</td>
 </tr>
 <tr>
-<td align="left">-s, –slug</td>
-<td align="left">文章的Slug，作为新文章的文件名和发布后的URL</td>
+<td align="center">start()</td>
+<td align="center">返回上一次与 Pattern 匹配的子串在目标字符串中的开始位置</td>
+</tr>
+<tr>
+<td align="center">end()</td>
+<td align="center">返回上一次与 Pattern 匹配的子串在目标字符串中的结束位置加 1</td>
+</tr>
+<tr>
+<td align="center">lookingAt()</td>
+<td align="center">返回目标字符串前面部分与 Pattern 是否匹配</td>
+</tr>
+<tr>
+<td align="center">matches()</td>
+<td align="center">返回整个目标字符串与 Pattern 是否匹配</td>
+</tr>
+<tr>
+<td align="center">reset()</td>
+<td align="center">将现有的 Matcher 对象应用于一个新的字符序列。</td>
 </tr>
 </tbody></table>
-<p>编辑博客时使用如下命令</p>
-<pre class="line-numbers language-none"><code class="language-none">hexo s --debug<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>然后访问<a target="_blank" rel="noopener" href="http://localhost:4000/%E6%9D%A5%E8%BF%9B%E5%85%A5%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%9B%B4%E6%94%B9%E4%BA%86%E9%85%8D%E7%BD%AE%E6%88%96%E6%96%87%E7%AB%A0%E5%90%8E%E9%9A%8F%E6%97%B6%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2%E6%9D%A5%E6%9F%A5%E7%9C%8B%E6%95%88%E6%9E%9C%E3%80%82">http://localhost:4000/来进入调试模式，更改了配置或文章后随时刷新页面来查看效果。</a></p>
-<h4 id="3-部署博客的步骤"><a href="#3-部署博客的步骤" class="headerlink" title="3. 部署博客的步骤"></a>3. 部署博客的步骤</h4><pre class="line-numbers language-none"><code class="language-none">hexo clean
-hexo generate
-hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>后两步可以简写为<code>hexo g -d</code></p>
-<h4 id="4-目录结构说明"><a href="#4-目录结构说明" class="headerlink" title="4. 目录结构说明"></a>4. 目录结构说明</h4><pre class="line-numbers language-none"><code class="language-none">|  +-- .deploy      #hexo deploy生成的文件
-
-|  +-- node_modules  #npm组件
-
-|  +-- public        #生成的静态网页文件
-
-|  +--scaffolds      #模板
-
-|  +-- source        #博客正文和其他源文件
-
-|  |  +-- _posts    #我们自己写的文章以md结尾
-
-|  +-- themes        #主题
-
-|  +-- _config.yml  #全局配置文件
-
-|  `-- package.json  #定义了hexo所需要的各种模块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="5-配置文件"><a href="#5-配置文件" class="headerlink" title="5. 配置文件"></a>5. 配置文件</h4><p>在文件夹跟目录下的<code>_config.yml</code>叫做<strong>站点配置文件</strong>,同样的文件名我们可以在<code>theme</code>文件夹下的主题文件夹里面也找的。而主题文件夹下的<code>_config.yml</code>叫做主题配置文件。这里说明一下站点配置文件：</p>
-<pre class="line-numbers language-none"><code class="language-none">
-# Hexo Configuration
-
-## Docs: http://hexo.io/docs/configuration.html
-
-## Source: https://github.com/hexojs/hexo/
-
-# Site #站点信息
-
-title:  #标题
-
-subtitle:  #副标题
-
-description:  #站点描述，给搜索引擎看的
-
-author:  #作者
-
-email:  #电子邮箱
-
-language: zh-CN #语言
-
-# URL #链接格式
-
-url:  #网址
-
-root: / #根目录
-
-permalink: :year/:month/:day/:title/ #文章的链接格式
-
-tag_dir: tags #标签目录
-
-archive_dir: archives #存档目录
-
-category_dir: categories #分类目录
-
-code_dir: downloads/code
-
-permalink_defaults:
-
-# Directory #目录
-
-source_dir: source #源文件目录
-
-public_dir: public #生成的网页文件目录
-
-# Writing #写作
-
-new_post_name: :title.md #新文章标题
-
-default_layout: post #默认的模板，包括 post、page、photo、draft（文章、页面、照片、草稿）
-
-titlecase: false #标题转换成大写
-
-external_link: true #在新选项卡中打开连接
-
-filename_case: 0
-
-render_drafts: false
-
-post_asset_folder: false
-
-relative_link: false
-
-highlight: #语法高亮
-
-enable: true #是否启用
-
-line_number: true #显示行号
-
-tab_replace:
-
-# Category &amp; Tag #分类和标签
-
-default_category: uncategorized #默认分类
-
-category_map:
-
-tag_map:
-
-# Archives
-
-2: 开启分页
-
-1: 禁用分页
-
-0: 全部禁用
-
-archive: 2
-
-category: 2
-
-tag: 2
-
-# Server #本地服务器
-
-port: 4000 #端口号
-
-server_ip: localhost #IP 地址
-
-logger: false
-
-logger_format: dev
-
-# Date / Time format #日期时间格式
-
-date_format: YYYY-MM-DD #参考http://momentjs.com/docs/#/displaying/format/
-
-time_format: H:mm:ss
-
-# Pagination #分页
-
-per_page: 10 #每页文章数，设置成 0 禁用分页
-
-pagination_dir: page
-
-# Disqus #Disqus评论，替换为多说
-
-disqus_shortname:
-
-# Extensions #拓展插件
-
-theme: landscape-plus #主题
-
-exclude_generator:
-
-plugins: #插件，例如生成 RSS 和站点地图的
-
-- hexo-generator-feed
-
-- hexo-generator-sitemap
-
-# Deployment #部署，将 lmintlcx 改成用户名
-
-deploy:
-
-type: git
-
-repo: github创库地址.git
-
-branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<h4 id="3-1-find-和-group-方法"><a href="#3-1-find-和-group-方法" class="headerlink" title="3.1 find() 和 group() 方法"></a>3.1 find() 和 group() 方法</h4><p>通过 Matcher 类的 <code>find()</code> 和 <code>group()</code> 方法可以从目标字符串中依次取出特定子串（匹配正则表达式的子串），例如互联网的网络爬虫，它们可以自动从网页中识别出所有的电话号码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+public class Test
+{
+    public static void main(String[] args)
+    {
+        // 使用字符串模拟从网络上得到的网页源码
+        String str = "出售JAVA教程，联系电话：13600000001" + "毕业代做，联系电话：13600000002" + "出售二手电脑，联系电话：15800000001";
+        // 创建一个Pattern对象，并用它建立一个Matcher对象
+        // 该正则表达式只抓取13X和15X段的手机号
+        // 实际要抓取哪些电话号码，只要修改正则表达式即可
+        Matcher m = Pattern.compile("((13\\d)|(15\\d))\\d{8}").matcher(str);
+        // 将所有符合正则表达式的子串（电话号码）全部输出
+        while (m.find())
+        {
+            System.out.println(m.group());
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从上面运行结果可以看出，<code>find()</code> 方法依次查找字符串中与 Pattern 匹配的子串，一旦找到对应的子串，下次调用 <code>find()</code> 方法时将接着向下查找。</p>
+<h4 id="3-2-start-和-end-方法"><a href="#3-2-start-和-end-方法" class="headerlink" title="3.2 start() 和 end() 方法"></a>3.2 start() 和 end() 方法</h4><p><code>find()</code> 方法还可以传入一个 int 类型的参数，带 int 参数的 <code>find()</code> 方法将从该 int 索引处向下搜索。<code>start()</code> 和 <code>end() </code>方法主要用于确定子串在目标字符串中的位置，如下程序所示。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Test2
+{
+    public static void main(String[] args)
+    {
+        // 创建一个Pattern对象，并用它建立一个Matcher对象
+        String regStr = "Java is very easy!";
+        System.out.println("目标字符串是：" + regStr);
+        Matcher m = Pattern.compile("\\w+").matcher(regStr);
+        while (m.find())
+        {
+            System.out.println(m.group() + "子串的起始位置：" + m.start() + "，其结束位置：" + m.end());
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面程序使用 <code>find()</code>、<code>group()</code> 方法逐项取出目标字符串中与指定正则表达式匹配的子串，并使用<code>start()</code>、<code>end()</code> 方法返回子串在目标字符串中的位置。运行上面程序，看到如下运行结果：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">目标字符串是：Java is very easy!
+Java子串的起始位置：0，其结束位置：4
+is子串的起始位置：5，其结束位置：7
+very子串的起始位置：8，其结束位置：12
+easy子串的起始位置：13，其结束位置：17<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-3-matches-和-LookingAt-方法"><a href="#3-3-matches-和-LookingAt-方法" class="headerlink" title="3.3 matches() 和 LookingAt() 方法"></a>3.3 matches() 和 LookingAt() 方法</h4><p><code>matches()</code> 和 <code>lookingAt()</code> 方法有点相似，只是 <code>matches()</code> 方法要求整个字符串和 Pattern 完全匹配时才返回 <code>true</code>，而 <code>lookingAt()</code> 只要字符串以 Pattern 开头就会返回 <code>true</code>。<code>reset()</code> 方法可将现有的 Matcher 对象应用于新的字符序列：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Test3
+{
+    public static void main(String[] args)
+    {
+        String[] mails =
+        { "mymail@163.com", "mymail@gmail.com", "mymail@myweb.org", "mymail@abc.xx" };
+        String mailRegEx = "\\w{3,20}@\\w+\\.(com|org|cn|net|gov)";
+        Pattern mailPattern = Pattern.compile(mailRegEx);
+        Matcher matcher = null;
+        for (String mail : mails)
+        {
+            if (matcher == null)
+            {
+                matcher = mailPattern.matcher(mail);
+            }
+            else
+            {
+                matcher.reset(mail);
+            }
+            String result = mail + (matcher.matches() ? "是" : "不是") + "一个有效的邮件地址！";
+            System.out.println(result);
+        }
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面程序创建了一个邮件地址的 Pattern，接着用这个 Pattern 与多个邮件地址进行匹配。当程序中的 Matcher 为 <code>null</code> 时，程序调用 <code>matcher()</code> 方法来创建一个 Matcher 对象，一旦 Matcher 对象被创建，程序就调用 Matcher 的 <code>reset()</code> 方法将该 Matcher 应用于新的字符序列。</p>
+<p>从某个角度来看，Matcher 的 <code>matches()</code>、<code>lookingAt()</code> 和 String 类的 <code>equals()</code> 有点相似。区别是 String 类的 <code>equals()</code> 都是与字符串进行比较，而 Matcher 的 <code>matches()</code> 和 <code>lookingAt()</code> 则是与正则表达式进行匹配。</p>
+<p>事实上，String 类里也提供了 <code>matches()</code> 方法，该方法返回该字符串是否匹配指定的正则表达式。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">"mymail@163.com".matches("\\w{3,20}@\\w+\\.(com|org|cn|net|gov)"); // 返回 true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="三、示例"><a href="#三、示例" class="headerlink" title="三、示例"></a>三、示例</h2><h3 id="3-1-匹配数字"><a href="#3-1-匹配数字" class="headerlink" title="3.1 匹配数字"></a>3.1 匹配数字</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">/**
+ * \d 的含义是 [0-9]
+ * \D 的含义是 [^0-9]
+ * {n} 匹配确定 n 次
+ */
+public static void matchNumber() {
+        Pattern p = Pattern.compile("summary_day\\.\\d+[0-9]\\.\\d{17}");
+        Matcher m = p.matcher("ipva.summary_day.20210621.20210622000205860.B20C41AB-0A17-46DB-9177-817533B8E551.1624291336921.txt");
+        System.out.println(m.pattern()); //myArray\[\d\]
+        while (m.find()){
+            System.out.println(m.group());
+        }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304011519329.png" alt="image-20230401151914278"></p>
+<h3 id="3-2-匹配字母"><a href="#3-2-匹配字母" class="headerlink" title="3.2 匹配字母"></a>3.2 匹配字母</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">/**
+ * \w 任何一个字母数字字符（大小写均可）或下划线，等价于 [A-Za-z0-9_]
+ * \W 表示[^A-Za-z0-9_]
+ * + 匹配前面的子表达式或一次或多次
+ */
+public static void matchAlphanum() {
+        Pattern pattern = Pattern.compile("^ipva\\.\\w+");
+        Matcher matcher = pattern.matcher("ipva.summary_day.20210621.20210622000205860.B20C41AB-0A17-46DB-9177-817533B8E551.1624291336921.txt");
+        while (matcher.find()) {
+            System.out.println(matcher.group(0));
+        }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304011520210.png" alt="image-20230401152003168"></p>
+<h3 id="3-3-特殊字符一"><a href="#3-3-特殊字符一" class="headerlink" title="3.3 特殊字符一"></a>3.3 特殊字符一</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">/**
+ * "*" 表示含有零个或者多个
+ * "+" 匹配前面的子表达式或一次或多次
+ */
+public static void matchRepeat() {
+    Pattern pattern = Pattern.compile("\\w+[\\w\\.]*@[\\d]+\\.\\w+");
+    Matcher matcher = pattern.matcher("Hello .kangll@163.com is my email address.");
+    while (matcher.find()) {
+        System.out.println(matcher.group(0));
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304011521053.png" alt="image-20230401152153010"></p>
+<h3 id="3-4-特殊字符二"><a href="#3-4-特殊字符二" class="headerlink" title="3.4 特殊字符二"></a>3.4 特殊字符二</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">/**
+ * "*" 表示含有零个或者多个
+ * "+" 表示匹配前面的子表达式或一次或多次
+ * "?" 表示匹配零个或者一个字符
+ */
+public static void matchRepeat02() {
+    Pattern pattern = Pattern.compile("http[s]?://[\\w\\.]+");
+    Matcher matcher = pattern.matcher("The URL is http://www.kangll.com/");
+    while (matcher.find()) {
+        System.out.println(matcher.group(0));
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304011522577.png" alt="image-20230401152240532"></p>
 
                 
             </div>
@@ -668,7 +655,7 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/">https://github.com/MathisonTur/tur-study/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/04/01/Java/Java%E6%AD%A3%E5%88%99/">https://github.com/MathisonTur/tur-study/2023/04/01/Java/Java%E6%AD%A3%E5%88%99/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -706,8 +693,12 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/hexo/">
-                                    <span class="chip bg-color">hexo</span>
+                                <a href="/tur-study/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tur-study/tags/%E6%AD%A3%E5%88%99/">
+                                    <span class="chip bg-color">正则</span>
                                 </a>
                             
                         </div>
@@ -786,17 +777,18 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">
+                <a href="/tur-study/2023/04/01/Java/Java%E6%AD%A3%E5%88%99/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Mybatis中select传递多个参数">
+                        <img src="/tur-study/medias/featureimages/16.jpg" class="responsive-img" alt="Java正则">
                         
-                        <span class="card-title">Mybatis中select传递多个参数</span>
+                        <span class="card-title">Java正则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -806,22 +798,31 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-01
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
+                    <a href="/tur-study/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/%E6%AD%A3%E5%88%99/">
+                        <span class="chip bg-color">正则</span>
                     </a>
                     
                 </div>
@@ -835,13 +836,13 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/Java/ThreadLocal%E8%AF%A6%E8%A7%A3/">
+                <a href="/tur-study/2023/04/01/SpringBoot/ThreadPoolTaskExecutor%E7%9A%84%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/6.jpg" class="responsive-img" alt="ThreadLocal详解">
+                        <img src="/tur-study/medias/featureimages/23.jpg" class="responsive-img" alt="ThreadPoolTaskExecutor的使用">
                         
-                        <span class="card-title">ThreadLocal详解</span>
+                        <span class="card-title">ThreadPoolTaskExecutor的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -852,12 +853,16 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-01
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Spring/" class="post-category">
+                                    Spring
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -865,8 +870,12 @@ branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Java-ThreadLocal/">
-                        <span class="chip bg-color">Java ThreadLocal</span>
+                    <a href="/tur-study/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                        <span class="chip bg-color">线程池</span>
                     </a>
                     
                 </div>
