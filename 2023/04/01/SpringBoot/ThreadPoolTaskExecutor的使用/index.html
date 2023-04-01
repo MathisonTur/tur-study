@@ -4,16 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mybatis Plus 分页插件的使用, Tur的学习笔记">
-    <meta name="description" content="
-官网：https://baomidou.com/
-
-Spring Boot 中的使用步骤如下：
-1. 分页配置@Configuration
-public class MybatisPlusConfig{
-    
-    @Bean
-  ">
+    <meta name="keywords" content="ThreadPoolTaskExecutor,线程池">
+    <meta name="description" content="一、线程池简介1.1 为什么使用线程池
+降低系统资源消耗，通过重用已存在的线程，降低线程创建和销毁造成的消耗
+提高系统响应速度，当有任务到达时，通过复用已存在的线程，无需等待新线程的创建，便能立即执行
+方便线程并发数的管控，因为线程若是无限">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +20,7 @@ public class MybatisPlusConfig{
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mybatis Plus 分页插件的使用 | Tur的学习笔记</title>
+    <title>ThreadPoolTaskExecutor的使用 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -345,12 +340,12 @@ public class MybatisPlusConfig{
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mybatis Plus 分页插件的使用</h1>
+                    <h1 class="description center-align post-title">ThreadPoolTaskExecutor的使用</h1>
                 </div>
             </div>
         </div>
@@ -374,14 +369,27 @@ public class MybatisPlusConfig{
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/Mybatis-Plus/">
-                                <span class="chip bg-color">Mybatis Plus</span>
+                            <a href="/tur-study/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
+                            </a>
+                        
+                            <a href="/tur-study/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                                <span class="chip bg-color">线程池</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/tur-study/categories/Spring/" class="post-category">
+                                Spring
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -390,28 +398,28 @@ public class MybatisPlusConfig{
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-28
+                    2023-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-28
+                    2023-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    606
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    7 分
                 </div>
                 
 
@@ -434,144 +442,122 @@ public class MybatisPlusConfig{
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>官网：<a target="_blank" rel="noopener" href="https://baomidou.com/">https://baomidou.com/</a></p>
-</blockquote>
-<p>Spring Boot 中的使用步骤如下：</p>
-<h3 id="1-分页配置"><a href="#1-分页配置" class="headerlink" title="1. 分页配置"></a>1. 分页配置</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
-public class MybatisPlusConfig{
-    
-    @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor(){
-        // 1. 创建 MybatisPlusInterceptor 拦截器对象
-        MybatisPlusInterceptor mpInterceptor = new MybatisPlusInterceptor();
-        // 2. 添加分页拦截器，并声明使用的数据库类型
-        mpInterceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
-        return mpInterceptor;
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-使用官方已实现的接口实现分页"><a href="#2-使用官方已实现的接口实现分页" class="headerlink" title="2 使用官方已实现的接口实现分页"></a>2 使用官方已实现的接口实现分页</h3><blockquote>
-<p>Service CRUD 接口</p>
-</blockquote>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// 无条件分页查询
-IPage&lt;T&gt; page(IPage&lt;T&gt; page);
-// 条件分页查询
-IPage&lt;T&gt; page(IPage&lt;T&gt; page, Wrapper&lt;T&gt; queryWrapper);
-// 无条件分页查询
-IPage&lt;Map&lt;String, Object&gt;&gt; pageMaps(IPage&lt;T&gt; page);
-// 条件分页查询
-IPage&lt;Map&lt;String, Object&gt;&gt; pageMaps(IPage&lt;T&gt; page, Wrapper&lt;T&gt; queryWrapper);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>参数说明</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th align="center">参数名</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">IPage<t></t></td>
-<td align="center">page</td>
-<td align="center">翻页对象</td>
-</tr>
-<tr>
-<td align="center">Wrapper<t></t></td>
-<td align="center">queryWrapper</td>
-<td align="center">实体对象封装操作类 QueryWrapper</td>
-</tr>
-</tbody></table>
-<h3 id="3-自定义-mapper-method-使用分页"><a href="#3-自定义-mapper-method-使用分页" class="headerlink" title="3. 自定义 mapper # method 使用分页"></a>3. 自定义 mapper # method 使用分页</h3><p>示例如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">IPage&lt;UserVo&gt; selectPageVo(IPage&lt;?&gt; page, Integer state);
-// or (class MyPage extends Ipage&lt;UserVo&gt;{ private Integer state; })
-MyPage selectPageVo(MyPage page);
-// or
-List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectPageVo<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xxx.xxx.xxx.UserVo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    SELECT id,name FROM user WHERE state=#{state}
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+                <h2 id="一、线程池简介"><a href="#一、线程池简介" class="headerlink" title="一、线程池简介"></a>一、线程池简介</h2><h3 id="1-1-为什么使用线程池"><a href="#1-1-为什么使用线程池" class="headerlink" title="1.1 为什么使用线程池"></a>1.1 为什么使用线程池</h3><ul>
+<li>降低系统资源消耗，通过重用已存在的线程，降低线程创建和销毁造成的消耗</li>
+<li>提高系统响应速度，当有任务到达时，通过复用已存在的线程，无需等待新线程的创建，便能立即执行</li>
+<li>方便线程并发数的管控，因为线程若是无限制的创建，可能会导致内存占用过多而产生 <code>OOM</code>，并且会造成 <code>cpu </code>过度切换</li>
+</ul>
 <blockquote>
 <ul>
-<li>如果返回类型是 IPage 则入参的 IPage 不能为null,因为 返回的IPage == 入参的IPage; 如果想临时不分页,可以在初始化IPage时size参数传 &lt;0 的值;</li>
-<li>如果返回类型是 List 则入参的 IPage 可以为 null(为 null 则不分页),但需要你手动 入参的IPage.setRecords(返回的 List);</li>
-<li>如果 xml 需要从 page 里取值,需要 <code>page.属性</code> 获取</li>
+<li><p><code>OOM</code>：Out of Memory，内存溢出，即内存不够了。详细见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lovedingd/article/details/104650249/">https://blog.csdn.net/lovedingd/article/details/104650249/</a></p>
+</li>
+<li><p>cpu切换线程有时间成本，需要保持当前执行线程的现场，并恢复要执行线程的现场</p>
+</li>
 </ul>
 </blockquote>
-<h3 id="4-Page-类"><a href="#4-Page-类" class="headerlink" title="4. Page 类"></a>4. Page 类</h3><p>该类继承了 <code>IPage</code> 类，实现了 <code>简单分页模型</code> 如果要实现自己的分页模型可以继承 <code>Page</code> 类或者实现 <code>IPage</code> 类</p>
-<table>
-<thead>
-<tr>
-<th align="center">属性名</th>
-<th align="center">类型</th>
-<th align="center">默认值</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">records</td>
-<td align="center">List</td>
-<td align="center">emptyList</td>
-<td align="center">查询数据列表</td>
-</tr>
-<tr>
-<td align="center">total</td>
-<td align="center">Long</td>
-<td align="center">0</td>
-<td align="center">查询列表总记录数</td>
-</tr>
-<tr>
-<td align="center">size</td>
-<td align="center">Long</td>
-<td align="center">10</td>
-<td align="center">每页显示条数，默认 <code>10</code></td>
-</tr>
-<tr>
-<td align="center">current</td>
-<td align="center">Long</td>
-<td align="center">1</td>
-<td align="center">当前页</td>
-</tr>
-<tr>
-<td align="center">orders</td>
-<td align="center">List</td>
-<td align="center">emptyList</td>
-<td align="center">排序字段信息，允许前端传入的时候，注意 SQL 注入问题，可以使用 <code>SqlInjectionUtils.check(...)</code> 检查文本</td>
-</tr>
-<tr>
-<td align="center">optimizeCountSql</td>
-<td align="center">boolean</td>
-<td align="center">true</td>
-<td align="center">自动优化 COUNT SQL 如果遇到 <code>jSqlParser</code> 无法解析情况，设置该参数为 <code>false</code></td>
-</tr>
-<tr>
-<td align="center">optimizeJoinOfCountSql</td>
-<td align="center">boolean</td>
-<td align="center">true</td>
-<td align="center">自动优化 COUNT SQL 是否把 join 查询部分移除</td>
-</tr>
-<tr>
-<td align="center">searchCount</td>
-<td align="center">boolean</td>
-<td align="center">true</td>
-<td align="center">是否进行 count 查询，如果指向查询到列表不要查询总记录数，设置该参数为 <code>false</code></td>
-</tr>
-<tr>
-<td align="center">maxLimit</td>
-<td align="center">Long</td>
-<td align="center"></td>
-<td align="center">单页分页条数限制</td>
-</tr>
-<tr>
-<td align="center">countId</td>
-<td align="center">String</td>
-<td align="center"></td>
-<td align="center"><code>xml</code> 自定义 <code>count</code> 查询的 <code>statementId</code></td>
-</tr>
-</tbody></table>
+<ul>
+<li>提供更强大的功能，延时定时线程池</li>
+</ul>
+<h3 id="1-2-线程池需要使用队列的原因"><a href="#1-2-线程池需要使用队列的原因" class="headerlink" title="1.2 线程池需要使用队列的原因"></a>1.2 线程池需要使用队列的原因</h3><p>线程若是无限制创建，可能会导致<code>内存</code>占用过多而产生 <code>OOM</code>，并且会造成<code>cpu</code>过度切换，创建线程池的消耗较高或者线程池创建线程需要获取 <code>mainlock </code>这个全局锁，影响并发效率，阻塞队列可以很好的缓冲</p>
+<h3 id="1-3-线程池使用阻塞队列的原因"><a href="#1-3-线程池使用阻塞队列的原因" class="headerlink" title="1.3 线程池使用阻塞队列的原因"></a>1.3 线程池使用阻塞队列的原因</h3><p><code>阻塞队列</code>可以保证任务队列中没有任务时阻塞获取任务的线程，是的线程进入 <code>wait</code> 状态，释放 <code>cpu </code>资源，当队列中有任务时才唤醒对应线程，从队列中取出消息进行执行，使得线程不至于一直占用 <code>cpu </code>资源</p>
+<blockquote>
+<p>线程执行完任务后通过循环再次从任务队列中取出任务进行执行，代码片段如：<code>while(task != null || (task = getTask()) != null){}</code></p>
+</blockquote>
+<p>不用阻塞队列也是可以的，不过实现起来比较麻烦。</p>
+<h3 id="1-4-线程池的配置"><a href="#1-4-线程池的配置" class="headerlink" title="1.4 线程池的配置"></a>1.4 线程池的配置</h3><h5 id="1-CPU密集型任务"><a href="#1-CPU密集型任务" class="headerlink" title="1. CPU密集型任务"></a>1. CPU密集型任务</h5><p>尽量使用较小的线程池，一般为 <code>CPU </code>核心数 <code>+1</code>，因为 <code>CPU </code>密集型任务使得 <code>CPU </code>使用率较高，若是开过多的线程数，会造成 <code>CPU </code>付过度切换</p>
+<h5 id="2-IO-密集型任务"><a href="#2-IO-密集型任务" class="headerlink" title="2. IO 密集型任务"></a>2. IO 密集型任务</h5><p>可以使用稍大的线程池，一般为 <code>2*CPU</code> 核心数。<code>IO </code>密集型任务 <code>CPU </code>使用率并不高，因此可以让 <code>CPU </code>在等待 <code>IO </code>的时候有其他线程去处理别的任务，充分利用 <code>CPU </code>时间</p>
+<h5 id="3-混合型任务"><a href="#3-混合型任务" class="headerlink" title="3. 混合型任务"></a>3. 混合型任务</h5><p>可以将任务分成IO密集型和CPU密集型任务，然后分别用不同的线程池去处理。 只要分完之后两个任务的执行时间相差不大，那么就会比串行执行来的高效<br>因为如果划分之后两个任务执行时间有数据级的差距，那么拆分没有意义。<br>因为先执行完的任务就要等后执行完的任务，最终的时间仍然取决于后执行完的任务，而且还要加上任务拆分与合并的开销，得不偿失</p>
+<h3 id="1-5-execute-和-submit-方法"><a href="#1-5-execute-和-submit-方法" class="headerlink" title="1.5 execute() 和 submit() 方法"></a>1.5 execute() 和 submit() 方法</h3><ul>
+<li><code>execute()</code>：执行一个任务，没有返回值</li>
+<li><code>submit()</code>，提交一个线程任务，有返回值</li>
+</ul>
+<p>submit(Callable<t> task)能获取到它的返回值，通过future.get()获取（阻塞直到任务执行完）。一般使用FutureTask+Callable配合使用<br>submit(Runnable task, T result)能通过传入的载体result间接获得线程的返回值。<br>submit(Runnable task)则是没有返回值的，就算获取它的返回值也是null</t></p>
+<p>Future.get()方法会使取结果的线程进入阻塞状态，直到线程执行完成之后，唤醒取结果的线程，然后返回结果</p>
+<h2 id="二、Spring-线程池"><a href="#二、Spring-线程池" class="headerlink" title="二、Spring 线程池"></a>二、Spring 线程池</h2><h3 id="2-1-Spring-线程池种类"><a href="#2-1-Spring-线程池种类" class="headerlink" title="2.1 Spring 线程池种类"></a>2.1 Spring 线程池种类</h3><h4 id="1-Spring-线程池的使用"><a href="#1-Spring-线程池的使用" class="headerlink" title="1. Spring 线程池的使用"></a>1. Spring 线程池的使用</h4><ul>
+<li>Spring 通过任务执行器<code>TaskExecutor</code> 来实现多线程和并发</li>
+<li>使用 <code>ThreadPoolTaskExecutor</code> 实现一个基于线程池的 <code>TaskExecutor</code></li>
+<li>使用 <code>@EnableAsync</code> 开启异步，并通过在需要异步的方法上使用注解 <code>@Async</code> 声明是一个异步任务</li>
+</ul>
+<h4 id="2-Spring-已经实现的异常线程池："><a href="#2-Spring-已经实现的异常线程池：" class="headerlink" title="2. Spring 已经实现的异常线程池："></a>2. Spring 已经实现的异常线程池：</h4><ul>
+<li><code>SimpleAsyncTaskExecutor</code>：不是真的线程池，这个类不重用线程，每次调用都会创建一个新的线程。</li>
+<li><code>SyncTaskExecutor</code>：这个类没有实现异步调用，只是一个同步操作。只适用于不需要多线程的地方</li>
+<li><code>ConcurrentTaskExecutor</code>：<code>Executor</code>的适配类，不推荐使用。如果<code>ThreadPoolTaskExecutor</code>不满足要求时，才用考虑使用这个类</li>
+<li><code>SimpleThreadPoolTaskExecutor</code>：是<code>Quartz</code>的<code>SimpleThreadPool</code>的类。线程池同时被<code>quartz</code>和<code>非quartz</code>使用，才需要使用此类</li>
+<li><code>ThreadPoolTaskExecutor </code>：最常使用，推荐。 其实质是对<code>java.util.concurrent.ThreadPoolExecutor</code>的包装</li>
+</ul>
+<h3 id="2-2-ThreadPoolTaskExecutor的使用"><a href="#2-2-ThreadPoolTaskExecutor的使用" class="headerlink" title="2.2 ThreadPoolTaskExecutor的使用"></a>2.2 ThreadPoolTaskExecutor的使用</h3><h4 id="1-线程池配置类"><a href="#1-线程池配置类" class="headerlink" title="1. 线程池配置类"></a>1. 线程池配置类</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+@EnableAsync # 开启异步
+public class TaskExecuteConfig {
+
+    @Value("task.executor.core_pool_size")
+    private int corePoolSize;
+
+    @Value("task.executor.max_pool_size")
+    private int maxPoolSize;
+
+    @Value("task.executor.queue_capacity")
+    private int queueCapacity;
+
+    @Value("task.executor.keep_alive_seconds")
+    private long keepAliveSeconds;
+
+    @Bean(name = "threadPoolTaskExecutor")
+    public ThreadPoolTaskExecutor SendTaskExecutor(){
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        // 配置核心线程数
+        executor.setCorePoolSize(corePoolSize);
+        //最大线程数
+        executor.setMaxPoolSize(maxPoolSize);
+        // 队列大小
+        executor.setQueueCapacity(queueCapacity);
+        // 线程池维护线程所允许的空闲时间，单位秒，超过则销毁
+        // 线程池线程数量大于corePoolSize时，多出来的空闲线程，多长时间会被销毁
+        executor.setKeepAliveSeconds(keepAliveSeconds);
+        // 配置线程池中的线程名称前缀
+        executor.setThreadNamePrefix("pool-send-task-executor");
+        // 线程池拒绝策略
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.initialize();
+
+        return executor;
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>配置类中方法说明：</p>
+<ul>
+<li><code>corePoolSize</code>:线程池维护线程的最小数量</li>
+<li><code>maxPoolSize</code>:线程池维护线程的最大数量，线程池中允许的最大线程数，线程池中的当前线程数目不会超过该值。如果队列中任务已满，并且当前线程个数小于maxPoolSize，那么会创建新的线程来执行任务。</li>
+<li><code>keepAliveSeconds</code>:空闲线程的存活时间，单位秒</li>
+<li><code>queueCapacity</code>：持有等待执行的任务队列，一个阻塞队列，用来存储等待执行的任务，当线程池中的线程数超过它的<code>corePoolSize</code>的时候，线程会进入阻塞队列进行阻塞等待</li>
+<li><code>RejectedExecutionHandler handler</code>： 线程池的拒绝策略，是指当任务添加到线程池中被拒绝，而采取的处理措施。<br>当任务添加到线程池中之所以被拒绝，可能是由于：第一，线程池异常关闭。第二，任务数量超过线程池的最大限制。</li>
+</ul>
+<blockquote>
+<p>Reject 策略预定义有如下四种：</p>
+<ol>
+<li><code>ThreadPoolExecutor.AbortPolicy</code>策略，是默认的策略,处理程序遭到拒绝将抛出运行时 RejectedExecutionException</li>
+<li><code>ThreadPoolExecutor.CallerRunsPolicy</code>策略 ,调用者的线程会执行该任务,如果执行器已关闭,则丢弃.</li>
+<li><code>ThreadPoolExecutor.DiscardPolicy</code>策略，不能执行的任务将被丢弃.</li>
+<li><code>ThreadPoolExecutor.DiscardOldestPolicy</code>策略，如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）</li>
+<li>自定义策略：当然也可以根据应用场景需要来实现RejectedExecutionHandler接口自定义策略。如记录日志或持久化不能处理的任务</li>
+</ol>
+</blockquote>
+<h4 id="2-异步方法"><a href="#2-异步方法" class="headerlink" title="2. 异步方法"></a>2. 异步方法</h4><p><code>@Async</code>注解可以用在方法上，表示该方法是个异步方法，也可以用在类上，那么表示此类的所有方法都是异步方法2 异步方法会自动注入使用<code>ThreadPoolTaskExecutor</code>作为<code>TaskExecutor</code></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class AsyncTaskService {
+
+    @Async
+    public void executeAsync(Integer i) throws Exception{
+        System.out.println("线程ID：" + Thread.currentThread().getId() + "线程名字：" +Thread.currentThread().getName()+"执行异步任务:" + i);
+    }
+
+    @Async
+    public Future&lt;String&gt; executeAsyncPlus(Integer i) throws Exception {
+        System.out.println("线程ID：" + Thread.currentThread().getId() +"线程名字：" +Thread.currentThread().getName()+ "执行异步有返回的任务:" + i);
+        return new AsyncResult&lt;&gt;("success:"+i);
+    }
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -598,7 +584,7 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">https://github.com/MathisonTur/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/04/01/SpringBoot/ThreadPoolTaskExecutor%E7%9A%84%E4%BD%BF%E7%94%A8/">https://github.com/MathisonTur/tur-study/2023/04/01/SpringBoot/ThreadPoolTaskExecutor%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -636,8 +622,12 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/Mybatis-Plus/">
-                                    <span class="chip bg-color">Mybatis Plus</span>
+                                <a href="/tur-study/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
+                                </a>
+                            
+                                <a href="/tur-study/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                                    <span class="chip bg-color">线程池</span>
                                 </a>
                             
                         </div>
@@ -716,17 +706,18 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/tur-study/2023/03/28/SpringBoot/Filter%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                <a href="/tur-study/2023/04/01/SpringBoot/ThreadPoolTaskExecutor%E7%9A%84%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/14.jpg" class="responsive-img" alt="Filter 过滤器的使用">
+                        <img src="/tur-study/medias/featureimages/23.jpg" class="responsive-img" alt="ThreadPoolTaskExecutor的使用">
                         
-                        <span class="card-title">Filter 过滤器的使用</span>
+                        <span class="card-title">ThreadPoolTaskExecutor的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -736,22 +727,31 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-01
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Spring/" class="post-category">
+                                    Spring
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tur-study/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                        <span class="chip bg-color">线程池</span>
                     </a>
                     
                 </div>
@@ -765,13 +765,13 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+                <a href="/tur-study/2023/03/31/Redis/SpringBoot%E6%95%B4%E5%90%88Redis/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Knife4j配置与使用(OpenAPI2)">
+                        <img src="/tur-study/medias/featureimages/8.jpg" class="responsive-img" alt="SpringBoot整合Redis">
                         
-                        <span class="card-title">Knife4j配置与使用(OpenAPI2)</span>
+                        <span class="card-title">SpringBoot整合Redis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -782,12 +782,20 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Redis/" class="post-category">
+                                    Redis
+                                </a>
+                            
+                            <a href="/tur-study/categories/Redis/SpringBoot/" class="post-category">
+                                    SpringBoot
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -797,6 +805,10 @@ List&lt;UserVo&gt; selectPageVo(IPage&lt;UserVo&gt; page, Integer state);<span a
                     
                     <a href="/tur-study/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
                 </div>

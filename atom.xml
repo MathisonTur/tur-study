@@ -6,7 +6,7 @@
   <link href="https://github.com/MathisonTur/atom.xml" rel="self"/>
   
   <link href="https://github.com/MathisonTur/"/>
-  <updated>2023-03-31T12:43:26.810Z</updated>
+  <updated>2023-04-01T01:09:42.475Z</updated>
   <id>https://github.com/MathisonTur/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ThreadPoolTaskExecutor的使用</title>
+    <link href="https://github.com/MathisonTur/2023/04/01/SpringBoot/ThreadPoolTaskExecutor%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://github.com/MathisonTur/2023/04/01/SpringBoot/ThreadPoolTaskExecutor%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2023-03-31T23:54:47.000Z</published>
+    <updated>2023-04-01T01:09:42.475Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、线程池简介&quot;&gt;&lt;a href=&quot;#一、线程池简介&quot; class=&quot;headerlink&quot; title=&quot;一、线程池简介&quot;&gt;&lt;/a&gt;一、线程池简介&lt;/h2&gt;&lt;h3 id=&quot;1-1-为什么使用线程池&quot;&gt;&lt;a href=&quot;#1-1-为什么使用线程池&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://github.com/MathisonTur/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="https://github.com/MathisonTur/tags/Spring/"/>
+    
+    <category term="线程池" scheme="https://github.com/MathisonTur/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot整合Redis</title>
@@ -39,9 +66,9 @@
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/Redis/SpringBoot/"/>
     
     
-    <category term="Redis" scheme="https://github.com/MathisonTur/tags/Redis/"/>
-    
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
+    
+    <category term="Redis" scheme="https://github.com/MathisonTur/tags/Redis/"/>
     
   </entry>
   
