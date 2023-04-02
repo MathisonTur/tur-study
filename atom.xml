@@ -6,7 +6,7 @@
   <link href="https://github.com/MathisonTur/atom.xml" rel="self"/>
   
   <link href="https://github.com/MathisonTur/"/>
-  <updated>2023-04-01T07:23:18.649Z</updated>
+  <updated>2023-04-02T14:30:56.491Z</updated>
   <id>https://github.com/MathisonTur/</id>
   
   <author>
@@ -15,6 +15,73 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浏览器解析工具-UserAgentUtils</title>
+    <link href="https://github.com/MathisonTur/2023/04/02/SpringBoot/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-UserAgentUtils/"/>
+    <id>https://github.com/MathisonTur/2023/04/02/SpringBoot/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-UserAgentUtils/</id>
+    <published>2023-04-02T14:04:16.000Z</published>
+    <updated>2023-04-02T14:30:56.491Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-UserAgentUtils简介&quot;&gt;&lt;a href=&quot;#1-UserAgentUtils简介&quot; class=&quot;headerlink&quot; title=&quot;1. UserAgentUtils简介&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java实现获取客户端IP地址</title>
+    <link href="https://github.com/MathisonTur/2023/04/02/Java/Java%E5%AE%9E%E7%8E%B0%E8%8E%B7%E5%8F%96%E5%AE%A2%E6%88%B7%E7%AB%AFIP%E5%9C%B0%E5%9D%80/"/>
+    <id>https://github.com/MathisonTur/2023/04/02/Java/Java%E5%AE%9E%E7%8E%B0%E8%8E%B7%E5%8F%96%E5%AE%A2%E6%88%B7%E7%AB%AFIP%E5%9C%B0%E5%9D%80/</id>
+    <published>2023-04-02T11:35:07.000Z</published>
+    <updated>2023-04-02T11:45:08.634Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1. 简介&quot;&gt;&lt;/a&gt;1. 简介&lt;/h3&gt;&lt;p&gt; 项目开发中，在日常处理操作日志时，基本都会通过aop&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://github.com/MathisonTur/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://github.com/MathisonTur/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AOP完成系统操作日志记录</title>
+    <link href="https://github.com/MathisonTur/2023/04/02/Spring/AOP%E5%AE%8C%E6%88%90%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/"/>
+    <id>https://github.com/MathisonTur/2023/04/02/Spring/AOP%E5%AE%8C%E6%88%90%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/</id>
+    <published>2023-04-02T11:31:47.000Z</published>
+    <updated>2023-04-02T13:35:44.828Z</updated>
+    
+    
+    
+    
+    <category term="Spring" scheme="https://github.com/MathisonTur/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="https://github.com/MathisonTur/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Java正则</title>
@@ -125,11 +192,11 @@
   </entry>
   
   <entry>
-    <title>Sa-Token权限认证</title>
+    <title>SpringBoot 整合 Sa-Token 基础</title>
     <link href="https://github.com/MathisonTur/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/"/>
     <id>https://github.com/MathisonTur/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/</id>
     <published>2023-03-31T05:00:00.000Z</published>
-    <updated>2023-03-31T12:52:32.793Z</updated>
+    <updated>2023-04-01T15:01:50.107Z</updated>
     
     
       
