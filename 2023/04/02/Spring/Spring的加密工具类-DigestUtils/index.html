@@ -4,11 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Knife4j配置与使用(OpenAPI2), Tur的学习笔记">
-    <meta name="description" content="1. 引入maven 坐标如下
-&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;knife4j-">
+    <meta name="keywords" content="Spring的加密工具类--DigestUtils, Tur的学习笔记">
+    <meta name="description" content="一、加密算法简介常见的加密算法可以分成三类：
+
+对称加密算法
+非对称加密算法
+Hash算法
+
+1.1 对称加密指加密和解密使用相同密钥的加密算法。对称加密算法的优点在于加解密的高速度和使用长密钥时的难破解性。
+假设两个用户需要使用对称加密方">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +24,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Knife4j配置与使用(OpenAPI2) | Tur的学习笔记</title>
+    <title>Spring的加密工具类--DigestUtils | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -340,12 +344,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Knife4j配置与使用(OpenAPI2)</h1>
+                    <h1 class="description center-align post-title">Spring的加密工具类--DigestUtils</h1>
                 </div>
             </div>
         </div>
@@ -369,14 +373,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/SpringBoot/">
-                                <span class="chip bg-color">SpringBoot</span>
+                            <a href="/tur-study/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/tur-study/categories/Spring/" class="post-category">
+                                Spring
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -385,28 +398,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-27
+                    2023-04-02
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-28
+                    2023-04-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    551
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    5 分
                 </div>
                 
 
@@ -429,80 +442,90 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h3><p>maven 坐标如下</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.xiaoymin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>knife4j-openapi2-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-    <span class="token comment">&lt;!-- 具体版本自行选择 --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+                <h2 id="一、加密算法简介"><a href="#一、加密算法简介" class="headerlink" title="一、加密算法简介"></a>一、加密算法简介</h2><p>常见的加密算法可以分成三类：</p>
+<ul>
+<li>对称加密算法</li>
+<li>非对称加密算法</li>
+<li>Hash算法</li>
+</ul>
+<h3 id="1-1-对称加密"><a href="#1-1-对称加密" class="headerlink" title="1.1 对称加密"></a>1.1 对称加密</h3><p>指加密和解密使用相同密钥的加密算法。对称加密算法的优点在于加解密的高速度和使用长密钥时的难破解性。</p>
+<p>假设两个用户需要使用对称加密方法加密然后交换数据，则用户最少需要2个密钥并交换使用，如果企业内用户有n个，则整个企业共需要n×(n-1) 个密钥，密钥的生成和分发将成为企业信息部门的恶梦。对称加密算法的安全性取决于加密密钥的保存情况，但要求企业中每一个持有密钥的人都保守秘密是不可能的，他们通常会有意无意的把密钥泄漏出去——如果一个用户使用的密钥被入侵者所获得，入侵者便可以读取该用户密钥加密的所有文档，如果整个企业共用一个加密密钥，那整个企业文档的保密性便无从谈起</p>
+<p>常见的对称加密算法：DES、3DES、DESX、Blowfish、IDEA、RC4、RC5、RC6和AES</p>
+<h3 id="1-2-非对称加密"><a href="#1-2-非对称加密" class="headerlink" title="1.2 非对称加密"></a>1.2 非对称加密</h3><p>指加密和解密使用不同密钥的加密算法，也称为公私钥加密。假设两个用户要加密交换数据，双方交换公钥，使用时一方用对方的公钥加密，另一方即可用自己的私钥解密。</p>
+<p>如果企业中有n个用户，企业需要生成n对密钥，并分发n个公钥。由于公钥是可以公开的，用户只要保管好自己的私钥即可，因此加密密钥的分发将变得十分简单。同时，由于每个用户的私钥是唯一的，其他用户除了可以可以通过信息发送者的公钥来验证信息的来源是否真实，还可以确保发送者无法否认曾发送过该信息。非对称加密的缺点是加解密速度要远远慢于对称加密，在某些极端情况下，甚至能比非对称加密慢上1000倍。</p>
+<p>常见的非对称加密算法：RSA、ECC（移动设备用）、Diffie-Hellman、El Gamal、DSA（数字签名用）</p>
+<h3 id="1-3-Hash算法"><a href="#1-3-Hash算法" class="headerlink" title="1.3 Hash算法"></a>1.3 Hash算法</h3><p>Hash算法特别的地方在于它是一种单向算法，用户可以通过Hash算法对目标信息生成一段特定长度的唯一的Hash值，却不能通过这个Hash值重新获得目标信息。因此Hash算法常用在不可还原的密码存储、信息完整性校验等。</p>
+<p>常见的Hash算法：MD2、MD4、MD5、HAVAL、SHA、SHA-1、HMAC、HMAC-MD5、HMAC-SHA1</p>
 <blockquote>
-<p>Spring Boot 版本建议在 2.4.0 ~ 3.0.0 之间</p>
+<p>加密算法的效能通常可以按照算法本身的复杂程度、密钥长度（密钥越长越安全）、加解密速度等来衡量。上述的算法中，除了DES密钥长度不够、MD2速度较慢已逐渐被淘汰外，其他算法仍在目前的加密系统产品中使用。</p>
 </blockquote>
-<h3 id="2-配置-yml-属性"><a href="#2-配置-yml-属性" class="headerlink" title="2. 配置 yml 属性"></a>2. 配置 yml 属性</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">knife4j:
-  enable: true
-  openapi:
-    title: 这是文档标题 # 文档标题
-    description: 这是简介 # 简介
-    email: 123456789@qq.com # 创建人邮件
-    concat: tur # 创建者
-    url: https://docs.xiaominfo.com # 项目文档地址
-    version: v4.0 # 版本
-    license: Apache 2.0 # 许可证
-    license-url: https://stackoverflow.com/ # 许可证地址
-    terms-of-service-url: https://stackoverflow.com/
-    group: # 分组
-      test1: # 组名，用以区分其他组
-        group-name: 分组名称 # 组别名称
-        api-rule: package # api扫描方式
-        api-rule-resources: # 指定扫描的位置
-          - com.knife4j.demo.new3 # 存放接口、对象的包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-4-加密算法的选择"><a href="#1-4-加密算法的选择" class="headerlink" title="1.4 加密算法的选择"></a>1.4 加密算法的选择</h3><p>我们应该根据自己的使用特点来确定，由于非对称加密算法的运行速度比对称加密算法的速度慢很多，当我们需要加密大量的数据时，建议采用对称加密算法，提高加解密速度。</p>
+<p>对称加密算法不能实现签名，因此签名只能非对称算法。</p>
+<p>由于对称加密算法的密钥管理是一个复杂的过程，密钥的管理直接决定着他的安全性，因此当数据量很小时，我们可以考虑采用非对称加密算法。</p>
+<p>在实际的操作过程中，我们通常采用的方式是：采用非对称加密算法管理对称算法的密钥，然后用对称加密算法加密数据，这样我们就集成了两类加密算法的优点，既实现了加密速度快的优点，又实现了安全方便管理密钥的优点。</p>
+<p>如果在选定了加密算法后，那采用多少位的密钥呢？一般来说，密钥越长，运行的速度就越慢，应该根据的我们实际需要的安全级别来选择，一般来说，RSA建议采用1024位的数字，ECC建议采用160位，AES采用128为即可。</p>
+<h2 id="二、DigestUtils-的使用"><a href="#二、DigestUtils-的使用" class="headerlink" title="二、DigestUtils 的使用"></a>二、DigestUtils 的使用</h2><h3 id="2-1-SHA256加密"><a href="#2-1-SHA256加密" class="headerlink" title="2.1 SHA256加密"></a>2.1 SHA256加密</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">String encodekey = DigestUtils.sha256Hex("测试SHA256");
+System.out.println(encodekey);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>访问 Knife4j 的文档地址：<code>http://ip:sort/doc.html</code></p>
-<h3 id="3-Java注解"><a href="#3-Java注解" class="headerlink" title="3. Java注解"></a>3. Java注解</h3><h5 id="1-Api：定义接口分组名称"><a href="#1-Api：定义接口分组名称" class="headerlink" title="1. @Api：定义接口分组名称"></a>1. <code>@Api</code>：定义接口分组名称</h5><p>参数说明：</p>
-<ul>
-<li><code>tags</code>:说明该类的作用，可以在 UI 界面上看到的注解</li>
-<li><code>value</code>：一般会自动获取接口分组的名称，可以不用设置</li>
-</ul>
-<h5 id="2-ApiImplicitParam：单个参数注释"><a href="#2-ApiImplicitParam：单个参数注释" class="headerlink" title="2. @ApiImplicitParam：单个参数注释"></a>2. <code>@ApiImplicitParam</code>：单个参数注释</h5><p>用在 <code>@ApiImplicitParams</code> 中，指定一个请求参数的各个方面</p>
-<ul>
-<li><code>name</code>：参数名</li>
-<li><code>value</code>：参数说明</li>
-<li><code>required</code>：参数时是否必须传</li>
-<li><code>paramType</code>：参数位置，有以下可选值<ul>
-<li><code>header</code>：请求头 <code>@RequestHeader</code></li>
-<li><code>query</code>：?param=value格式 <code>@RequestParam</code></li>
-<li><code>path</code>：路径，Restful风格接口 <code>@PathVariable</code></li>
-<li><code>body</code>：请求体</li>
-<li><code>form</code>：以form表单的形式提交</li>
-</ul>
-</li>
-<li><code>dataType</code>：参数类型，默认 String，其他值为 Integer</li>
-<li><code>defaultValue</code>：参数的默认值</li>
-</ul>
-<h5 id="3-ApiImplicitParams：多个参数注释"><a href="#3-ApiImplicitParams：多个参数注释" class="headerlink" title="3. @ApiImplicitParams：多个参数注释"></a>3. <code>@ApiImplicitParams</code>：多个参数注释</h5><p>用在请求方法上，表示一组参数的说明</p>
-<h5 id="4-ApiModel：实体类定义"><a href="#4-ApiModel：实体类定义" class="headerlink" title="4. @ApiModel：实体类定义"></a>4. <code>@ApiModel</code>：实体类定义</h5><h5 id="5-ApiModelProperty：实体属性定义"><a href="#5-ApiModelProperty：实体属性定义" class="headerlink" title="5. @ApiModelProperty：实体属性定义"></a>5. <code>@ApiModelProperty</code>：实体属性定义</h5><ul>
-<li><code>value</code>：字段说明</li>
-<li><code>name</code>：属性名</li>
-<li><code>dataType</code>：属性类型</li>
-<li><code>required</code>：是否必填</li>
-<li><code>example</code>：举例说明</li>
-<li><code>hidden</code>：隐藏</li>
-</ul>
-<h5 id="6-ApiOperation：接口定义"><a href="#6-ApiOperation：接口定义" class="headerlink" title="6. @ApiOperation：接口定义"></a>6. <code>@ApiOperation</code>：接口定义</h5><ul>
-<li><code>value</code>：接口说明</li>
-<li><code>httpMethod</code>：接口请求方式</li>
-<li><code>response</code>：接口返回参数类型</li>
-<li><code>notes</code>：接口发布说明</li>
-</ul>
-<h5 id="7-ApiParam：参数注释"><a href="#7-ApiParam：参数注释" class="headerlink" title="7. @ApiParam：参数注释"></a>7. <code>@ApiParam</code>：参数注释</h5><h5 id="8-ApiResponse：响应码"><a href="#8-ApiResponse：响应码" class="headerlink" title="8. @ApiResponse：响应码"></a>8. <code>@ApiResponse</code>：响应码</h5><p>用在 <code>@ApiResponses</code> 中，一般用于表达一个错误或正确的响应信息</p>
-<ul>
-<li><code>code</code>：响应码</li>
-<li><code>message</code>：响应信息</li>
-<li><code>resposne</code>：抛出异常类</li>
-</ul>
-<h5 id="9-ApiResponses：多个响应码"><a href="#9-ApiResponses：多个响应码" class="headerlink" title="9. @ApiResponses：多个响应码"></a>9. <code>@ApiResponses</code>：多个响应码</h5><p>用在请求的方法上，表示一组响应</p>
+<p>运行结果：</p>
+<pre class="line-numbers language-none"><code class="language-none">6c6c0785899852543f360d1270d400f709179fc03b62bada26aa0f69a8ec7dea<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>源码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">/**
+    * Calculates the SHA-256 digest and returns the value as a hex string.
+    * &lt;p&gt;
+    * Throws a &lt;code&gt;RuntimeException&lt;/code&gt; on JRE versions prior to 1.4.0.
+    * &lt;/p&gt;
+    * 
+    * @param data
+    *            Data to digest
+    * @return SHA-256 digest as a hex string
+    * @since 1.4
+    */
+   public static String sha256Hex(String data) {
+       return Hex.encodeHexString(sha256(data));
+   }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-md5加密"><a href="#2-2-md5加密" class="headerlink" title="2.2 md5加密"></a>2.2 md5加密</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">String encodekey = DigestUtils.md5Hex("测试MD5");
+System.out.println(encodekey);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>运行结果：</p>
+<pre class="line-numbers language-none"><code class="language-none">c2dbb895a66c3ca924ccdbea49fa6884<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>源码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">/**
+     * Calculates the MD5 digest and returns the value as a 16 element &lt;code&gt;byte[]&lt;/code&gt;.
+     * 
+     * @param data
+     *            Data to digest
+     * @return MD5 digest
+     */
+    public static byte[] md5(String data) {
+        return md5(getBytesUtf8(data));
+    }
+ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>该类同时提供了上述两个方法的重载方法传入的不同参数,支持的加密算法如下:</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">   private static MessageDigest getMd5Digest() {
+	return getDigest("MD5");
+}
+
+private static MessageDigest getSha256Digest() {
+	return getDigest("SHA-256");
+}
+
+private static MessageDigest getSha384Digest() {
+	return getDigest("SHA-384");
+}
+
+private static MessageDigest getSha512Digest() {
+	return getDigest("SHA-512");
+}
+
+private static MessageDigest getShaDigest() {
+	return getDigest("SHA");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -529,7 +552,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">https://github.com/MathisonTur/tur-study/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/04/02/Spring/Spring%E7%9A%84%E5%8A%A0%E5%AF%86%E5%B7%A5%E5%85%B7%E7%B1%BB-DigestUtils/">https://github.com/MathisonTur/tur-study/2023/04/02/Spring/Spring%E7%9A%84%E5%8A%A0%E5%AF%86%E5%B7%A5%E5%85%B7%E7%B1%BB-DigestUtils/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -567,8 +590,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/SpringBoot/">
-                                    <span class="chip bg-color">SpringBoot</span>
+                                <a href="/tur-study/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
                                 </a>
                             
                         </div>
@@ -647,17 +670,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/tur-study/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                <a href="/tur-study/2023/04/02/Spring/Spring%E7%9A%84%E5%8A%A0%E5%AF%86%E5%B7%A5%E5%85%B7%E7%B1%BB-DigestUtils/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Mybatis Plus 分页插件的使用">
+                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Spring的加密工具类--DigestUtils">
                         
-                        <span class="card-title">Mybatis Plus 分页插件的使用</span>
+                        <span class="card-title">Spring的加密工具类--DigestUtils</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -667,22 +691,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-02
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Spring/" class="post-category">
+                                    Spring
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis-Plus/">
-                        <span class="chip bg-color">Mybatis Plus</span>
+                    <a href="/tur-study/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
                 </div>
@@ -696,13 +725,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">
+                <a href="/tur-study/2023/04/02/SpringBoot/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-UserAgentUtils/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/22.jpg" class="responsive-img" alt="Mybatis中select传递多个参数">
+                        <img src="/tur-study/medias/featureimages/2.jpg" class="responsive-img" alt="浏览器解析工具-UserAgentUtils">
                         
-                        <span class="card-title">Mybatis中select传递多个参数</span>
+                        <span class="card-title">浏览器解析工具-UserAgentUtils</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,12 +742,16 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-02
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -726,8 +759,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
+                    <a href="/tur-study/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
                 </div>
