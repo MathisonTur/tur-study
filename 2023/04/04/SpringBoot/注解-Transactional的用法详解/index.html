@@ -4,17 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="linux常用命令, Tur的学习笔记">
-    <meta name="description" content="防火墙相关命令1. 查看防火墙状态systemctl status firewalld
+    <meta name="keywords" content="SpringBoot">
+    <meta name="description" content="
+@Transactional 注解可以保证方法内多个数据库操作要么同时成功、要么同时失败。但使用 @Transactional 注解需要注意许多细节，不然注解就会失效
 
-
-inactive(dead)：未启动
-active（running）：已启动。字体呈现绿色
-
-2. 开启防火墙
-开启防火墙
-
-systemctl s">
+一、事务事务管理在系统开发中是不可缺少的一部分，Spring 提供了">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +20,7 @@ systemctl s">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>linux常用命令 | Tur的学习笔记</title>
+    <title>注解@Transactional的用法详解 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -346,12 +340,12 @@ systemctl s">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">linux常用命令</h1>
+                    <h1 class="description center-align post-title">注解@Transactional的用法详解</h1>
                 </div>
             </div>
         </div>
@@ -375,8 +369,8 @@ systemctl s">
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tur-study/tags/SpringBoot/">
+                                <span class="chip bg-color">SpringBoot</span>
                             </a>
                         
                     </div>
@@ -387,8 +381,8 @@ systemctl s">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/tur-study/categories/linux/" class="post-category">
-                                linux
+                            <a href="/tur-study/categories/SpringBoot/" class="post-category">
+                                SpringBoot
                             </a>
                         
                     </div>
@@ -400,28 +394,28 @@ systemctl s">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-31
+                    2023-04-04
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-31
+                    2023-04-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    246
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    11 分
                 </div>
                 
 
@@ -444,60 +438,267 @@ systemctl s">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="防火墙相关命令"><a href="#防火墙相关命令" class="headerlink" title="防火墙相关命令"></a>防火墙相关命令</h3><h4 id="1-查看防火墙状态"><a href="#1-查看防火墙状态" class="headerlink" title="1. 查看防火墙状态"></a>1. 查看防火墙状态</h4><pre class="line-numbers language-none"><code class="language-none">systemctl status firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
-<li>inactive(dead)：未启动</li>
-<li>active（running）：已启动。字体呈现绿色</li>
-</ul>
-<h4 id="2-开启防火墙"><a href="#2-开启防火墙" class="headerlink" title="2. 开启防火墙"></a>2. 开启防火墙</h4><ul>
-<li>开启防火墙</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">systemctl start firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
-<li>设置开机自启动</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">systemctl enable firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h4 id="3-开放或限制端口"><a href="#3-开放或限制端口" class="headerlink" title="3. 开放或限制端口"></a>3. 开放或限制端口</h4><h5 id="3-1-开放端口"><a href="#3-1-开放端口" class="headerlink" title="3.1 开放端口"></a>3.1 开放端口</h5><ol>
-<li>开启指定端口</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">firewalld-cmd --zone=public --add-port=6379/tcp --permanent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<blockquote>
-<p><code>--permanent</code>：声明该设置永久有效。不加的话机器重启之后就失效了</p>
+                <blockquote>
+<p><code>@Transactional</code> 注解可以保证方法内多个数据库操作要么同时成功、要么同时失败。但使用 <code>@Transactional</code> 注解需要注意许多细节，不然注解就会失效</p>
 </blockquote>
-<ol start="2">
-<li>重新载入防火墙设置，使设置生效</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">firewalld-cmd --reload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="一、事务"><a href="#一、事务" class="headerlink" title="一、事务"></a>一、事务</h2><p>事务管理在系统开发中是不可缺少的一部分，Spring 提供了很好的事务管理机制，主要分为：编程式事务和声明式事务</p>
+<h3 id="1-1-编程式事务"><a href="#1-1-编程式事务" class="headerlink" title="1.1 编程式事务"></a>1.1 编程式事务</h3><p>指在代码中手动管理事务的提交、回滚等操作，代码侵入性比较强</p>
+<p>示例如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public void test() {
+      TransactionDefinition def = new DefaultTransactionDefinition();
+      TransactionStatus status = transactionManager.getTransaction(def);
+       try {
+         // 事务操作
+         // 事务提交
+         transactionManager.commit(status);
+       } catch (DataAccessException e) {
+         // 事务回滚
+         transactionManager.rollback(status);
+         throw e;
+       }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<ol start="3">
-<li>查看是否生效</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">fiewwalld-cmd --zone=publi --query-port=6379/tcp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<p>如上代码，开发者可以通过 API 自己控制事务</p>
+<h3 id="1-2-声明式事务"><a href="#1-2-声明式事务" class="headerlink" title="1.2 声明式事务"></a>1.2 声明式事务</h3><p>声明式事务基于 <code>AOP 面向切面</code>的，将具体业务域事务处理部分解耦，代码侵入性很低，在实际开发中使用较多。</p>
+<p>声明式事务有两种实现方式：</p>
 <ul>
-<li>输出yes：表示开启</li>
-<li>输出no：表示未开启</li>
+<li>基于 TX 和 AOP 的 <code>xml 配置文件</code>方式</li>
+<li>基于 <code>@Transactional</code> 注解</li>
 </ul>
-<ol start="4">
-<li>查看当前系统打开的所有端口</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">firewalld-cmd --zone=public --list-ports<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<p>声明式事务对代码没有侵入性，方法内只需要写业务逻辑就可以了，帮助我们节省了很多代码，他会自动帮我们进行事务的开启、提交以及回滚等操作，把程序员从事务管理中解放出来。可以说优点很明显，但是这种方式的缺点也很明显</p>
+<h5 id="1-问题一：声明式事务的粒度问题"><a href="#1-问题一：声明式事务的粒度问题" class="headerlink" title="1. 问题一：声明式事务的粒度问题"></a>1. 问题一：声明式事务的粒度问题</h5><p>声明式事务有一个局限，就是它的最小粒度要作用在方法上。</p>
+<p>也就是说，如果想要给一部分代码增加事务的话，就需要把这部分代码块单独出来作为一个方法。</p>
 <blockquote>
-<p>需要查询详细信息的的话，可以输入：<code>firewalld-cmd --list-all</code></p>
+<p>在大事务耗时过长需要高并发优化的情况下不建议使用声明式事务，建议采用上面提到的编程式事务</p>
 </blockquote>
-<h5 id="3-2-限制端口"><a href="#3-2-限制端口" class="headerlink" title="3.2 限制端口"></a>3.2 限制端口</h5><ol>
-<li>限制指定端口，将开放的命令的 add 更改为 remove</li>
+<h5 id="2-问题二：声明式事务容易被开发者忽略"><a href="#2-问题二：声明式事务容易被开发者忽略" class="headerlink" title="2. 问题二：声明式事务容易被开发者忽略"></a>2. 问题二：声明式事务容易被开发者忽略</h5><p>而事务一旦被忽略就容易造成很多故障</p>
+<p>首先，如果开发者没有注意到一个方法是被事务嵌套的，那么就可能会再方法中加入一些如RPC远程调用、消息发送、缓存更新、文件写入等操作。</p>
+<p>我们知道，这些操作如果被包在事务中，有两个问题：</p>
+<p>1、这些操作自身是无法回滚的，这就会导致数据的不一致。可能RPC调用成功了，但是本地事务回滚了，可是PRC调用无法回滚了(这里不讨论分布式事务)。</p>
+<p>2、在事务中有远程调用，就会拉长整个事务。那么久会导致本事务的数据库连接一直被占用，那么如果类似操作过多，就会导致数据库连接池耗尽。</p>
+<p>有些时候，即使没有在事务中进行远程操作，但是有些人还是可能会不经意的进行一些内存操作，如运算。或者如果遇到分库分表的情况，有可能不经意间进行跨库操作。</p>
+<h5 id="3-问题三：声明式事务用错，在某些场景下容易失效"><a href="#3-问题三：声明式事务用错，在某些场景下容易失效" class="headerlink" title="3. 问题三：声明式事务用错，在某些场景下容易失效"></a>3. 问题三：声明式事务用错，在某些场景下容易失效</h5><p>后面有详细介绍</p>
+<h2 id="二、-Transactional-介绍"><a href="#二、-Transactional-介绍" class="headerlink" title="二、@Transactional 介绍"></a>二、@Transactional 介绍</h2><h3 id="2-1-Transactional-可以作用在接口、类、类方法上"><a href="#2-1-Transactional-可以作用在接口、类、类方法上" class="headerlink" title="2.1 @Transactional 可以作用在接口、类、类方法上"></a>2.1 @Transactional 可以作用在接口、类、类方法上</h3><ol>
+<li>作用于类：表示该类的所有 public 方法都配置相同的事属性信息</li>
+<li>作用于方法：当类、方法都配置了 @Transactional 时，方法的事务回覆盖类的事务配置信息</li>
+<li>作用于接口：不推荐这种使用方法。因为一旦标注在接口上并且配置了 SpringAOP 使用 CGLib 动态代理，将会导致 @Transactional 失效</li>
 </ol>
-<pre class="line-numbers language-none"><code class="language-none">firewalld-cmd --zone=public --remove-port=6379/tcp --permanent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Transactional                                                              
+@RestController                                                             
+@RequestMapping                                                             
+public class MybatisPlusController {                                        
+    @Autowired                                                              
+    private CityInfoDictMapper cityInfoDictMapper;                          
+                                                                            
+    @Transactional(rollbackFor = Exception.class)                   
+    @GetMapping("/test")                                                    
+    public String test() throws Exception {                                 
+         CityInfoDict cityInfoDict = new CityInfoDict();             
+         cityInfoDict.setParentCityId(2);                            
+         cityInfoDict.setCityName("2");                              
+         cityInfoDict.setCityLevel("2");                             
+         cityInfoDict.setCityCode("2");                              
+         int insert = cityInfoDictMapper.insert(cityInfoDict);       
+         return insert + "";                                         
+     }                                                               
+}                                                                           <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="2-2-Transactional-注解的属性"><a href="#2-2-Transactional-注解的属性" class="headerlink" title="2.2 @Transactional 注解的属性"></a>2.2 @Transactional 注解的属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>String</td>
+<td>可选的限定描述符，指定使用的事务管理器</td>
+</tr>
+<tr>
+<td>propagation</td>
+<td>enum: Propagation</td>
+<td>可选的事务传播行为设置</td>
+</tr>
+<tr>
+<td>isolation</td>
+<td>enum: Isolation</td>
+<td>可选的事务隔离级别设置</td>
+</tr>
+<tr>
+<td>readOnly</td>
+<td>boolean</td>
+<td>读写或只读事务，默认读写</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>int (in seconds granularity)</td>
+<td>事务超时时间设置</td>
+</tr>
+<tr>
+<td>rollbackFor</td>
+<td>Class对象数组，必须继承自Throwable</td>
+<td>导致事务回滚的异常类数组</td>
+</tr>
+<tr>
+<td>rollbackForClassName</td>
+<td>类名数组，必须继承自Throwable</td>
+<td>导致事务回滚的异常类名字数组</td>
+</tr>
+<tr>
+<td>noRollbackFor</td>
+<td>Class对象数组，必须继承自Throwable</td>
+<td>不会导致事务回滚的异常类数组</td>
+</tr>
+<tr>
+<td>noRollbackForClassName</td>
+<td>类名数组，必须继承自Throwable</td>
+<td>不会导致事务回滚的异常类名字数组</td>
+</tr>
+</tbody></table>
+<h5 id="1-propagation-属性"><a href="#1-propagation-属性" class="headerlink" title="1. propagation 属性"></a>1. propagation 属性</h5><p><code>propagation </code>属性代表事务的传播行为，默认值为：<code>Propagation.REQUIRED</code>。其他属性信息如下：</p>
+<table>
+<thead>
+<tr>
+<th>Propagation.REQUIRED</th>
+<th>如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。( 也就是说如果A方法和B方法都添加了注解，在默认传播模式下，A方法内部调用B方法，会把两个方法的事务合并为一个事务 ）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Propagation.SUPPORTS</td>
+<td>如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。</td>
+</tr>
+<tr>
+<td>Propagation.MANDATORY</td>
+<td>如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。</td>
+</tr>
+<tr>
+<td>Propagation.REQUIRES_NEW</td>
+<td>重新创建一个新的事务，如果当前存在事务，暂停当前的事务。( 当类A中的 a 方法用默认Propagation.REQUIRED模式，类B中的 b方法加上采用  Propagation.REQUIRES_NEW模式，然后在 a 方法中调用 b方法操作数据库，然而  a方法抛出异常后，b方法并没有进行回滚，因为Propagation.REQUIRES_NEW会暂停 a方法的事务 )</td>
+</tr>
+<tr>
+<td>Propagation.NOT_SUPPORTED</td>
+<td>以非事务的方式运行，如果当前存在事务，暂停当前的事务。</td>
+</tr>
+<tr>
+<td>Propagation.NEVER</td>
+<td>以非事务的方式运行，如果当前存在事务，则抛出异常。</td>
+</tr>
+<tr>
+<td>Propagation.NESTED</td>
+<td>和 Propagation.REQUIRED 效果一样。</td>
+</tr>
+</tbody></table>
+<h5 id="2-isolation-属性"><a href="#2-isolation-属性" class="headerlink" title="2. isolation 属性"></a>2. isolation 属性</h5><p><code>isolation </code>属性：事务的隔离级别，默认值为<code> Isolation.DEFAULT</code></p>
+<ul>
+<li><code>Isolation.DEFAULT</code>：使用底层数据库默认的隔离级别。</li>
+<li><code>Isolation.READ_UNCOMMITTED</code></li>
+<li><code>Isolation.READ_COMMITTED</code></li>
+<li><code>Isolation.REPEATABLE_READ</code></li>
+<li><code>Isolation.SERIALIZABLE</code></li>
+</ul>
+<h5 id="3-timeout-属性"><a href="#3-timeout-属性" class="headerlink" title="3. timeout 属性"></a>3. timeout 属性</h5><p><code>timeout </code>：事务的超时时间，默认值为 -1。如果超过该时间限制但事务还没有完成，则自动回滚事务。</p>
 <blockquote>
-<p>设置之后，记得重载，不然设置是没有效果的</p>
+<p>事务超时，就会报错 TransactionTimedOutException:</p>
 </blockquote>
+<h5 id="4-readOnly-属性"><a href="#4-readOnly-属性" class="headerlink" title="4. readOnly 属性"></a>4. readOnly 属性</h5><p><code>readOnly </code>：指定事务是否为只读事务，默认值为 false；为了忽略那些不需要事务的方法，比如读取数据，可以设置 read-only 为 true。</p>
+<h5 id="5-rollbackFor-属性"><a href="#5-rollbackFor-属性" class="headerlink" title="5. rollbackFor 属性"></a>5. rollbackFor 属性</h5><p><code>rollbackFor </code>：用于指定能够触发事务回滚的异常类型，可以指定多个异常类型。</p>
+<h5 id="6-noRollbackFor属性"><a href="#6-noRollbackFor属性" class="headerlink" title="6. noRollbackFor属性"></a>6. noRollbackFor属性</h5><p><code>noRollbackFor</code>：抛出指定的异常类型，不回滚事务，也可以指定多个异常类型</p>
+<h2 id="三、-Transactional-失效场景"><a href="#三、-Transactional-失效场景" class="headerlink" title="三、@Transactional 失效场景"></a>三、@Transactional 失效场景</h2><h3 id="3-1-Transactional-应用在非-public修饰的方法上"><a href="#3-1-Transactional-应用在非-public修饰的方法上" class="headerlink" title="3.1 @Transactional 应用在非 public修饰的方法上"></a>3.1 @Transactional 应用在非 public修饰的方法上</h3><p>如果Transactional注解应用在非public 修饰的方法上，Transactional将会失效</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304040830528.png" alt="image-20230404083047229"></p>
+<p>之所以会失效是因为在Spring AOP 代理时，如上图所示 TransactionInterceptor  （事务拦截器）在目标方法执行前后进行拦截，DynamicAdvisedInterceptor（CglibAopProxy 的内部类）的  intercept 方法或 JdkDynamicAopProxy 的 invoke 方法会间接调用  AbstractFallbackTransactionAttributeSource的 computeTransactionAttribute  方法，获取Transactional 注解的事务配置信息</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">protected TransactionAttribute computeTransactionAttribute(Method method,
+    Class&lt;?&gt; targetClass) {
+        // Don't allow no-public methods as required.
+        if (allowPublicMethodsOnly() &amp;&amp; !Modifier.isPublic(method.getModifiers())) {
+    return null;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>此方法会检查目标方法的修饰符是否为 public，不是 public则不会获取@Transactional 的属性配置信息。</p>
+<blockquote>
+<p>==注意：==protected、private 修饰的方法上使用 @Transactional 注解，虽然事务无效，但不会有任何报错，这是我们很容犯错的一点。</p>
+</blockquote>
+<h3 id="3-2-transactional-注解属性-propagation-设置错误"><a href="#3-2-transactional-注解属性-propagation-设置错误" class="headerlink" title="3.2 @transactional 注解属性 propagation 设置错误"></a>3.2 @transactional 注解属性 propagation 设置错误</h3><p>这种失效是由于配置错误，若是错误的配置以下三种 propagation，事务将不会发生回滚。</p>
+<ol>
+<li>TransactionDefinition.PROPAGATION_SUPPORTS：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</li>
+<li>TransactionDefinition.PROPAGATION_NOT_SUPPORTED：以非事务方式运行，如果当前存在事务，则把当前事务挂起。</li>
+<li>TransactionDefinition.PROPAGATION_NEVER：以非事务方式运行，如果当前存在事务，则抛出异常。</li>
+</ol>
+<h3 id="3-3-Transactional-注解属性-rollbackFor-设置错误"><a href="#3-3-Transactional-注解属性-rollbackFor-设置错误" class="headerlink" title="3.3 @Transactional 注解属性 rollbackFor 设置错误"></a>3.3 @Transactional 注解属性 rollbackFor 设置错误</h3><p>rollbackFor 可以指定能够触发事务回滚的异常类型。Spring默认抛出了未检查unchecked异常（继承自  RuntimeException的异常）或者 Error才回滚事务；其他异常不会触发回滚事务。如果在事务中抛出其他类型的异常，但却期望  Spring 能够回滚事务，就需要指定 rollbackFor属性。</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304040833490.png" alt="image-20230404083312436"></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">// 希望自定义的异常可以进行回滚
+ @Transactional(propagation= Propagation.REQUIRED,rollbackFor= MyException.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p> 若在目标方法中抛出的异常是 rollbackFor 指定的异常的子类，事务同样会回滚。Spring源码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">private int getDepth(Class&lt;?&gt; exceptionClass, int depth) {
+       if (exceptionClass.getName().contains(this.exceptionName)) {
+           // Found it!
+            return depth;
+       }
+       // If we've gone as far as we can go and haven't found it...
+       if (exceptionClass == Throwable.class) {
+            return -1;
+       }
+       return getDepth(exceptionClass.getSuperclass(), depth + 1);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-4-同一个类中方法调用，导致-Transactional失效"><a href="#3-4-同一个类中方法调用，导致-Transactional失效" class="headerlink" title="3.4 同一个类中方法调用，导致@Transactional失效"></a>3.4 同一个类中方法调用，导致@Transactional失效</h3><p>开发中避免不了会对同一个类里面的方法调用，比如有一个类Test，它的一个方法A，A再调用本类的方法B（不论方法B是用public还是private修饰），但方法A没有声明注解事务，而B方法有。则外部调用方法A之后，方法B的事务是不会起作用的。这也是经常犯错误的一个地方。</p>
+<p>那为啥会出现这种情况？其实这还是由于使用Spring AOP代理造成的，因为只有当事务方法被当前类以外的代码调用时，才会由Spring生成的代理对象来管理</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">//@Transactional                                             
+    @GetMapping("/test")                                     
+    private Integer A() throws Exception {                   
+        CityInfoDict cityInfoDict = new CityInfoDict();      
+        cityInfoDict.setCityName("2");                       
+        /**                                                  
+         * B 插入字段为 3的数据                                      
+         */                                                  
+        this.insertB();                                      
+        /**                                                  
+         * A 插入字段为 2的数据                                      
+         */                                                  
+        int insert = cityInfoDictMapper.insert(cityInfoDict);
+                                                             
+        return insert;                                       
+    }                                                        
+                                                             
+    @Transactional()                                         
+    public Integer insertB() throws Exception {              
+        CityInfoDict cityInfoDict = new CityInfoDict();      
+        cityInfoDict.setCityName("3");                       
+        cityInfoDict.setParentCityId(3);                     
+                                                             
+        return cityInfoDictMapper.insert(cityInfoDict);      
+    }                                                        <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-5-异常被你的-catch“吃了”导致-Transactional失效"><a href="#3-5-异常被你的-catch“吃了”导致-Transactional失效" class="headerlink" title="3.5 异常被你的 catch“吃了”导致@Transactional失效"></a>3.5 异常被你的 catch“吃了”导致@Transactional失效</h3><p>这种情况是最常见的一种@Transactional注解失效场景</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Transactional                                             
+private Integer A() throws Exception {                     
+    int insert = 0;                                        
+    try {                                                  
+        CityInfoDict cityInfoDict = new CityInfoDict();    
+        cityInfoDict.setCityName("2");                     
+        cityInfoDict.setParentCityId(2);                   
+        /**                                                
+         * A 插入字段为 2的数据                                    
+         */                                                
+        insert = cityInfoDictMapper.insert(cityInfoDict);  
+        /**                                                
+         * B 插入字段为 3的数据                                    
+         */                                                
+        b.insertB();                                       
+    } catch (Exception e) {                                
+        e.printStackTrace();                               
+    }                                                      
+}                                                          <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果B方法内部抛了异常，而A方法此时try catch了B方法的异常，那这个事务还能正常回滚吗？</p>
+<p>答案：不能！</p>
+<p>会抛出异常：</p>
+<p>1org.springframework.transaction.UnexpectedRollbackException:  Transaction rolled back because it has been marked as rollback-only<br>  　因为当ServiceB中抛出了一个异常以后，ServiceB标识当前事务需要rollback。但是ServiceA中由于你手动的捕获这个异常并进行处理，ServiceA认为当前事务应该正常commit。此时就出现了前后不一致，也就是因为这样，抛出了前面的UnexpectedRollbackException异常。</p>
+<p>spring的事务是在调用业务方法之前开始的，业务方法执行完毕之后才执行commit or rollback，事务是否执行取决于是否抛出runtime异常。如果抛出runtime exception 并在你的业务方法中没有catch到的话，事务会回滚。</p>
+<p>在业务方法中一般不需要catch异常，如果非要catch一定要手动抛出throw new RuntimeException()，否则会导致事务失效，数据commit造成数据不一致，所以有些时候try catch反倒会画蛇添足。</p>
+<h3 id="3-6-数据库引擎不支持事务"><a href="#3-6-数据库引擎不支持事务" class="headerlink" title="3.6 数据库引擎不支持事务"></a>3.6 数据库引擎不支持事务</h3><p> 这种情况出现的概率并不高，事务能否生效数据库引擎是否支持事务是关键。常用的MySQL数据库默认使用支持事务的innodb引擎。一旦数据库引擎切换成不支持事务的myisam，那事务就从根本上失效了。</p>
 
                 
             </div>
@@ -524,7 +725,7 @@ systemctl s">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/03/31/linux/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">https://github.com/MathisonTur/tur-study/2023/03/31/linux/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/04/04/SpringBoot/%E6%B3%A8%E8%A7%A3-Transactional%E7%9A%84%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/">https://github.com/MathisonTur/tur-study/2023/04/04/SpringBoot/%E6%B3%A8%E8%A7%A3-Transactional%E7%9A%84%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -562,8 +763,8 @@ systemctl s">
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tur-study/tags/SpringBoot/">
+                                    <span class="chip bg-color">SpringBoot</span>
                                 </a>
                             
                         </div>
@@ -642,17 +843,18 @@ systemctl s">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/tur-study/2023/03/31/Redis/SpringBoot%E6%95%B4%E5%90%88Redis/">
+                <a href="/tur-study/2023/04/04/SpringBoot/%E6%B3%A8%E8%A7%A3-Transactional%E7%9A%84%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/8.jpg" class="responsive-img" alt="SpringBoot整合Redis">
+                        <img src="/tur-study/medias/featureimages/6.jpg" class="responsive-img" alt="注解@Transactional的用法详解">
                         
-                        <span class="card-title">SpringBoot整合Redis</span>
+                        <span class="card-title">注解@Transactional的用法详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -662,18 +864,14 @@ systemctl s">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/tur-study/categories/Redis/" class="post-category">
-                                    Redis
-                                </a>
-                            
-                            <a href="/tur-study/categories/Redis/SpringBoot/" class="post-category">
+                            <a href="/tur-study/categories/SpringBoot/" class="post-category">
                                     SpringBoot
                                 </a>
                             
@@ -681,12 +879,9 @@ systemctl s">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tur-study/tags/Redis/">
-                        <span class="chip bg-color">Redis</span>
-                    </a>
                     
                     <a href="/tur-study/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
@@ -703,13 +898,13 @@ systemctl s">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/03/31/SpringBoot/Sa-Token%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81/">
+                <a href="/tur-study/2023/04/03/Java/IO%E7%B3%BB%E5%88%97-BufferedReader/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/7.jpg" class="responsive-img" alt="SpringBoot 整合 Sa-Token 基础">
+                        <img src="/tur-study/medias/featureimages/16.jpg" class="responsive-img" alt="IO系列 BufferedReader">
                         
-                        <span class="card-title">SpringBoot 整合 Sa-Token 基础</span>
+                        <span class="card-title">IO系列 BufferedReader</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -720,14 +915,14 @@ systemctl s">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/tur-study/categories/SpringBoot/" class="post-category">
-                                    SpringBoot
+                            <a href="/tur-study/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -737,12 +932,12 @@ systemctl s">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tur-study/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
-                    <a href="/tur-study/tags/Sa-token/">
-                        <span class="chip bg-color">Sa-token</span>
+                    <a href="/tur-study/tags/IO/">
+                        <span class="chip bg-color">IO</span>
                     </a>
                     
                 </div>

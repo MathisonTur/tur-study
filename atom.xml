@@ -6,7 +6,7 @@
   <link href="https://github.com/MathisonTur/atom.xml" rel="self"/>
   
   <link href="https://github.com/MathisonTur/"/>
-  <updated>2023-04-03T01:26:12.349Z</updated>
+  <updated>2023-04-04T00:38:26.265Z</updated>
   <id>https://github.com/MathisonTur/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>注解@Transactional的用法详解</title>
+    <link href="https://github.com/MathisonTur/2023/04/04/SpringBoot/%E6%B3%A8%E8%A7%A3-Transactional%E7%9A%84%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://github.com/MathisonTur/2023/04/04/SpringBoot/%E6%B3%A8%E8%A7%A3-Transactional%E7%9A%84%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</id>
+    <published>2023-04-03T23:20:47.000Z</published>
+    <updated>2023-04-04T00:38:26.265Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;@Transactional&lt;/code&gt; 注解可以保证方法内多个数据库操作要么同时成功、要么同时失败。但使用 &lt;code&gt;@Transactional&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>IO系列 BufferedReader</title>
@@ -264,9 +290,9 @@
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/Redis/SpringBoot/"/>
     
     
-    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
-    
     <category term="Redis" scheme="https://github.com/MathisonTur/tags/Redis/"/>
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
     
   </entry>
   
@@ -488,29 +514,6 @@
     
     
     <category term="Mybatis" scheme="https://github.com/MathisonTur/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git Hexo Using</title>
-    <link href="https://github.com/MathisonTur/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/"/>
-    <id>https://github.com/MathisonTur/2023/03/27/Java/GIt%20Hexo%20%E6%93%8D%E4%BD%9C/</id>
-    <published>2023-03-27T00:27:52.000Z</published>
-    <updated>2023-03-30T08:46:12.002Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;1-Hexo-基本命令&quot;&gt;&lt;a href=&quot;#1-Hexo-基本命令&quot; class=&quot;headerlink&quot; title=&quot;1. Hexo 基本命令&quot;&gt;&lt;/a&gt;1. Hexo 基本命令&lt;/h4&gt;&lt;pre class=&quot;line-numbers</summary>
-        
-      
-    
-    
-    
-    
-    <category term="hexo" scheme="https://github.com/MathisonTur/tags/hexo/"/>
     
   </entry>
   
