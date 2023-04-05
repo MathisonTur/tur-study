@@ -370,9 +370,9 @@
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/Redis/SpringBoot/"/>
     
     
-    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
-    
     <category term="Redis" scheme="https://github.com/MathisonTur/tags/Redis/"/>
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
     
   </entry>
   
