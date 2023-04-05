@@ -6,7 +6,7 @@
   <link href="https://github.com/MathisonTur/atom.xml" rel="self"/>
   
   <link href="https://github.com/MathisonTur/"/>
-  <updated>2023-04-04T00:38:26.265Z</updated>
+  <updated>2023-04-05T14:31:13.350Z</updated>
   <id>https://github.com/MathisonTur/</id>
   
   <author>
@@ -15,6 +15,86 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>报错合集</title>
+    <link href="https://github.com/MathisonTur/2023/04/05/%E6%8A%A5%E9%94%99%E5%90%88%E9%9B%86/"/>
+    <id>https://github.com/MathisonTur/2023/04/05/%E6%8A%A5%E9%94%99%E5%90%88%E9%9B%86/</id>
+    <published>2023-04-05T14:27:10.000Z</published>
+    <updated>2023-04-05T14:31:13.350Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、SpringBoot&quot;&gt;&lt;a href=&quot;#一、SpringBoot&quot; class=&quot;headerlink&quot; title=&quot;一、SpringBoot&quot;&gt;&lt;/a&gt;一、SpringBoot&lt;/h2&gt;&lt;h2 id=&quot;二、SpringCloud&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="错误" scheme="https://github.com/MathisonTur/categories/%E9%94%99%E8%AF%AF/"/>
+    
+    
+    <category term="错误" scheme="https://github.com/MathisonTur/tags/%E9%94%99%E8%AF%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nacos的配置与使用</title>
+    <link href="https://github.com/MathisonTur/2023/04/05/SpringCloud/Nacos%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>https://github.com/MathisonTur/2023/04/05/SpringCloud/Nacos%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
+    <published>2023-04-05T14:27:10.000Z</published>
+    <updated>2023-04-05T15:25:29.023Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、简介与启动&quot;&gt;&lt;a href=&quot;#一、简介与启动&quot; class=&quot;headerlink&quot; title=&quot;一、简介与启动&quot;&gt;&lt;/a&gt;一、简介与启动&lt;/h2&gt;&lt;h3 id=&quot;1-1-简介&quot;&gt;&lt;a href=&quot;#1-1-简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="SpringCloud" scheme="https://github.com/MathisonTur/categories/SpringCloud/"/>
+    
+    
+    <category term="SpringCloud" scheme="https://github.com/MathisonTur/tags/SpringCloud/"/>
+    
+    <category term="Nacos" scheme="https://github.com/MathisonTur/tags/Nacos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tur-blog项目文档</title>
+    <link href="https://github.com/MathisonTur/2023/04/05/tur-blog%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/"/>
+    <id>https://github.com/MathisonTur/2023/04/05/tur-blog%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/</id>
+    <published>2023-04-05T08:18:33.000Z</published>
+    <updated>2023-04-05T09:04:50.224Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;个人博客项目文档&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-依赖版本说明&quot;&gt;&lt;a href=&quot;#1-依赖版本说明&quot; class=&quot;headerlink&quot; title=&quot;1. 依赖版本说明&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    <category term="项目" scheme="https://github.com/MathisonTur/categories/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+    <category term="项目" scheme="https://github.com/MathisonTur/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>注解@Transactional的用法详解</title>
@@ -290,9 +370,9 @@
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/Redis/SpringBoot/"/>
     
     
-    <category term="Redis" scheme="https://github.com/MathisonTur/tags/Redis/"/>
-    
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
+    
+    <category term="Redis" scheme="https://github.com/MathisonTur/tags/Redis/"/>
     
   </entry>
   
@@ -439,81 +519,6 @@
     
     
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mybatis Plus 分页插件的使用</title>
-    <link href="https://github.com/MathisonTur/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://github.com/MathisonTur/2023/03/28/MybatisPlus/Mybatis%20Plus%20%E4%B8%AD%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2023-03-28T07:26:23.000Z</published>
-    <updated>2023-03-28T07:42:04.709Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;官网：&lt;a href=&quot;https://baomidou.com/&quot;&gt;https://baomidou.com/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Spring Boot 中的使用步骤如下：&lt;/p&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Mybatis Plus" scheme="https://github.com/MathisonTur/tags/Mybatis-Plus/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Knife4j配置与使用(OpenAPI2)</title>
-    <link href="https://github.com/MathisonTur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>https://github.com/MathisonTur/2023/03/27/SpringBoot/Knife4j%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
-    <published>2023-03-27T11:56:27.000Z</published>
-    <updated>2023-03-28T01:11:55.172Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;1-引入&quot;&gt;&lt;a href=&quot;#1-引入&quot; class=&quot;headerlink&quot; title=&quot;1. 引入&quot;&gt;&lt;/a&gt;1. 引入&lt;/h3&gt;&lt;p&gt;maven 坐标如下&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-markup&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mybatis中select传递多个参数</title>
-    <link href="https://github.com/MathisonTur/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/"/>
-    <id>https://github.com/MathisonTur/2023/03/27/MybatisPlus/Mybatis%E4%B8%ADselect%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</id>
-    <published>2023-03-27T11:24:32.000Z</published>
-    <updated>2023-03-27T11:49:36.076Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;1-单个参数&quot;&gt;&lt;a href=&quot;#1-单个参数&quot; class=&quot;headerlink&quot; title=&quot;1. 单个参数&quot;&gt;&lt;/a&gt;1. 单个参数&lt;/h3&gt;&lt;p&gt;传递单个参数时，方法名中的参数和 sql 语句中的参数名一致&lt;/p&gt;
-&lt;p&gt;如下：方法参数为</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Mybatis" scheme="https://github.com/MathisonTur/tags/Mybatis/"/>
     
   </entry>
   
