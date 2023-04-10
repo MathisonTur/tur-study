@@ -5,7 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="报错合集, Tur的学习笔记">
-    <meta name="description" content="一、SpringBoot二、SpringCloud1. No spring.config.import property has been defined在我们配置spring cloud config的客户端映射时，启动项目之后出现No ">
+    <meta name="description" content="
+🦊希望每天都没有bug
+
+一、SpringBoot1. No serializer found for class java.util.Collections$3 and no properties discovered to crea">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -398,21 +401,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-05
+                    2023-04-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    235
+                    705
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -435,10 +438,38 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、SpringBoot"><a href="#一、SpringBoot" class="headerlink" title="一、SpringBoot"></a>一、SpringBoot</h2><h2 id="二、SpringCloud"><a href="#二、SpringCloud" class="headerlink" title="二、SpringCloud"></a>二、SpringCloud</h2><h3 id="1-No-spring-config-import-property-has-been-defined"><a href="#1-No-spring-config-import-property-has-been-defined" class="headerlink" title="1. No spring.config.import property has been defined"></a>1. No spring.config.import property has been defined</h3><p>在我们配置spring cloud config的客户端映射时，启动项目之后出现No spring.config.import property has been defined的问题，如图：</p>
+                <blockquote>
+<p><span class="github-emoji"><span>🦊</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f98a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>希望每天都没有bug</p>
+</blockquote>
+<h2 id="一、SpringBoot"><a href="#一、SpringBoot" class="headerlink" title="一、SpringBoot"></a>一、SpringBoot</h2><h3 id="1-No-serializer-found-for-class-java-util-Collections-3-and-no-properties-discovered-to-create-BeanSerializer"><a href="#1-No-serializer-found-for-class-java-util-Collections-3-and-no-properties-discovered-to-create-BeanSerializer" class="headerlink" title="1. No serializer found for class java.util.Collections$3 and no properties discovered to create BeanSerializer"></a>1. No serializer found for class java.util.Collections$3 and no properties discovered to create BeanSerializer</h3><h4 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h4><p>使用fasyjson，在全局拦截器的时候，出现：</p>
+<pre><code>No serializer found for class java.util.Collections$3 and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: org.apache.catalina.connector.RequestFacade[1]-&gt;o
+</code></pre>
+<p>显示序列化，但我实现了序列化，还是有错，由于请求参数为空，所以传入了一个空对象，而fastjson无法解析，就抛出了异常</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>在配置文件中添加如下配置，忽略对于参数是否为空的检测</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>注：从报错信息上看，忽略参数是否为空检测是不推荐的，但暂未找到其他好的办法  <span class="github-emoji"><span>🙁</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f641.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+</blockquote>
+<h3 id="2-循环依赖报错"><a href="#2-循环依赖报错" class="headerlink" title="2. 循环依赖报错"></a>2. 循环依赖报错</h3><h4 id="问题背景-1"><a href="#问题背景-1" class="headerlink" title="问题背景"></a>问题背景</h4><p>两个 Bean 中互相依赖对象，形成闭环，如 A 中引入了 B，B 中也引入了 A，这会导致 Spring 无法知道先加载哪一个，从而报错</p>
+<pre class="line-numbers language-none"><code class="language-none">The dependencies of some of the beans in the application context form a cycle:<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><h5 id="1-修改配置文件"><a href="#1-修改配置文件" class="headerlink" title="1. 修改配置文件"></a>1. 修改配置文件</h5><p>根据Action 中的提示删除依赖之间的关系循环</p>
+<blockquote>
+<p>不鼓励依赖循环引用，默认情况下禁止循环引用。更新应用程序以删除 Bean 之间的依赖关系循环。作为最后的手段，可以通过将  spring.main.allow-circular-references 设置为 true  来自动打破循环。因此可以在yml配置文件中设置来打破循环依赖</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">spring:
+    main:
+        allow-circular-references: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h5 id="2-添加注解，延迟加载"><a href="#2-添加注解，延迟加载" class="headerlink" title="2. 添加注解，延迟加载"></a>2. 添加注解，延迟加载</h5><p>由于在循环依赖中，Spring在初始化的时候不知道先加载哪个bean，因此可以通过使用@Lazy注解，放在其中一个bean上，让这个bean延迟加载，另一个bean就会先加载，进而解决循环依赖问题</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304091543949.png" alt="image-20230409154347678"></p>
+<h2 id="二、SpringCloud"><a href="#二、SpringCloud" class="headerlink" title="二、SpringCloud"></a>二、SpringCloud</h2><h3 id="1-No-spring-config-import-property-has-been-defined"><a href="#1-No-spring-config-import-property-has-been-defined" class="headerlink" title="1. No spring.config.import property has been defined"></a>1. No spring.config.import property has been defined</h3><h4 id="问题背景-2"><a href="#问题背景-2" class="headerlink" title="问题背景"></a>问题背景</h4><p>在我们配置spring cloud config的客户端映射时，启动项目之后出现No spring.config.import property has been defined的问题，如图：</p>
 <p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304052228437.png" alt="image-20230405222859110"></p>
 <p>产生问题的原因是bootstrap.properties比application.properties的优先级要高<br>由于bootstrap.properties是系统级的资源配置文件，是用在程序引导执行时更加早期配置信息读取；<br>而application.properties是用户级的资源配置文件，是用来后续的一些配置所需要的公共参数。<br>但是在SpringCloud 2020.* 版本把bootstrap禁用了，导致在读取文件的时候读取不到而报错，所以我们只要把bootstrap从新导入进来就会生效了。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- bootstrap --&gt;</span>                                          
+<h4 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- bootstrap --&gt;</span>                                          
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>                                                
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>            
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-bootstrap<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span> 
@@ -591,18 +622,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/04/05/%E6%8A%A5%E9%94%99%E5%90%88%E9%9B%86/">
+                <a href="/tur-study/2023/04/06/Java/%E9%98%BF%E9%87%8CJava%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E8%A7%A3%E8%AF%BB/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/10.jpg" class="responsive-img" alt="报错合集">
+                        <img src="/tur-study/medias/featureimages/12.jpg" class="responsive-img" alt="阿里Java代码规范解读">
                         
-                        <span class="card-title">报错合集</span>
+                        <span class="card-title">阿里Java代码规范解读</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -612,27 +642,22 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-06
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/tur-study/categories/%E9%94%99%E8%AF%AF/" class="post-category">
-                                    错误
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Tur
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/%E9%94%99%E8%AF%AF/">
-                        <span class="chip bg-color">错误</span>
+                    <a href="/tur-study/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -829,7 +854,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">22.8k</span>
+                        class="white-color">28.5k</span>
             
             
             
