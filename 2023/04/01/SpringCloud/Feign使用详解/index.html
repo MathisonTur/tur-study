@@ -4,35 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="tur-blog项目文档, Tur的学习笔记">
-    <meta name="description" content="
-个人博客项目文档
-
-1. 依赖版本说明
-
-
-依赖
-版本
-官网
-
-
-
-SpringBoot
-2.6.13.RELEASE
-
-
-
-SpringCloud
-2021.0.5
-
-
-
-
-
-
-
-
-">
+    <meta name="keywords" content="Feign使用详解, Tur的学习笔记">
+    <meta name="description" content="1. Feign 的基础使用Feign 的使用步骤如下：
+1. 引入依赖&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
+    ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -44,7 +20,7 @@ SpringCloud
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>tur-blog项目文档 | Tur的学习笔记</title>
+    <title>Feign使用详解 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -364,12 +340,12 @@ SpringCloud
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">tur-blog项目文档</h1>
+                    <h1 class="description center-align post-title">Feign使用详解</h1>
                 </div>
             </div>
         </div>
@@ -393,8 +369,8 @@ SpringCloud
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/%E9%A1%B9%E7%9B%AE/">
-                                <span class="chip bg-color">项目</span>
+                            <a href="/tur-study/tags/SpringCloud/">
+                                <span class="chip bg-color">SpringCloud</span>
                             </a>
                         
                     </div>
@@ -405,8 +381,8 @@ SpringCloud
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/tur-study/categories/%E9%A1%B9%E7%9B%AE/" class="post-category">
-                                项目
+                            <a href="/tur-study/categories/SpringCloud/" class="post-category">
+                                SpringCloud
                             </a>
                         
                     </div>
@@ -418,28 +394,28 @@ SpringCloud
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-05
+                    2023-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-05
+                    2023-04-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    30
+                    808
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -462,33 +438,121 @@ SpringCloud
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>个人博客项目文档</p>
-</blockquote>
-<h2 id="1-依赖版本说明"><a href="#1-依赖版本说明" class="headerlink" title="1. 依赖版本说明"></a>1. 依赖版本说明</h2><table>
+                <h3 id="1-Feign-的基础使用"><a href="#1-Feign-的基础使用" class="headerlink" title="1. Feign 的基础使用"></a>1. Feign 的基础使用</h3><p>Feign 的使用步骤如下：</p>
+<h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-添加注解"><a href="#2-添加注解" class="headerlink" title="2. 添加注解"></a>2. 添加注解</h4><p>在启动类中添加注解 <code>@EnableFeignClients</code> 开启Feign 的功能</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304261706380.png" alt="image-20210714175102524"></p>
+<h4 id="3-编写Feign-的客户端"><a href="#3-编写Feign-的客户端" class="headerlink" title="3. 编写Feign 的客户端"></a>3. 编写Feign 的客户端</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">@FeignClient("userservice") // value="服务名称"
+public interface UserClient {
+    
+    // 与接口声明一样
+    @GetMapping("/user/{id}")
+    User findById(@PathVariable("id") Long id);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个客户端主要是基于SpringMVC的注解来声明远程调用的信息，比如：</p>
+<ul>
+<li>服务名称：userservice</li>
+<li>请求方式：GET</li>
+<li>请求路径：/user/{id}</li>
+<li>请求参数：Long id</li>
+<li>返回值类型：User</li>
+</ul>
+<p>这样，Feign就可以帮助我们发送http请求，无需自己使用RestTemplate来发送了。</p>
+<h3 id="2-自定义配置"><a href="#2-自定义配置" class="headerlink" title="2. 自定义配置"></a>2. 自定义配置</h3><p>eign可以支持很多的自定义配置，如下表所示：</p>
+<table>
 <thead>
 <tr>
-<th>依赖</th>
-<th>版本</th>
-<th>官网</th>
+<th>类型</th>
+<th>作用</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>SpringBoot</td>
-<td>2.6.13.RELEASE</td>
-<td></td>
+<td><strong>feign.Logger.Level</strong></td>
+<td>修改日志级别</td>
+<td>包含四种不同的级别：NONE、BASIC、HEADERS、FULL</td>
 </tr>
 <tr>
-<td>SpringCloud</td>
-<td>2021.0.5</td>
-<td></td>
+<td>feign.codec.Decoder</td>
+<td>响应结果的解析器</td>
+<td>http远程调用的结果做解析，例如解析json字符串为java对象</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
+<td>feign.codec.Encoder</td>
+<td>请求参数编码</td>
+<td>将请求参数编码，便于通过http请求发送</td>
+</tr>
+<tr>
+<td>feign. Contract</td>
+<td>支持的注解格式</td>
+<td>默认是SpringMVC的注解</td>
+</tr>
+<tr>
+<td>feign. Retryer</td>
+<td>失败重试机制</td>
+<td>请求失败的重试机制，默认是没有，不过会使用Ribbon的重试</td>
 </tr>
 </tbody></table>
+<p>一般情况下，默认值就能满足我们使用，如果要自定义时，只需要创建自定义的@Bean覆盖默认Bean即可。</p>
+<h3 id="3-Feign-使用优化"><a href="#3-Feign-使用优化" class="headerlink" title="3. Feign 使用优化"></a>3. Feign 使用优化</h3><p>Feign底层发起http请求，依赖于其它的框架。其底层客户端实现包括：</p>
+<ul>
+<li>URLConnection：默认实现，不支持连接池</li>
+<li>Apache HttpClient ：支持连接池</li>
+<li>OKHttp：支持连接池</li>
+</ul>
+<p>因此提高<code>Feign</code>的性能主要手段就是使用<strong>连接池</strong>代替默认的<code>URLConnection</code>。</p>
+<p>使用步骤如下：</p>
+<blockquote>
+<p>以 Apache 的 HttpClient 为例</p>
+</blockquote>
+<h4 id="3-1-引入依赖"><a href="#3-1-引入依赖" class="headerlink" title="3.1 引入依赖"></a>3.1 引入依赖</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--httpClient的依赖 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.github.openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>feign-httpclient<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-2-配置连接池"><a href="#3-2-配置连接池" class="headerlink" title="3.2 配置连接池"></a>3.2 配置连接池</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">feign:
+  client:
+    config:
+      default: # default全局的配置
+        loggerLevel: BASIC # 日志级别，BASIC就是基本的请求和响应信息
+  httpclient:
+    enabled: true # 开启feign对HttpClient的支持
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="4-最佳实践"><a href="#4-最佳实践" class="headerlink" title="4. 最佳实践"></a>4. 最佳实践</h3><p>feign 的客户端与服务提供者的controller 代码非常相似：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304261712958.png" alt="image-20210714190542730"></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304261713354.png" alt="image-20210714190528450"></p>
+<p>所以，需要简化这种重复代码的编写</p>
+<h4 id="4-1-继承方式"><a href="#4-1-继承方式" class="headerlink" title="4.1 继承方式"></a>4.1 继承方式</h4><p>一样的代码可以通过继承来共享：</p>
+<ol>
+<li>定义一个API接口，利用定义方法，并基于SpringMVC注解做声明。</li>
+<li>Feign客户端和Controller都集成改接口</li>
+</ol>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304261715438.png" alt="image-20210714190640857"></p>
+<p>优点：</p>
+<ul>
+<li>简单</li>
+<li>实现了代码共享</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>服务提供方、服务消费方紧耦合</p>
+</li>
+<li><p>参数列表中的注解映射并不会继承，因此Controller中必须再次声明方法、参数列表、注解</p>
+</li>
+</ul>
+<h4 id="4-2-抽取方式"><a href="#4-2-抽取方式" class="headerlink" title="4.2 抽取方式"></a>4.2 抽取方式</h4><p>将Feign的Client抽取为独立模块，并且把接口有关的POJO、默认的Feign配置都放到这个模块中，提供给所有消费者使用。</p>
+<p>例如，将UserClient、User、Feign的默认配置都抽取到一个feign-api包中，所有微服务引用该依赖包，即可直接使用。</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304261716772.png" alt="image-20210714214041796"></p>
 
                 
             </div>
@@ -515,7 +579,7 @@ SpringCloud
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/04/05/tur-blog%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/">https://github.com/MathisonTur/tur-study/2023/04/05/tur-blog%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/04/01/SpringCloud/Feign%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">https://github.com/MathisonTur/tur-study/2023/04/01/SpringCloud/Feign%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -553,8 +617,8 @@ SpringCloud
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/%E9%A1%B9%E7%9B%AE/">
-                                    <span class="chip bg-color">项目</span>
+                                <a href="/tur-study/tags/SpringCloud/">
+                                    <span class="chip bg-color">SpringCloud</span>
                                 </a>
                             
                         </div>
@@ -637,13 +701,13 @@ SpringCloud
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/04/05/SpringCloud/Nacos%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+                <a href="/tur-study/2023/04/01/SpringBoot/Sa-Token-SSO%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/10.jpg" class="responsive-img" alt="Nacos的配置与使用">
+                        <img src="/tur-study/medias/featureimages/6.jpg" class="responsive-img" alt="Sa-Token-SSO单点登录">
                         
-                        <span class="card-title">Nacos的配置与使用</span>
+                        <span class="card-title">Sa-Token-SSO单点登录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -654,61 +718,8 @@ SpringCloud
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-01
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/tur-study/categories/SpringCloud/" class="post-category">
-                                    SpringCloud
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tur-study/tags/SpringCloud/">
-                        <span class="chip bg-color">SpringCloud</span>
-                    </a>
-                    
-                    <a href="/tur-study/tags/Nacos/">
-                        <span class="chip bg-color">Nacos</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/tur-study/2023/04/04/SpringBoot/%E6%B3%A8%E8%A7%A3-Transactional%E7%9A%84%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/tur-study/medias/featureimages/6.jpg" class="responsive-img" alt="注解@Transactional的用法详解">
-                        
-                        <span class="card-title">注解@Transactional的用法详解</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-04
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -724,8 +735,65 @@ SpringCloud
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tur-study/tags/Sa-Token/">
+                        <span class="chip bg-color">Sa-Token</span>
+                    </a>
+                    
                     <a href="/tur-study/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/tur-study/2023/04/01/Java/Java%E6%AD%A3%E5%88%99/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/tur-study/medias/featureimages/16.jpg" class="responsive-img" alt="Java正则">
+                        
+                        <span class="card-title">Java正则</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tur-study/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/%E6%AD%A3%E5%88%99/">
+                        <span class="chip bg-color">正则</span>
                     </a>
                     
                 </div>
@@ -869,7 +937,7 @@ SpringCloud
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">28.5k</span>
+                        class="white-color">34.5k</span>
             
             
             

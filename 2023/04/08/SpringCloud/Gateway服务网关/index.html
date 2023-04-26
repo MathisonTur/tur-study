@@ -398,7 +398,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-08
+                    2023-04-26
                 </div>
                 
 
@@ -708,7 +708,7 @@ public class AuthorizeFilter implements GlobalFilter {
 <li>路由过滤器和defaultFilter的order由Spring指定，默认是按照声明顺序从1递增。</li>
 <li>当过滤器的order值一样时，会按照 defaultFilter &gt; 路由过滤器 &gt; GlobalFilter的顺序执行。</li>
 </ul>
-<h3 id="3-6-跨域问题"><a href="#3-6-跨域问题" class="headerlink" title="3.6.跨域问题"></a>3.6.跨域问题</h3><h4 id="3-6-1-什么是跨域问题"><a href="#3-6-1-什么是跨域问题" class="headerlink" title="3.6.1.什么是跨域问题"></a>3.6.1.什么是跨域问题</h4><p>跨域：域名不一致就是跨域，主要包括：</p>
+<h3 id="6-跨域问题"><a href="#6-跨域问题" class="headerlink" title="6.跨域问题"></a>6.跨域问题</h3><h4 id="6-1-什么是跨域问题"><a href="#6-1-什么是跨域问题" class="headerlink" title="6.1.什么是跨域问题"></a>6.1.什么是跨域问题</h4><p>跨域：域名不一致就是跨域，主要包括：</p>
 <ul>
 <li><p>域名不同： <a target="_blank" rel="noopener" href="http://www.taobao.com/">www.taobao.com</a> 和 <a target="_blank" rel="noopener" href="http://www.taobao.org/">www.taobao.org</a> 和 <a target="_blank" rel="noopener" href="http://www.jd.com/">www.jd.com</a> 和 miaosha.jd.com</p>
 </li>
@@ -717,7 +717,7 @@ public class AuthorizeFilter implements GlobalFilter {
 </ul>
 <p>跨域问题：浏览器禁止请求的发起者与服务端发生跨域ajax请求，请求被浏览器拦截的问题</p>
 <p>解决方案：CORS</p>
-<h3 id="6-2-解决跨域问题"><a href="#6-2-解决跨域问题" class="headerlink" title="6.2 解决跨域问题"></a>6.2 解决跨域问题</h3><p>在gateway服务的application.yml文件中，添加下面的配置：</p>
+<h4 id="6-2-解决跨域问题"><a href="#6-2-解决跨域问题" class="headerlink" title="6.2 解决跨域问题"></a>6.2 解决跨域问题</h4><p>在gateway服务的application.yml文件中，添加下面的配置：</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">spring:
   cloud:
     gateway:
@@ -920,12 +920,12 @@ public class AuthorizeFilter implements GlobalFilter {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/Sa-Token/">
-                        <span class="chip bg-color">Sa-Token</span>
-                    </a>
-                    
                     <a href="/tur-study/tags/SpringCloud/">
                         <span class="chip bg-color">SpringCloud</span>
+                    </a>
+                    
+                    <a href="/tur-study/tags/Sa-Token/">
+                        <span class="chip bg-color">Sa-Token</span>
                     </a>
                     
                 </div>
@@ -1114,7 +1114,7 @@ public class AuthorizeFilter implements GlobalFilter {
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">28.5k</span>
+                        class="white-color">34.5k</span>
             
             
             
