@@ -104,6 +104,31 @@
     
     
     <entry>
+      <title>Valid-Validated注解的使用</title>
+      <link href="/tur-study/2023/04/18/SpringBoot/@Validated%20@Valid%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/"/>
+      <url>/tur-study/2023/04/18/SpringBoot/@Validated%20@Valid%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> SpringBoot </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>linux安装常用应用</title>
       <link href="/tur-study/2023/04/18/linux/linux%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E5%BA%94%E7%94%A8/"/>
       <url>/tur-study/2023/04/18/linux/linux%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E5%BA%94%E7%94%A8/</url>
@@ -245,9 +270,9 @@
       
         <tags>
             
-            <tag> SpringCloud </tag>
-            
             <tag> Sa-Token </tag>
+            
+            <tag> SpringCloud </tag>
             
         </tags>
       
@@ -570,9 +595,9 @@
       
         <tags>
             
-            <tag> Sa-Token </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Sa-Token </tag>
             
         </tags>
       
@@ -678,9 +703,9 @@
       
         <tags>
             
-            <tag> SpringBoot </tag>
-            
             <tag> Redis </tag>
+            
+            <tag> SpringBoot </tag>
             
         </tags>
       
