@@ -399,21 +399,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-19
+                    2023-04-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 
@@ -498,12 +498,121 @@ WARNING: Detected default credentials 'minioadmin:minioadmin', we recommend that
 <p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202304191552498.png" alt="image-20230419155202452"></p>
 <p>可以看到，上传的文件在四个目录上都有存储，即4个硬盘上</p>
 <p>测试：删除一个、两个目录后，删除的目录会自动恢复。但删除三个目录后，有大于一半的数据盘损坏，数据无法恢复，此时报错：We encountered an internal error, please try again. (Read failed. Insufficient number of drives online)在线驱动器数量不足</p>
+<h3 id="2-2-Docker-中安装-minio"><a href="#2-2-Docker-中安装-minio" class="headerlink" title="2.2 Docker 中安装 minio"></a>2.2 Docker 中安装 minio</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker run -d -p 9000:9000 -p 9090:9090 --name minio \
+-e "MINIO_ACCESS_KEY=minio" \
+-e "MINIO_SECRET_KEY=minio123" \
+-v /home/admin/minio/data:/data \
+-v /home/admin/minio/config:/root/.minio \
+minio/minio server /data \
+--console-address ":9000" --address ":9090"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h2 id="三、SpringBoot-中使用-MinIO"><a href="#三、SpringBoot-中使用-MinIO" class="headerlink" title="三、SpringBoot 中使用 MinIO"></a>三、SpringBoot 中使用 MinIO</h2><p>maven 依赖：</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- minio --&gt;</span>                               
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>                                 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.minio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>              
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>minio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>           
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>8.5.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>                 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>                                
+                                             
+<span class="token comment">&lt;!-- okhttp --&gt;</span>                              
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>                                 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.squareup.okhttp3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>okhttp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>          
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.9.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>                 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>                                <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="3-1-上传文件"><a href="#3-1-上传文件" class="headerlink" title="3.1 上传文件"></a>3.1 上传文件</h3>
+<h3 id="3-1-上传文件"><a href="#3-1-上传文件" class="headerlink" title="3.1 上传文件"></a>3.1 上传文件</h3><ul>
+<li><p>在 MInIO 中创建一个 Bucket</p>
+<p>Bucket 的命名只允许全小写。不允许大写字母</p>
+</li>
+<li><p>将 Access Policy 的权限 private 更改为 public</p>
+</li>
+<li><p>如下是测试上传文件的代码。以上传图片为例</p>
+</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class MinioTest {
+    private static final MinioClient minioClient = MinioClient.builder()
+            .endpoint("http://localhost:9090")
+            .credentials("minio", "minio123")
+            .build();
+
+    public static void upload() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        // 判断是否存在Bucket。若不存在则新建
+        boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket("testbucket").build());
+        if (!found) {
+            minioClient.makeBucket(MakeBucketArgs.builder().bucket("testbucket").build());
+        } else {
+            System.out.println("Bucket is already exists!");
+        }
+
+        // 上传文件
+        minioClient.uploadObject(UploadObjectArgs.builder()
+                .bucket("testbucket") // Bucket
+                .object("list.jpg") // MinIO上文件名
+                .filename("C:\\Users\\18517\\Desktop\\list.jpg") // 文件地址
+                .build());
+        System.out.println("上传成功");
+    }
+
+    public static void main(String[] args) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        upload();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>==注意事项：==</p>
+<p>新版的 MinIO 的容器端口是 9000， 而对外的API接口是 9090。即访问 MinIO控制台时使用 9000 端口，而使用 MinIO 进行文件操作时，需要使用 9090 端口</p>
+</blockquote>
+<h3 id="3-2-查询文件"><a href="#3-2-查询文件" class="headerlink" title="3.2 查询文件"></a>3.2 查询文件</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class MinioTest {
+    private static final MinioClient minioClient = MinioClient.builder()
+            .endpoint("http://1.12.233.28:9090")
+            .credentials("minio", "minio123")
+            .build();
+
+    public static void getFile() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        // 获取文件流
+        InputStream stream = minioClient.getObject(GetObjectArgs.builder()
+                        .bucket("testbucket")
+                        .object("list.jpg")
+                		.build());
+        // 存放的文件地址
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("C:\\Users\\18517\\Desktop\\list.jpg"));
+        // IO流复制
+        IOUtils.copy(stream, fileOutputStream);
+        System.out.println("下载成功");
+    }
+
+    public static void main(String[] args) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        getFile();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="3-3-删除文件"><a href="#3-3-删除文件" class="headerlink" title="3.3 删除文件"></a>3.3 删除文件</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class MinioTest {
+    private static final MinioClient minioClient = MinioClient.builder()
+            .endpoint("http://1.12.233.28:9090")
+            .credentials("minio", "minio123")
+            .build();
+
+    public static void delete() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        minioClient.removeObject(RemoveObjectArgs.builder()
+                        .bucket("testbucket")
+                        .object("list.jpg")
+                .build());
+        System.out.println("删除成功");
+    }
+
+    public static void main(String[] args) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        delete();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
                 
             </div>
             <hr/>
@@ -879,7 +988,7 @@ WARNING: Detected default credentials 'minioadmin:minioadmin', we recommend that
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">34.5k</span>
+                        class="white-color">35k</span>
             
             
             
