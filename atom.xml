@@ -6,7 +6,7 @@
   <link href="https://github.com/MathisonTur/atom.xml" rel="self"/>
   
   <link href="https://github.com/MathisonTur/"/>
-  <updated>2023-04-27T00:11:38.311Z</updated>
+  <updated>2023-05-05T13:40:08.331Z</updated>
   <id>https://github.com/MathisonTur/</id>
   
   <author>
@@ -15,6 +15,115 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mapstruct 的使用</title>
+    <link href="https://github.com/MathisonTur/2023/05/05/SpringBoot/mapstruct%E5%AE%9E%E7%8E%B0%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%9A%84%E8%BD%AC%E6%8D%A2/"/>
+    <id>https://github.com/MathisonTur/2023/05/05/SpringBoot/mapstruct%E5%AE%9E%E7%8E%B0%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%9A%84%E8%BD%AC%E6%8D%A2/</id>
+    <published>2023-05-05T10:19:34.000Z</published>
+    <updated>2023-05-05T13:40:08.331Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;Mapstruct 是一个 Java 注释处理器，用于生成类型安全的 bean 映射类。 &lt;/p&gt;
+&lt;p&gt;使用 MapStruct</summary>
+        
+      
+    
+    
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>自定义注解</title>
+    <link href="https://github.com/MathisonTur/2023/05/03/SpringBoot/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/"/>
+    <id>https://github.com/MathisonTur/2023/05/03/SpringBoot/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/</id>
+    <published>2023-05-03T10:19:34.000Z</published>
+    <updated>2023-05-03T08:53:25.681Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;自定义注解&quot;&gt;&lt;a href=&quot;#自定义注解&quot; class=&quot;headerlink&quot; title=&quot;自定义注解&quot;&gt;&lt;/a&gt;自定义注解&lt;/h2&gt;&lt;h3 id=&quot;1-自定义注解的定义&quot;&gt;&lt;a href=&quot;#1-自定义注解的定义&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件上传的实现</title>
+    <link href="https://github.com/MathisonTur/2023/05/02/SpringBoot/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://github.com/MathisonTur/2023/05/02/SpringBoot/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%AE%9E%E7%8E%B0/</id>
+    <published>2023-05-02T10:19:34.000Z</published>
+    <updated>2023-05-02T11:44:39.602Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;以前端用户上传图片为例&lt;/p&gt;
+&lt;p&gt;上传方式有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MinIO&lt;/li&gt;
+&lt;li&gt;阿里云&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;定义文件上传策略</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue3知识合集</title>
+    <link href="https://github.com/MathisonTur/2023/05/01/Vue/Vue3%20%E7%9F%A5%E8%AF%86%E5%90%88%E9%9B%86/"/>
+    <id>https://github.com/MathisonTur/2023/05/01/Vue/Vue3%20%E7%9F%A5%E8%AF%86%E5%90%88%E9%9B%86/</id>
+    <published>2023-04-30T16:00:00.000Z</published>
+    <updated>2023-05-01T04:05:19.846Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、Vue-基础&quot;&gt;&lt;a href=&quot;#一、Vue-基础&quot; class=&quot;headerlink&quot; title=&quot;一、Vue 基础&quot;&gt;&lt;/a&gt;一、Vue 基础&lt;/h2&gt;&lt;h3 id=&quot;1-1-Vue-简介&quot;&gt;&lt;a href=&quot;#1-1-Vue-简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Vue3" scheme="https://github.com/MathisonTur/categories/Vue3/"/>
+    
+    
+    <category term="Vue3" scheme="https://github.com/MathisonTur/tags/Vue3/"/>
+    
+  </entry>
   
   <entry>
     <title>商城项目文档</title>
@@ -104,31 +213,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;一、介绍&quot;&gt;&lt;a href=&quot;#一、介绍&quot; class=&quot;headerlink&quot; title=&quot;一、介绍&quot;&gt;&lt;/a&gt;一、介绍&lt;/h2&gt;&lt;p&gt;MinIO 是一个非常轻量的服务,可以很简单的 和其他应用的结合使用，它兼容亚马逊 S3</summary>
-        
-      
-    
-    
-    
-    <category term="SpringBoot" scheme="https://github.com/MathisonTur/categories/SpringBoot/"/>
-    
-    
-    <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Valid-Validated注解的使用</title>
-    <link href="https://github.com/MathisonTur/2023/04/18/SpringBoot/@Validated%20@Valid%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/"/>
-    <id>https://github.com/MathisonTur/2023/04/18/SpringBoot/@Validated%20@Valid%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/</id>
-    <published>2023-04-18T10:19:34.000Z</published>
-    <updated>2023-04-26T12:58:56.076Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -290,9 +374,9 @@
     <category term="SpringCloud" scheme="https://github.com/MathisonTur/categories/SpringCloud/"/>
     
     
-    <category term="Sa-Token" scheme="https://github.com/MathisonTur/tags/Sa-Token/"/>
-    
     <category term="SpringCloud" scheme="https://github.com/MathisonTur/tags/SpringCloud/"/>
+    
+    <category term="Sa-Token" scheme="https://github.com/MathisonTur/tags/Sa-Token/"/>
     
   </entry>
   
@@ -448,83 +532,6 @@
     
     
     <category term="SpringBoot" scheme="https://github.com/MathisonTur/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IO系列 BufferedReader</title>
-    <link href="https://github.com/MathisonTur/2023/04/03/Java/IO%E7%B3%BB%E5%88%97-BufferedReader/"/>
-    <id>https://github.com/MathisonTur/2023/04/03/Java/IO%E7%B3%BB%E5%88%97-BufferedReader/</id>
-    <published>2023-04-03T01:15:03.000Z</published>
-    <updated>2023-04-03T01:26:12.349Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;1-基本介绍&quot;&gt;&lt;a href=&quot;#1-基本介绍&quot; class=&quot;headerlink&quot; title=&quot;1. 基本介绍&quot;&gt;&lt;/a&gt;1. 基本介绍&lt;/h3&gt;&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://github.com/MathisonTur/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://github.com/MathisonTur/tags/Java/"/>
-    
-    <category term="IO" scheme="https://github.com/MathisonTur/tags/IO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>String,StringBuffer,StringBuilder类的区别</title>
-    <link href="https://github.com/MathisonTur/2023/04/03/Java/String-StringBuffer-StringBuilder%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://github.com/MathisonTur/2023/04/03/Java/String-StringBuffer-StringBuilder%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
-    <published>2023-04-03T00:56:58.000Z</published>
-    <updated>2023-04-03T01:14:03.960Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;1-简述&quot;&gt;&lt;a href=&quot;#1-简述&quot; class=&quot;headerlink&quot; title=&quot;1. 简述&quot;&gt;&lt;/a&gt;1. 简述&lt;/h3&gt;&lt;h4 id=&quot;1-1-String-类&quot;&gt;&lt;a href=&quot;#1-1-String-类&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://github.com/MathisonTur/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://github.com/MathisonTur/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring的加密工具类--DigestUtils</title>
-    <link href="https://github.com/MathisonTur/2023/04/02/Spring/Spring%E7%9A%84%E5%8A%A0%E5%AF%86%E5%B7%A5%E5%85%B7%E7%B1%BB-DigestUtils/"/>
-    <id>https://github.com/MathisonTur/2023/04/02/Spring/Spring%E7%9A%84%E5%8A%A0%E5%AF%86%E5%B7%A5%E5%85%B7%E7%B1%BB-DigestUtils/</id>
-    <published>2023-04-02T14:45:43.000Z</published>
-    <updated>2023-04-02T14:56:59.373Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、加密算法简介&quot;&gt;&lt;a href=&quot;#一、加密算法简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://github.com/MathisonTur/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://github.com/MathisonTur/tags/Spring/"/>
     
   </entry>
   
