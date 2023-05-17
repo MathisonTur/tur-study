@@ -1,0 +1,1529 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="RocketMQ详解, Tur的学习笔记">
+    <meta name="description" content="
+官网：https://rocketmq.apache.org/zh/
+
+RocketMQ 极简入门一、 概述RocketMQ 是阿里巴巴在 2012 年开源的分布式消息中间件，目前已经捐赠给 Apache 软件基金会，并于 2017 年 ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>RocketMQ详解 | Tur的学习笔记</title>
+    <link rel="icon" type="image/png" href="/tur-study/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/css/my.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/tur-study/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/tur-study/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/tur-study/css/reward.css">
+    
+
+
+
+    <script src="/tur-study/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/tur-study/atom.xml" title="Tur的学习笔记" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/tur-study/" class="waves-effect waves-light">
+                    
+                    <img src="/tur-study/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Tur的学习笔记</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/tur-study/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Tur的学习笔记</div>
+        <div class="logo-desc">
+            
+            学习笔记
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/3.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">RocketMQ详解</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tur-study/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                                <span class="chip bg-color">消息队列</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/tur-study/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-category">
+                                消息队列
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-05-10
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-05-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    20 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/tur-study/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/">https://rocketmq.apache.org/zh/</a></p>
+</blockquote>
+<h1 id="RocketMQ-极简入门"><a href="#RocketMQ-极简入门" class="headerlink" title="RocketMQ 极简入门"></a>RocketMQ 极简入门</h1><h2 id="一、-概述"><a href="#一、-概述" class="headerlink" title="一、 概述"></a>一、 概述</h2><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/">RocketMQ</a> 是阿里巴巴在 2012 年开源的分布式消息中间件，目前已经捐赠给 Apache 软件基金会，并于 2017 年 9 月 25 日成为  Apache  的顶级项目。作为经历过多次阿里巴巴双十一这种“超级工程”的洗礼并有稳定出色表现的国产中间件，以其高性能、低延时和高可靠等特性近年来已经也被越来越多的国内企业使用。</p>
+<p>如下是 RocketMQ 产生的原因：</p>
+<blockquote>
+<p>淘宝内部的交易系统使用了淘宝自主研发的 Notify 消息中间件，使用 MySQL 作为消息存储媒介，可完全水平扩容。</p>
+<p>为了进一步降低成本，我们认为存储部分可以进一步优化。2011 年初，Linkin 开源了 Kafka 这个优秀的消息中间件，淘宝中间件团队在对 Kafka 做过充分 Review 之后， Kafka 无限消息堆积，高效的持久化速度吸引了我们。</p>
+<p>但是，同时发现这个消息系统主要定位于日志传输，对于使用在淘宝交易、订单、充值等场景下还有诸多特性不满足，为此我们重新用 Java 语言编写了 RocketMQ ，定位于非日志的可靠消息传输（日志场景也 OK）。</p>
+<p>目前 RocketMQ 在阿里集团被广泛应用在订单，交易，充值，流计算，消息推送，日志流式处理， binglog 分发等场景。</p>
+</blockquote>
+<p>RocketMQ 是一款开源的分布式消息系统，基于高可用分布式集群技术，提供低延时的、高可靠的消息发布与订阅服务。同时，广泛应用于多个领域，包括异步通信解耦、企业解决方案、金融支付、电信、电子商务、快递物流、广告营销、社交、即时通信、移动应用、手游、视频、物联网、车联网等。</p>
+<p>具有以下特点：</p>
+<ul>
+<li>能够保证严格的消息顺序</li>
+<li>提供丰富的消息拉取模式</li>
+<li>高效的订阅者水平扩展能力</li>
+<li>实时的消息订阅机制</li>
+<li>亿级消息堆积能力</li>
+</ul>
+<h3 id="1-1-基本概念"><a href="#1-1-基本概念" class="headerlink" title="1.1 基本概念"></a>1.1 基本概念</h3><ul>
+<li><a href="https://github.com/apache/rocketmq/blob/master/docs/cn/concept.md">概念(Concept)</a>：介绍 RocketMQ 的基本概念模型。</li>
+<li><a href="https://github.com/apache/rocketmq/blob/master/docs/cn/features.md">特性(Features)</a>：介绍 RocketMQ 实现的功能特性。</li>
+</ul>
+<h3 id="1-2-整体架构"><a href="#1-2-整体架构" class="headerlink" title="1.2 整体架构"></a>1.2 整体架构</h3><p><img src="/tur-study/../../../../../AppData/Roaming/Typora/typora-user-images/image-20230510203238445.png" alt="image-20230510203238445"></p>
+<ul>
+<li>生产（Producer）：负责产生消息，生产者相消息服务器发送由业务应用程序系统生成的消息</li>
+<li>消费者（Consumer）：负责消费消息，消费者Con消息服务拉取信息并将其输入用户应用程序</li>
+<li>消息服务器（Broker）：是消息存储中心，主要作用时接收来自 Producer 的消息并存储，Consumer 从这里读取消息</li>
+<li>名称服务器（NameServer）：用来保存 Broker 相关 Topic 等元信息，并提供给 Producer、Consumer 查找 Broker 信息</li>
+</ul>
+<h3 id="1-3-整体流程"><a href="#1-3-整体流程" class="headerlink" title="1.3 整体流程"></a>1.3 整体流程</h3><p><img src="/tur-study/../../../../../AppData/Roaming/Typora/typora-user-images/image-20230510203808207.png" alt="image-20230510203808207"></p>
+<ul>
+<li><p>1、启动 <strong>Namesrv</strong>，Namesrv起 来后监听端口，等待 Broker、Producer、Consumer 连上来，相当于一个路由控制中心。</p>
+</li>
+<li><p>2、<strong>Broker</strong> 启动，跟所有的 Namesrv 保持长连接，定时发送心跳包。</p>
+<blockquote>
+<p>心跳包中，包含当前 Broker 信息(IP+端口等)以及存储所有 Topic 信息。 注册成功后，Namesrv 集群中就有 Topic 跟 Broker 的映射关系。</p>
+</blockquote>
+<ul>
+<li>3、收发消息前，先创建 Topic 。创建 Topic 时，需要指定该 Topic 要存储在哪些 Broker上。也可以在发送消息时自动创建Topic。</li>
+</ul>
+</li>
+<li><p>4、<strong>Producer</strong> 发送消息。</p>
+<blockquote>
+<p>启动时，先跟 Namesrv 集群中的其中一台建立长连接，并从Namesrv 中获取当前发送的 Topic 存在哪些 Broker 上，然后跟对应的 Broker 建立长连接，直接向 Broker 发消息。</p>
+</blockquote>
+</li>
+<li><p>5、<strong>Consumer</strong> 消费消息。</p>
+<blockquote>
+<p>Consumer 跟 Producer 类似。跟其中一台 Namesrv 建立长连接，获取当前订阅 Topic 存在哪些 Broker 上，然后直接跟 Broker 建立连接通道，开始消费消息。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="二、单机部署"><a href="#二、单机部署" class="headerlink" title="二、单机部署"></a>二、单机部署</h2><blockquote>
+<p>可以参考 <a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/">Apache RocketMQ —— Quick Start</a></p>
+</blockquote>
+<p>RocketMQ 最小化的单机环境包括一个 RocketMQ NameSrv 和 Broker 服务</p>
+<h3 id="2-1-下载与安装"><a href="#2-1-下载与安装" class="headerlink" title="2.1 下载与安装"></a>2.1 下载与安装</h3><p>RocketMQ 所有的发布版本见 <a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/release-notes">https://rocketmq.apache.org/zh/release-notes</a></p>
+<p>RocketMQ 的安装包分为两种，二进制包和源码包。二进制包是已经编译完成后可以直接运行的，源码包是需要编译后运行的。</p>
+<blockquote>
+<p>==注意：==使用源码安装 RocketMQ 时，要求系统先安装好如下软件：</p>
+<ul>
+<li>JDK 8+</li>
+<li>Maven 3.2.X+</li>
+</ul>
+</blockquote>
+<p>这里演示通过 Binary 版本，即二进制版本来安装 RocketMQ。在Linux Centos7 中操作</p>
+<h4 id="2-1-1-安装步骤"><a href="#2-1-1-安装步骤" class="headerlink" title="2.1.1 安装步骤"></a>2.1.1 安装步骤</h4><ol>
+<li>下载二进制安装包</li>
+<li>解压安装包</li>
+<li>进入安装目录</li>
+</ol>
+<h4 id="2-1-2目录介绍"><a href="#2-1-2目录介绍" class="headerlink" title="2.1.2目录介绍"></a>2.1.2目录介绍</h4><ul>
+<li>bin：启动脚本，包括 shell 脚本和 CMD 脚本</li>
+<li>conf：实例配置文件，包括 broker 配置文件、logback 配置文件等</li>
+<li>lib：依赖 jar 包，包括 Netty、commons-lang、FastJSON 等</li>
+</ul>
+<h3 id="2-2-启动-RocketMQ"><a href="#2-2-启动-RocketMQ" class="headerlink" title="2.2 启动 RocketMQ"></a>2.2 启动 RocketMQ</h3><h4 id="2-2-1-启动-NameSrv"><a href="#2-2-1-启动-NameSrv" class="headerlink" title="2.2.1 启动 NameSrv"></a>2.2.1 启动 NameSrv</h4><p>启动一个 RocketMQ NameSrv 服务，命令行操作如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nohup sh bin/mqnamesrv &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>启动完成，查看日志：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 查看 Namesrv 日志。
+$ tail -f ~/logs/rocketmqlogs/namesrv.log
+
+# 出现如下日志则表示启动成功
+2023-05-03 12:58:04 INFO main - The Name Server boot success. serializeType=JSON<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>默认情况下，NameSrv 日志文件的地址为 <code>~/logs/rocketmqlogs/namesrv.log</code>。如果想要自定义，可以通过 <code>conf/logback_namesrv.xml</code> 配置文件来进行修改。</p>
+<h4 id="2-2-2-启动-Broker"><a href="#2-2-2-启动-Broker" class="headerlink" title="2.2.2 启动 Broker"></a>2.2.2 启动 Broker</h4><p>在 <code>conf</code> 目录下，RocketMQ 提供了多种 Broker 的配置文件：</p>
+<ul>
+<li><code>broker.conf</code> ：单主，异步刷盘。</li>
+<li><code>2m/</code> ：双主，异步刷盘。</li>
+<li><code>2m-2s-async/</code> ：两主两从，异步复制，异步刷盘。</li>
+<li><code>2m-2s-sync/</code> ：两主两从，同步复制，异步刷盘。</li>
+<li><code>dledger/</code> ：<a href="https://github.com/apache/rocketmq/blob/master/docs/cn/dledger/deploy_guide.md">Dledger 集群</a>，至少三节点。</li>
+</ul>
+<p>只启动一个 RocketMQ Broker 服务时，使用 <code>broker.conf</code> 配置文件。命令行操作如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nohup sh bin/mqbroker -c conf/broker.conf  -n 127.0.0.1:9876 &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><p>通过 <code>-c</code> 参数，配置读取的主 Broker 配置。</p>
+</li>
+<li><p>通过 <code>-n</code> 参数，设置 RocketMQ Namesrv 地址</p>
+</li>
+<li><p>RocketMQ 默认的虚拟机内存较大，启动 Broker 如果因为内存不足失败，可以修改 <code>bin/runbroker.sh</code> 脚本，将 Broker JVM 内存调小，示例如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">JAVA_OPT="${JAVA_OPT} -server -Xms4g -Xmx4g -Xmn2g"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<p>启动完成，查看日志：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tail -f ~/logs/rocketmqlogs/broker.log
+
+2023-05-03 14:27:07 INFO main - The broker[broker-a, 192.168.3.44:10911] boot success. serializeType=JSON and name server is 127.0.0.1:9876<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-3-测试-RocketMQ"><a href="#2-3-测试-RocketMQ" class="headerlink" title="2.3 测试 RocketMQ"></a>2.3 测试 RocketMQ</h3><h4 id="2-3-1-发动消息测试"><a href="#2-3-1-发动消息测试" class="headerlink" title="2.3.1 发动消息测试"></a>2.3.1 发动消息测试</h4><p>通过使用 <code>bin/tools.sh</code> 工具类，实现测试发送消息。命令行操作如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"> 设置 Namesrv 服务器的地址
+export NAMESRV_ADDR=127.0.0.1:9876
+
+# 执行生产者 Producer 发送测试消息
+sh bin/tools.sh org.apache.rocketmq.example.quickstart.Producer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果发送成功，会看到大量成功的发送日志。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">SendResult [sendStatus=SEND_OK, msgId=FE800000000000004F2B5386138462F500000D7163610D67E7F100F4, offsetMsgId=C0A8032C00002A9F000000000000D7EE, messageQueue=MessageQueue [topic=TopicTest, brokerName=broker-a, queueId=0], queueOffset=61]
+SendResult [sendStatus=SEND_OK, msgId=FE800000000000004F2B5386138462F500000D7163610D67E7F200F5, offsetMsgId=C0A8032C00002A9F000000000000D8D1, messageQueue=MessageQueue [topic=TopicTest, brokerName=broker-a, queueId=1], queueOffset=61]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>通过发送结果为 <code>sendStatus=SEND_OK</code> 状态，说明消息都发送成功了。</li>
+</ul>
+<h4 id="2-3-2-测试消费消息"><a href="#2-3-2-测试消费消息" class="headerlink" title="2.3.2 测试消费消息"></a>2.3.2 测试消费消息</h4><p>通过使用 <code>bin/tools.sh</code> 工具类，实现测试消费消息。命令行操作如下：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 设置 Namesrv 服务器的地址
+export NAMESRV_ADDR=127.0.0.1:9876
+
+# 执行消费者 Consumer 消费测试消息
+sh bin/tools.sh org.apache.rocketmq.example.quickstart.Consumer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果消费成功，会看到大量成功的消费日志。</p>
+<pre class="line-numbers language-none"><code class="language-none">ConsumeMessageThread_4 Receive New Messages: [MessageExt [queueId=2, storeSize=227, queueOffset=131, sysFlag=0, bornTimestamp=1575354513732, bornHost=/192.168.3.44:55510, storeTimestamp=1575354513733, storeHost=/192.168.3.44:10911, msgId=C0A8032C00002A9F000000000001D1FC, commitLogOffset=119292, bodyCRC=1549304357, reconsumeTimes=0, preparedTransactionOffset=0, toString()=Message{topic='TopicTest', flag=0, properties={MIN_OFFSET=0, MAX_OFFSET=145, CONSUME_START_TIME=1575354867104, UNIQ_KEY=FE800000000000004F2B5386138462F500000D7163610D67E944020E, CLUSTER=DefaultCluster, WAIT=true, TAGS=TagA}, body=[72, 101, 108, 108, 111, 32, 82, 111, 99, 107, 101, 116, 77, 81, 32, 53, 50, 54], transactionId='null'}]]
+ConsumeMessageThread_3 Receive New Messages: [MessageExt [queueId=2, storeSize=227, queueOffset=130, sysFlag=0, bornTimestamp=1575354513729, bornHost=/192.168.3.44:55510, storeTimestamp=1575354513729, storeHost=/192.168.3.44:10911, msgId=C0A8032C00002A9F000000000001CE70, commitLogOffset=118384, bodyCRC=1530218044, reconsumeTimes=0, preparedTransactionOffset=0, toString()=Message{topic='TopicTest', flag=0, properties={MIN_OFFSET=0, MAX_OFFSET=145, CONSUME_START_TIME=1575354867103, UNIQ_KEY=FE800000000000004F2B5386138462F500000D7163610D67E941020A, CLUSTER=DefaultCluster, WAIT=true, TAGS=TagA}, body=[72, 101, 108, 108, 111, 32, 82, 111, 99, 107, 101, 116, 77, 81, 32, 53, 50, 50], transactionId='null'}]]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>通过 <code>ConsumeMessageThread_4</code> 和 <code>ConsumeMessageThread_3</code> 线程名，我们可以看出，目前是进行并发消费消息。</li>
+</ul>
+<h2 id="三、集群部署"><a href="#三、集群部署" class="headerlink" title="三、集群部署"></a>三、集群部署</h2><h2 id="四、RocketMQ-Console-控制台"><a href="#四、RocketMQ-Console-控制台" class="headerlink" title="四、RocketMQ Console 控制台"></a>四、RocketMQ Console 控制台</h2><p>在 RocketMQ 拓展项目(<a href="https://github.com/apache/rocketmq-externals">rocketmq-externals</a>) 中，包含了 <a href="https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console">RocketMQ Console</a> 项目，是 RocketMQ 的图形化管理控制台，提供 Broker 集群信息查看，Topic 管理，Producer、Consumer 信息展示，消息查询等等常用功能。</p>
+<p>虽然说，我们也可以使用 RocketMQ 提供的 <a target="_blank" rel="noopener" href="http://rocketmq.apache.org/docs/cli-admin-tool/">CLI Admin Tool</a> 工具，实现上述的查询与管理的功能，但是命令行的方式对操作人员的要求稍高一些。当然，在 RocketMQ Console 无法满足我们更精细化的管理的需求的时候，我们还是会使用 CLI Admin Tool 工具。</p>
+<h3 id="4-1-克隆代码"><a href="#4-1-克隆代码" class="headerlink" title="4.1 克隆代码"></a>4.1 克隆代码</h3><p>将 <a href="https://github.com/apache/rocketmq-externals">rocketmq-externals</a> （develop分支下才有 rocketmq-console 项目）仓库的代码，克隆到本地。操作流程如下：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 克隆代码
+$ git clone https://github.com/apache/rocketmq-externals.git
+
+# 进入 Console 目录
+$ cd rocketmq-console<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-2-配置文件"><a href="#4-2-配置文件" class="headerlink" title="4.2 配置文件"></a>4.2 配置文件</h3><p>如果需要自定义 RocketMQ Console 的配置，可以进入该项目下的 <code>src/main/resources/</code> 目录下，进行相应的配置文件修改。例如说，设置 RocketMQ Namesrv 地址，开启 RocketMQ Console 的登录访问。</p>
+<p>这里，我们修改 <code>src/main/resources/application.properties</code> 配置文件，通过设置 <code>rocketmq.config.namesrvAddr=127.0.0.1:9876</code> 配置项，设置 RocketMQ Namesrv 的地址。</p>
+<h3 id="4-3-编译源码"><a href="#4-3-编译源码" class="headerlink" title="4.3 编译源码"></a>4.3 编译源码</h3><p>使用 Maven 编译 RocketMQ Console 源码。命令行操作如下：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 编译
+$ mvn clean package -Dmaven.test.skip=true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="4-4-启动控制台"><a href="#4-4-启动控制台" class="headerlink" title="4.4 启动控制台"></a>4.4 启动控制台</h3><p>直接以 <code>jar</code> 的方式，启动控制台。注意，控制台使用 8080 端口。命令行操作如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">nohup java -jar target/rocketmq-console-ng-1.0.1.jar &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>启动完成后，查看日志。</p>
+<pre class="line-numbers language-none"><code class="language-none">$ tail -f nohup.out
+
+[2023-05-03 16:05:19.349]  INFO Tomcat started on port(s): 8080 (http)
+[2023-05-03 16:05:19.354]  INFO Started App in 5.341 seconds (JVM running for 6.104)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>当看到如上日志，说明 Console 控制台启动完成。</li>
+</ul>
+<p>浏览器访问 <code>http://localhost:8080/</code> 就可以看到控制台界面了</p>
+<h2 id="五、简单示例"><a href="#五、简单示例" class="headerlink" title="五、简单示例"></a>五、简单示例</h2><h3 id="5-1-Producer"><a href="#5-1-Producer" class="headerlink" title="5.1 Producer"></a>5.1 Producer</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">// Producer.java
+
+public class Producer {
+
+    public static void main(String[] args) throws MQClientException, InterruptedException {
+
+        /*
+         * Instantiate with a producer group name.
+         */
+        // &lt;1.1&gt; 创建 DefaultMQProducer 对象
+        DefaultMQProducer producer = new DefaultMQProducer("please_rename_unique_group_name");
+        // &lt;1.2&gt; 设置 RocketMQ Namesrv 地址
+        producer.setNamesrvAddr("127.0.0.1:9876");
+
+        /*
+         * Specify name server addresses.
+         * &lt;p/&gt;
+         *
+         * Alternatively, you may specify name server addresses via exporting environmental variable: NAMESRV_ADDR
+         * &lt;pre&gt;
+         * {@code
+         * producer.setNamesrvAddr("name-server1-ip:9876;name-server2-ip:9876");
+         * }
+         * &lt;/pre&gt;
+         */
+
+        /*
+         * Launch the instance.
+         */
+        // &lt;1.3&gt; 启动 producer 生产者
+        producer.start();
+
+    	// 2. 使用 Producer 发送 100 条消息    
+        for (int i = 0; i &lt; 1000; i++) {
+            try {
+
+                /*
+                 * Create a message instance, specifying topic, tag and message body.
+                 */
+                // &lt;2.1&gt; 创建 Message 消息
+                Message msg = new Message("TopicTest" /* Topic */,
+                    "TagA" /* Tag */,
+                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
+                );
+
+                /*
+                 * Call send message to deliver message to one of brokers.
+                 */
+                // &lt;2.2&gt; 同步发送消息
+                SendResult sendResult = producer.send(msg);
+
+                // &lt;2.3&gt; 打印发送结果
+                System.out.printf("%s%n", sendResult);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Thread.sleep(1000);
+            }
+        }
+
+        /*
+         * Shut down once the producer instance is not longer in use.
+         */
+        // &lt;3&gt; 关闭 producer 生产者
+        producer.shutdown();
+    }
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p><code>&lt;1&gt;</code></p>
+<p> 处，初始化一个 Producer 生产者。</p>
+<ul>
+<li><code>&lt;1.1&gt;</code> 处，创建 DefaultMQProducer 对象，这里设置的生产者分组是 <code>"please_rename_unique_group_name"</code> 。</li>
+<li><code>&lt;1.2&gt;</code> 处，设置 设置 <code>producer</code> 的 RocketMQ Namesrv 地址。</li>
+<li><code>&lt;1.3&gt;</code> 处，启动 <code>producer</code> 生产者。</li>
+</ul>
+</li>
+<li><p><code>&lt;2&gt;</code></p>
+<p> 处，使用 Producer 发送 1000 条消息。</p>
+<ul>
+<li><code>&lt;2.1&gt;</code> 处，创建 Message 消息。这里设置了其 Topic 为 <code>"TopicTest"</code>，Tag 为 <code>TagA</code>、消息体 Body 为 <code>"Hello RocketMQ"</code> 的二进制数组。</li>
+<li><code>&lt;2.2&gt;</code> 处，调用生产者的  <code>#send(Message msg)</code> 方法，<strong>同步</strong>发送消息，等待发送结果。RocketMQ Producer 一共有三种发送消息的方式，除了我们这里看到的同步发送消息之外，还有<strong>异步</strong>发送消息(可见 <a href="https://github.com/apache/rocketmq/blob/master/example/src/main/java/org/apache/rocketmq/example/simple/AsyncProducer.java">AsyncProducer</a> 示例)，和 <strong>Oneway</strong> 发送消息。</li>
+<li><code>&lt;2.3&gt;</code> 处，打印发送结果。</li>
+</ul>
+</li>
+<li><p><code>&lt;3&gt;</code> 处，关闭 <code>producer</code> 生产者。</p>
+</li>
+</ul>
+<p>执行 <code>#main(args)</code> 方法，开始发送消息。在控制台上，可以看到如下内容：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 发送日志，省略另外 999 条日志
+SendResult [sendStatus=SEND_OK, msgId=240E00E0F0931BB3FCEC071C1CDE61A8000018B4AAC20E79E06A03E7, offsetMsgId=C0A82BF000002A9F000000000008EE72, messageQueue=MessageQueue [topic=TopicTest, brokerName=broker-a, queueId=0], queueOffset=645]
+
+# 关闭 Producer 日志
+19:27:48.339 [NettyClientSelector_1] INFO  RocketmqRemoting - closeChannel: close the connection to remote address[127.0.0.1:9876] result: true
+19:27:48.340 [NettyClientSelector_1] INFO  RocketmqRemoting - closeChannel: close the connection to remote address[192.168.43.240:10911] result: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-2-Consumer"><a href="#5-2-Consumer" class="headerlink" title="5.2 Consumer"></a>5.2 Consumer</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">// Consumer.java
+
+public class Consumer {
+
+    public static void main(String[] args) throws InterruptedException, MQClientException {
+
+        /*
+         * Instantiate with specified consumer group name.
+         */
+        // &lt;1&gt; 创建 DefaultMQPushConsumer 对象
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("please_rename_unique_group_name_4");
+        // &lt;2&gt; 设置 RocketMQ Namesrv 地址
+        consumer.setNamesrvAddr("127.0.0.1:9876");
+
+        /*
+         * Specify name server addresses.
+         * &lt;p/&gt;
+         *
+         * Alternatively, you may specify name server addresses via exporting environmental variable: NAMESRV_ADDR
+         * &lt;pre&gt;
+         * {@code
+         * consumer.setNamesrvAddr("name-server1-ip:9876;name-server2-ip:9876");
+         * }
+         * &lt;/pre&gt;
+         */
+
+        /*
+         * Specify where to start in case the specified consumer group is a brand new one.
+         */
+        // &lt;3&gt; 设置消费进度，从 Topic 最初位置开始
+        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+
+        /*
+         * Subscribe one more more topics to consume.
+         */
+        // &lt;4&gt; 订阅 TopicTest 主题
+        consumer.subscribe("TopicTest", "*");
+
+        /*
+         *  Register callback to execute on arrival of messages fetched from brokers.
+         */
+        // &lt;5&gt; 添加消息监听器
+        consumer.registerMessageListener(new MessageListenerConcurrently() {
+
+            @Override
+            public ConsumeConcurrentlyStatus consumeMessage(List&lt;MessageExt&gt; msgs,
+                ConsumeConcurrentlyContext context) {
+                System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
+                // 返回成功
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            }
+
+        });
+
+        /*
+         *  Launch the consumer instance.
+         */
+        // &lt;6&gt; 启动 producer 消费者
+        consumer.start();
+
+        // 打印 Consumer 启动完成
+        System.out.printf("Consumer Started.%n");
+    }
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p><code>&lt;1&gt;</code> 处，创建 DefaultMQPushConsumer 对象，这里设置的消费者分组是 <code>"please_rename_unique_group_name"</code> 。注意，消费者分组的概念：</p>
+<blockquote>
+<p>FROM <a href="https://github.com/apache/rocketmq/blob/master/docs/cn/concept.md">概念(Concept)</a></p>
+<p>同一类 Consumer 的集合，这类 Consumer 通常消费同一类消息且消费逻辑一致。消费者组使得在消息消费方面，实现负载均衡和容错的目标变得非常容易。</p>
+<p>要注意的是，消费者组的消费者实例必须订阅完全相同的 Topic 。</p>
+<p>RocketMQ 支持两种消息模式：集群消费（Clustering）和广播消费（Broadcasting）。 * 在集群消费下，同一条消息<strong>只</strong>会被<strong>相同</strong>消费者分组的<strong>一个</strong>消费者所消费。 * 在广播消费下，同一条消息会被<strong>相同</strong>消费者分组的<strong>所有</strong>消费者所消费。 * 在当前示例里，我们采用的是 DefaultMQPushConsumer 的默认消费方式，集群消费。</p>
+</blockquote>
+</li>
+<li><p><code>&lt;2&gt;</code> 处，设置 <code>consumer</code> 的 RocketMQ Namesrv 地址。</p>
+</li>
+<li><p><code>&lt;3&gt;</code> 处，设置一个<strong>新的</strong>消费集群，初始的消费进度。目前有三个选项：</p>
+<ul>
+<li><code>CONSUME_FROM_FIRST_OFFSET</code> ：每个 Topic 队列的第一条消息。</li>
+<li><code>CONSUME_FROM_LAST_OFFSET</code> ：每个 Topic 队列的最后一条消息。</li>
+<li><code>CONSUME_FROM_TIMESTAMP</code> ：每个 Topic 队列的指定时间开始的消息。</li>
+<li>==注意==，只针对<strong>新的</strong>消费集群。如果一个集群每个 Topic 已经有消费进度，则继续使用该消费进度。</li>
+</ul>
+</li>
+<li><p><code>&lt;4&gt;</code> 处，设置订阅 <code>"TopicTest"</code> 主题的消息。有一定一定要注意！！！<strong>消费者组的消费者实例必须订阅完全相同的 Topic + Tag</strong> 。</p>
+</li>
+<li><p><code>&lt;5&gt;</code> 处，添加消息监听器。这里我们采用的是 <a href="https://github.com/apache/rocketmq/blob/master/client/src/main/java/org/apache/rocketmq/client/consumer/listener/MessageListenerConcurrently.java">MessageListenerConcurrently</a> <strong>并发</strong>消费消息的监听器。如果需要实现<strong>顺序</strong>消费消息，需要使用 <a href="https://github.com/apache/rocketmq/blob/master/client/src/main/java/org/apache/rocketmq/client/consumer/listener/MessageListenerOrderly.java">MessageListenerOrderly</a> <strong>顺序</strong>消费的监听器。</p>
+</li>
+<li><p><code>&lt;6&gt;</code> 处，启动 <code>consumer</code> 消费者。此时，Consumer 就开始正式的消费消息啦。。</p>
+</li>
+</ul>
+<p>执行 <code>#main(args)</code> 方法，开始消费消息。在控制台上，可以看到如下内容：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 消费者启动成功
+Consumer Started.
+
+# 消费内容
+ConsumeMessageThread_1 Receive New Messages: [MessageExt [queueId=2, storeSize=225, queueOffset=645, sysFlag=0, bornTimestamp=1575373846053, bornHost=/192.168.43.240:52717, storeTimestamp=1575373846058, storeHost=/192.168.43.240:10911, msgId=C0A82BF000002A9F000000000008EF55, commitLogOffset=585557, bodyCRC=613185359, reconsumeTimes=0, preparedTransactionOffset=0, toString()=Message{topic='TopicTest', flag=0, properties={MIN_OFFSET=0, MAX_OFFSET=646, CONSUME_START_TIME=1575373846067, UNIQ_KEY=240E00E0F0931BB3FCEC071C1CDE61A8000018B4AAC20E8EE6250000, CLUSTER=DefaultCluster, WAIT=true, TAGS=TagA}, body=[72, 101, 108, 108, 111, 32, 82, 111, 99, 107, 101, 116, 77, 81, 32, 48], transactionId='null'}]]
+ConsumeMessageThread_2 Receive New Messages: [MessageExt [queueId=3, storeSize=225, queueOffset=645, sysFlag=0, bornTimestamp=1575373846060, bornHost=/192.168.43.240:52717, storeTimestamp=1575373846061, storeHost=/192.168.43.240:10911, msgId=C0A82BF000002A9F000000000008F036, commitLogOffset=585782, bodyCRC=1401636825, reconsumeTimes=0, preparedTransactionOffset=0, toString()=Message{topic='TopicTest', flag=0, properties={MIN_OFFSET=0, MAX_OFFSET=646, CONSUME_START_TIME=1575373846067, UNIQ_KEY=240E00E0F0931BB3FCEC071C1CDE61A8000018B4AAC20E8EE62C0001, CLUSTER=DefaultCluster, WAIT=true, TAGS=TagA}, body=[72, 101, 108, 108, 111, 32, 82, 111, 99, 107, 101, 116, 77, 81, 32, 49], transactionId='null'}]]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>通过 <code>ConsumeMessageThread_1</code> 和 <code>ConsumeMessageThread_2</code> 线程名，我们可以看出，目前是进行并发消费消息。</li>
+</ul>
+<hr>
+<h1 id="Spring-Cloud-Alibaba-消息队列-RocketMQ-入门"><a href="#Spring-Cloud-Alibaba-消息队列-RocketMQ-入门" class="headerlink" title="Spring Cloud Alibaba 消息队列 RocketMQ 入门"></a>Spring Cloud Alibaba 消息队列 RocketMQ 入门</h1><p>Spring Cloud 中整合 RocketMQ 使用 Spring Cloud Alibaba 提供的 Spring Cloud Stream RocketMQ 组件，基于 Spring Cloud Stream 的编程模型，接入 RocketMQ 作为消息中间件，实现消息驱动的微服务</p>
+<h2 id="一、Spring-Cloud-Stream-介绍"><a href="#一、Spring-Cloud-Stream-介绍" class="headerlink" title="一、Spring Cloud Stream 介绍"></a>一、Spring Cloud Stream 介绍</h2><p>Spring Cloud Stream 是一个用于构建基于<strong>消息</strong>的微服务应用框架，使用 <code>Spring Integration</code>与 <code>Broker </code>进行连接。</p>
+<p>Spring Cloud Stream 提供了消息中间件的<strong>统一抽象</strong>，推出了<code> publish-subscribe</code>、<code>consumer groups</code>、<code>partition </code>这些统一的概念。</p>
+<p>Spring Cloud Stream 内部有两个概念：**<code>Binder</code>** 和 **<code>Binding</code>**。</p>
+<h3 id="1-1-Binder"><a href="#1-1-Binder" class="headerlink" title="1.1 Binder"></a>1.1 Binder</h3><p>Binder 跟消息中间件集成的组件，用来创建对应的 Binding。各种消息中间件都有自己 Binder 的具体实现</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface Binder&lt;T, 
+    C extends ConsumerProperties, // 消费者配置
+    P extends ProducerProperties&gt; { // 生产者配置
+    
+    // 创建消费者的 Binding
+    Binding&lt;T&gt; bindConsumer(String name, String group, T inboundBindTarget, C consumerProperties);
+
+    // 创建生产者的 Binding
+    Binding&lt;T&gt; bindProducer(String name, T outboundBindTarget, P producerProperties);
+    
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>Kafka 实现了 <a href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka/blob/master/spring-cloud-stream-binder-kafka/src/main/java/org/springframework/cloud/stream/binder/kafka/KafkaMessageChannelBinder.java">KafkaMessageChannelBinder</a></li>
+<li>RabbitMQ 实现了 <a href="https://github.com/spring-cloud/spring-cloud-stream-binder-rabbit/blob/master/spring-cloud-stream-binder-rabbit/src/main/java/org/springframework/cloud/stream/binder/rabbit/RabbitMessageChannelBinder.java">RabbitMessageChannelBinder</a></li>
+<li>RocketMQ 实现了 <a href="https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-stream-binder-rocketmq/src/main/java/com/alibaba/cloud/stream/binder/rocketmq/RocketMQMessageChannelBinder.java">RocketMQMessageChannelBinder</a></li>
+</ul>
+<h3 id="1-2-Binding"><a href="#1-2-Binding" class="headerlink" title="1.2 Binding"></a>1.2 Binding</h3><p>包括 <code>Input Binding</code> 和 <code>Output Binding</code>。Binding 在消息中间件与应用程序提供的 Provider 和  Consumer 之间提供了一个桥梁，实现了开发者只需使用应用程序的 Provider 或 Consumer  生产或消费数据即可，屏蔽了开发者与底层消息中间件的接触。</p>
+<p>最终整体交互如下图所示：</p>
+<p><img src="/tur-study/../../../../../AppData/Roaming/Typora/typora-user-images/image-20230510224642530.png" alt="image-20230510224642530"></p>
+<h2 id="二、快速入门"><a href="#二、快速入门" class="headerlink" title="二、快速入门"></a>二、快速入门</h2><hr>
+<h1 id="Spring-Cloud-Bus-RocketMQ-入门"><a href="#Spring-Cloud-Bus-RocketMQ-入门" class="headerlink" title="Spring Cloud Bus RocketMQ 入门"></a>Spring Cloud Bus RocketMQ 入门</h1><h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>Spring Cloud Bus 是<strong>事件、消息总线</strong>，用于在集群（例如，配置变化事件）中传播状态变化，可与 Spring Cloud Config 联合实现热部署。</p>
+<p>Spring 内置了事件机制，可以实现 <strong>JVM 进程内</strong>的事件发布与监听。但是如果想要<strong>跨 JVM 进程</strong>的事件发布与监听，此时它就无法满足我们的诉求了</p>
+<p>因此，Spring Cloud Bus 在 Spring 事件机制的基础之上进行<strong>拓展</strong>，结合 RabbitMQ、Kafka、RocketMQ 等等消息队列作为事件的<strong>“传输器”</strong>，通过发送事件（消息）到消息队列上，从而广播到订阅该事件（消息）的所有节点上。最终如下图所示：</p>
+<p><img src="/tur-study/../../../../../AppData/Roaming/Typora/typora-user-images/image-20230511083927660.png" alt="image-20230511083927660"></p>
+<p>Spring Cloud Bus 定义了 <a href="https://github.com/spring-cloud/spring-cloud-bus/blob/master/spring-cloud-bus/src/main/java/org/springframework/cloud/bus/event/RemoteApplicationEvent.java">RemoteApplicationEvent</a> 类，远程的 ApplicationEvent 的抽象基类。核心代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonIgnoreProperties("source") // &lt;2&gt;
+public abstract class RemoteApplicationEvent extends ApplicationEvent { // &lt;1&gt;
+
+	private final String originService;
+
+	private final String destinationService;
+
+	private final String id;
+	
+	// ... 省略一大撮代码
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>显然，我们使用 Spring Cloud Bus 发送的自定义事件，必须要<strong>继承</strong> RemoteApplicationEvent 类。</p>
+<ul>
+<li><p><code>&lt;1&gt;</code> 处，继承 Spring 事件机制定义的 <a href="https://github.com/spring-projects/spring-framework/blob/master/spring-context/src/main/java/org/springframework/context/ApplicationEvent.java">ApplicationEvent</a> 抽象基类。</p>
+</li>
+<li><p><code>&lt;2&gt;</code> 处，通过 Jackson 的 <code>@JsonIgnoreProperties</code> 注解，设置忽略继承自 ApplicationEvent 的 <code>source</code> 属性，避免序列化问题。</p>
+</li>
+<li><p><code>id</code> 属性，事件编号。一般情况下，RemoteApplicationEvent 会使用 <code>UUID.randomUUID().toString()</code> 代码，自动生成 UUID 即可。</p>
+</li>
+<li><p><code>originService</code> 属性，来源服务。Spring Cloud Bus 提供好了 <a href="https://github.com/spring-cloud/spring-cloud-bus/blob/master/spring-cloud-bus/src/main/java/org/springframework/cloud/bus/ServiceMatcher.java"><code>ServiceMatcher#getServiceId()</code></a> 方法，获取服务编号作为 <code>originService</code> 属性的值。</p>
+<blockquote>
+<p>友情提示：这个属性非常关键</p>
+</blockquote>
+</li>
+<li><p><code>destinationService</code> 属性，目标服务。该属性的格式是 <code>{服务名}:{服务实例编号}</code>。</p>
+<blockquote>
+<p>举个板栗：</p>
+<ul>
+<li>如果想要广播给所有服务的所有实例，则设置为 <code>**:**</code>。</li>
+<li>如果想要广播给 <code>users</code> 服务的所有实例，则设置为 <code>users:**</code>。</li>
+<li>如如果想要广播给 <code>users</code> 服务的指定实例，则设置为 <code>users:bc6d27d7-dc0f-4386-81fc-0b3363263a15</code>。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="二、快速入门-1"><a href="#二、快速入门-1" class="headerlink" title="二、快速入门"></a>二、快速入门</h2>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/tur-study/about" rel="external nofollow noreferrer">Tur</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://github.com/MathisonTur/tur-study/2023/05/10/MQ/RocketMQ%E8%AF%A6%E8%A7%A3/">https://github.com/MathisonTur/tur-study/2023/05/10/MQ/RocketMQ%E8%AF%A6%E8%A7%A3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/tur-study/about" target="_blank">Tur</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tur-study/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                                    <span class="chip bg-color">消息队列</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/tur-study/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/tur-study/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/tur-study/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/tur-study/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/tur-study/2023/05/12/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E8%AF%A6%E8%A7%A3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/tur-study/medias/featureimages/4.jpg" class="responsive-img" alt="Java 序列化与反序列化详解">
+                        
+                        <span class="card-title">Java 序列化与反序列化详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tur-study/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/tur-study/2023/05/08/SpringCloud/Dubbo%20%E8%AF%A6%E8%A7%A3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/tur-study/medias/featureimages/23.jpg" class="responsive-img" alt="Dubbo 详解">
+                        
+                        <span class="card-title">Dubbo 详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/SpringCloud/" class="post-category">
+                                    SpringCloud
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tur-study/tags/SpringCloud/">
+                        <span class="chip bg-color">SpringCloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/tur-study/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/tur-study/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+            <a href="/tur-study/about" target="_blank">Tur</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">111k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://gitee.com/mathison-tur" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1851727656@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1851727656" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1851727656" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/tur-study/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/tur-study/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/tur-study/libs/materialize/materialize.min.js"></script>
+    <script src="/tur-study/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/tur-study/libs/aos/aos.js"></script>
+    <script src="/tur-study/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/tur-study/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/tur-study/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/tur-study/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/tur-study/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/tur-study/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/tur-study/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/tur-study/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

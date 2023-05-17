@@ -1,0 +1,1480 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java 序列化与反序列化详解, Tur的学习笔记">
+    <meta name="description" content="一、概述1.1 序列化与反序列化概念
+Java 序列化是指将对象转化成一个字节序列（二进制数据）的过程
+将序列化对象写入文件之后，可以从文件中读取出来，并且对它进行反序列化
+
+Java 反序列化是指将一个对象的字节序列回复成 Java 对象">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java 序列化与反序列化详解 | Tur的学习笔记</title>
+    <link rel="icon" type="image/png" href="/tur-study/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/css/my.css">
+<link rel="stylesheet" type="text/css" href="/tur-study/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/tur-study/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/tur-study/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/tur-study/css/reward.css">
+    
+
+
+
+    <script src="/tur-study/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/tur-study/atom.xml" title="Tur的学习笔记" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/tur-study/" class="waves-effect waves-light">
+                    
+                    <img src="/tur-study/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Tur的学习笔记</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tur-study/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/tur-study/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Tur的学习笔记</div>
+        <div class="logo-desc">
+            
+            学习笔记
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tur-study/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java 序列化与反序列化详解</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tur-study/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/tur-study/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-05-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-05-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/tur-study/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><h3 id="1-1-序列化与反序列化概念"><a href="#1-1-序列化与反序列化概念" class="headerlink" title="1.1 序列化与反序列化概念"></a>1.1 序列化与反序列化概念</h3><ul>
+<li><p>Java 序列化是指将对象转化成一个字节序列（二进制数据）的过程</p>
+<p>将序列化对象写入文件之后，可以从文件中读取出来，并且对它进行反序列化</p>
+</li>
+<li><p>Java 反序列化是指将一个对象的字节序列回复成 Java 对象的多成</p>
+<p>一个平台中序列化的对象，可以在另一个平台进行反序列化，这个过程在 JVM 中完成，得益于 Java 的可移植性</p>
+</li>
+</ul>
+<h3 id="1-2-序列化与反序列化的过程"><a href="#1-2-序列化与反序列化的过程" class="headerlink" title="1.2 序列化与反序列化的过程"></a>1.2 序列化与反序列化的过程</h3><p>内存中的数据信息被拆分成一小块一小块的部分，为每个小块设置编号，然后存放到硬盘文件中，也就是将 Java 对象对象的状态保存下来存储到文件中的过程就叫做序列化。</p>
+<p>将硬盘中保存了 Java 对象状态的字节序列按照编号组装成对象恢复到内存中，这个过程称为反序列化。</p>
+<h3 id="1-3-核心类和关键字"><a href="#1-3-核心类和关键字" class="headerlink" title="1.3 核心类和关键字"></a>1.3 核心类和关键字</h3><ul>
+<li><code>ObjectOutputStream</code>：IO 类，包含序列化对象的方法 <code>writeObject(Object o)</code></li>
+<li><code>ObjectInputStream</code>：IO 类，包含序列化对象的方法 <code>readObject()</code></li>
+</ul>
+<p>上面两个 IO 流类是高层次的数据库，需要借助文件流进行序列化与反序列化操作。</p>
+<ul>
+<li><p><code>Serializable</code>：接口，是一个标志性接口，标识实现接口的类可以在 JVM 中进行序列化，JVM 会为该类自动生成一个序列化版本号。<font color="red">参与序列化与反序列化的类必须实现 <code>Serializable </code>接口</font></p>
+<blockquote>
+<p>在Java中，如果一个类实现了Serializable接口，JVM底层就会帮我们实现序列化和反序列化。如果我们不实现Serializable接口，那么就需要我们自己实现序列化和反序列化</p>
+</blockquote>
+</li>
+<li><p><code>serialVersionUID</code>：类属性，序列化版本号，用于给 JVM 区别同名类，没有提供版本号时，JVM 会默认提供序列化版本号</p>
+</li>
+<li><p><code>transient</code>：关键字，当序列化时不希望某些属性参与，则可由使用这个关键字标注该属性</p>
+</li>
+</ul>
+<h2 id="二、序列化应用"><a href="#二、序列化应用" class="headerlink" title="二、序列化应用"></a>二、序列化应用</h2><h3 id="2-1应用示例"><a href="#2-1应用示例" class="headerlink" title="2.1应用示例"></a>2.1应用示例</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Student implements Serializable {
+    private String name;
+    private int age;
+    // 省略有参构造、无参构造、setter、getter、toString
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-序列化版本号-serialVersionUID-的作用"><a href="#2-2-序列化版本号-serialVersionUID-的作用" class="headerlink" title="2.2 序列化版本号 serialVersionUID 的作用"></a>2.2 序列化版本号 serialVersionUID 的作用</h3><ul>
+<li>JVM 首先会通过类名来区分 Java 类，类名不同，则不是同一个类。当类名相同时，JVM 就会通过序列化版本号来区分 Java 类，如果序列化版本号相同就为同一个类，序列化版本号不同就为不同的类。</li>
+<li>在序列化一个对象时，如果没有指定序列化版本号，后期对该类的源码进行修改并重新编译后，会导致修改前后的序列化版本号不一致，因为 JVM 会提供一个新的序列化版本号给该类对象。</li>
+<li>此时再用以往的反序列化代码去反序列化该类的对象，就会抛出异常 java.io.InvalidClassException ，所以序列化一个类时最好指定一个序列化版本号，或者永远不修改此类。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Student implements Serializable {
+    private static final Long serialVersionUID = 1L;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>由 JVM 提供序列化版本号的好处是，同名却不同功能的类，会有两个不同的序列化版本号，JVM 可以通过序列化版本号加以区分，缺点是一旦修改源码，会重新提供序列化版本号，导致修改前后的序列化版本号不一致，进行反序列化时会出现运行出现异常。</li>
+<li>由 开发人员 手动提供序列化版本号的好处是，当修改了被序列化类的源码后，以往写的反序列化代码依然可以使用，如 JDK 中的 String 类。以便后期进行增强和维护不会影响使用。</li>
+</ul>
+<h3 id="2-3-transient-关键字"><a href="#2-3-transient-关键字" class="headerlink" title="2.3 transient 关键字"></a>2.3 transient 关键字</h3><ul>
+<li>这个关键字表示游离的，不参与序列化的。</li>
+<li>在序列化一个对象时，如果不希望某个属性参加序列化，可以使用 <code>transient</code> 修饰该属性。</li>
+<li>被该关键字修饰的属性不会参与到序列化中。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Student implements Serializable {
+ 
+    private static final Long serialVersionUID = 1L;
+ 
+    private String name;
+    // age 字段就不会被序列化
+    private transient int age;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-4-序列化的意义与使用场"><a href="#2-4-序列化的意义与使用场" class="headerlink" title="2.4 序列化的意义与使用场"></a>2.4 序列化的意义与使用场</h3><ul>
+<li>序列化会将内存中对象的状态转换成二进制文件保存到磁盘当中，当再次使用时会从磁盘中读取该二进制文件，将 Java 对象的状态恢复到内存中。</li>
+<li>当你想把内存中的对象保存到磁盘文件或数据库中时可以使用序列化。</li>
+<li>当你想在网络传输中传送 Java 对象时，可以使用序列化</li>
+<li>当你想通过 RMI 传输对象时，可以使用序列化。</li>
+</ul>
+<h3 id="2-5-序列化注意事项"><a href="#2-5-序列化注意事项" class="headerlink" title="2.5 序列化注意事项"></a>2.5 序列化注意事项</h3><ul>
+<li>序列化只会保存对象的属性状态，不会保存对象中的方法。</li>
+<li>父类实现了 <code>Serializable </code>接口，则其子类也自动实例化了该接口，也就是说子类不用显式实现 <code>Serializable </code>接口也能参与序列化和反序列化。</li>
+<li>一个对象 A 的实例变量引用了其他对象 B，在 A 对象实例化的过程中 ，也会序列化 B ，前提是 A、B 两个类都实现了 <code>Serializable </code>接口。</li>
+<li>当一个类实现 <code>Serializable </code>接口时，最好手动指定一个序列化版本号(<code>serialVersionUID</code>)，避免修改源代码后导致反序列化出现异常。</li>
+<li>当一个类对象会被多次重复使用，且一般不会对其属性做修改，就可以对其进行序列化。例如数据库操作中的实体类。</li>
+</ul>
+<h2 id="三、序列化的实现"><a href="#三、序列化的实现" class="headerlink" title="三、序列化的实现"></a>三、序列化的实现</h2><p>如果需要将某个对象保存到磁盘上或者通过网络传输，那么这个类应该实现<code>Serializable</code>接口或者<code>Externalizable</code>接口之一</p>
+<h3 id="3-1-Serializable"><a href="#3-1-Serializable" class="headerlink" title="3.1 Serializable"></a>3.1 Serializable</h3><h4 id="3-1-1-普通序列化"><a href="#3-1-1-普通序列化" class="headerlink" title="3.1.1 普通序列化"></a>3.1.1 普通序列化</h4><p><code>Serializable</code> 接口是一个标记接口，不用实现任何方法，一旦实现了此接口，该类的对象就是可序列化的</p>
+<h5 id="1-序列化步骤："><a href="#1-序列化步骤：" class="headerlink" title="1. 序列化步骤："></a>1. 序列化步骤：</h5><ol>
+<li>创建 ObjectOutputStream 输出流</li>
+<li>调用 ObjectOutputStream 对象的 writeObject 输出可序列化对象</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Person implements Serializable {
+  private static final Long serialVersionUID = 1L;
+    
+  private String name;
+  private int age;
+  
+  public Person(String name, int age) {
+      this.name = name;
+      this.age = age;
+  }
+ 
+  @Override
+  public String toString() {
+      return "Person{" +
+              "name='" + name + '\'' +
+              ", age=" + age +
+              '}';
+  }
+}
+ 
+public class WriteObject {
+  public static void main(String[] args) {
+      try (
+          //创建一个ObjectOutputStream输出流
+          ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.txt"))) {
+          //将对象序列化到文件
+          Person person = new Person("zhangsan", 22);
+          oos.writeObject(person);
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>序列化后的文件结果如下：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202305122202257.png" alt="image-20230512220158141"></p>
+<p>可以看到，序列化后的文件中存储了 Person 实例的地址（也可以看到包名），字段信息与值。（乱码的我也不知道）</p>
+<h5 id="2-反序列化步骤："><a href="#2-反序列化步骤：" class="headerlink" title="2. 反序列化步骤："></a>2. 反序列化步骤：</h5><ol>
+<li>创建 ObjectInputStream 输入流</li>
+<li>调用 ObjectInputStream 对象的 readObject() 得到序列化的对象</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Person implements Serializable {
+  private static final Long serialVersionUID = 1L;
+  
+  private String name;
+  private int age;
+
+  public Person(String name, int age) {
+      System.out.println("用来检测反序列化时是否调用构造方法");
+      this.name = name;
+      this.age = age;
+  }
+ 
+  @Override
+  public String toString() {
+      return "Person{" +
+              "name='" + name + '\'' +
+              ", age=" + age +
+              '}';
+  }
+}
+ 
+public class ReadObject {
+  public static void main(String[] args) {
+      try (
+          //创建一个ObjectInputStream输入流
+          ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.txt"))) {
+          Person brady = (Person) ois.readObject();
+          System.out.println(brady);
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+}
+//输出结果
+//Person{name='zhangsan', age=22}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>反序列化结果如下：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img202305122208782.png" alt="image-20230512220842738"></p>
+<p>可以看到<strong>反序列化并不会调用类的构造方法</strong>，反序列的对象是由 JVM 自己生成的对象，不通过构造方法生成</p>
+<h4 id="3-1-2-同一对象序列化多次的机制"><a href="#3-1-2-同一对象序列化多次的机制" class="headerlink" title="3.1.2 同一对象序列化多次的机制"></a>3.1.2 同一对象序列化多次的机制</h4><p>问题：同一个对象序列化多次，会将这个对象序列化多次吗？答案是否定的</p>
+<p>Java 序列化同一个对象时，并不会将次对象序列化多次得到多个对象，Java 序列化算法如下：</p>
+<ol>
+<li>所有保存到磁盘的对象都有一个序列化编码号</li>
+<li>当程序试图序列化一个对象时，会先检查此对象是否已经序列化过，只有此对象从未（在此虚拟机）被序列化过，才会将此对象序列化为字节序列输出。</li>
+<li>如果此对象已经序列化过，则直接输出编号即可</li>
+</ol>
+<h4 id="3-1-3-Java-序列化算法潜在的问题"><a href="#3-1-3-Java-序列化算法潜在的问题" class="headerlink" title="3.1.3 Java 序列化算法潜在的问题"></a>3.1.3 Java 序列化算法潜在的问题</h4><p>由于java序利化算法不会重复序列化同一个对象，只会记录已序列化对象的编号。如果序列化一个可变对象（对象内的内容可更改）后，更改了对象内容，再次序列化，并不会再次将此对象转换为字节序列，而只是保存序列化编号。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class WriteObject {
+    public static void main(String[] args) {
+        try (
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.txt"));
+            ObjectInputStream ios = new ObjectInputStream(new FileInputStream("person.txt"))) {
+            //第一次序列化person
+            Person person = new Person("张三", 23);
+            oos.writeObject(person);
+            System.out.println(person);
+            //修改name
+            person.setName("李四");
+            System.out.println(person);
+            //第二次序列化person
+            oos.writeObject(person);
+            //依次反序列化出p1、p2
+            Person p1 = (Person) ios.readObject();
+            Person p2 = (Person) ios.readObject();
+            System.out.println(p1 == p2);
+            System.out.println(p1.getName().equals(p2.getName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+//输出结果
+//Person{name='张三', age=23}
+//Person{name='李四', age=23}
+//true
+//true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-1-4-可选的自定义序列化"><a href="#3-1-4-可选的自定义序列化" class="headerlink" title="3.1.4 可选的自定义序列化"></a>3.1.4 可选的自定义序列化</h4><h5 id="1-transient-关键字"><a href="#1-transient-关键字" class="headerlink" title="1. transient 关键字"></a>1. transient 关键字</h5><p>使用transient修饰的属性，java序列化时，会忽略掉此字段，所以反序列化出的对象，被transient修饰的属性是默认值。对于引用类型，值是null；基本类型，值是0；boolean类型，值是false。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Person implements Serializable {
+   //不需要序列化名字与年龄
+   private transient String name;
+   private transient int age;
+   private int height;
+   private transient boolean singlehood;
+   public Person(String name, int age) {
+       this.name = name;
+       this.age = age;
+   }
+   //省略get,set方法
+}
+ 
+public class TransientTest {
+   public static void main(String[] args) throws Exception {
+       try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.txt"));
+            ObjectInputStream ios = new ObjectInputStream(new FileInputStream("person.txt"))) {
+           Person person = new Person("9龙", 23);
+           person.setHeight(185);
+           System.out.println(person);
+           oos.writeObject(person);
+           Person p1 = (Person)ios.readObject();
+           System.out.println(p1);
+       }
+   }
+}
+//输出结果
+//Person{name='9龙', age=23', singlehood=true', height=185cm}
+//Person{name='null', age=0', singlehood=false', height=185cm}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="2-可选的自定义序列化"><a href="#2-可选的自定义序列化" class="headerlink" title="2. 可选的自定义序列化"></a>2. 可选的自定义序列化</h5><p>使用transient虽然简单，但将此属性完全隔离在了序列化之外。java提供了<strong>可选的自定义序列化。</strong>可以进行控制序列化的方式，或者对序列化数据进行编码加密等</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">private void writeObject(java.io.ObjectOutputStream out) throws IOException；
+private void readObject(java.io.ObjectIutputStream in) throws IOException,ClassNotFoundException;
+private void readObjectNoData() throws ObjectStreamException;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>通过重写<code>writeObject</code>与<code>readObject</code>方法，可以自己选择哪些属性需要序列化， 哪些属性不需要。如果writeObject使用某种规则序列化，则相应的readObject需要相反的规则反序列化，以便能正确反序列化出对象</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Person implements Serializable {
+   private String name;
+   private int age;
+   //省略构造方法，get及set方法
+ 
+   private void writeObject(ObjectOutputStream out) throws IOException {
+       //将名字反转写入二进制流
+       out.writeObject(new StringBuffer(this.name).reverse());
+       out.writeInt(age);
+   }
+ 
+   private void readObject(ObjectInputStream ins) throws IOException,ClassNotFoundException{
+       //将读出的字符串反转恢复回来
+       this.name = ((StringBuffer)ins.readObject()).reverse().toString();
+       this.age = ins.readInt();
+   }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当序列化流不完整时，<code>readObjectNoData()</code>方法可以用来正确地初始化反序列化的对象。例如，使用不同类接收反序列化对象，或者序列化流被篡改时，系统都会调用readObjectNoData()方法来初始化反序列化的对象。</p>
+<h5 id="3-更彻底的自定义序列化"><a href="#3-更彻底的自定义序列化" class="headerlink" title="3. 更彻底的自定义序列化"></a>3. 更彻底的自定义序列化</h5><pre class="line-numbers language-java" data-language="java"><code class="language-java">ANY-ACCESS-MODIFIER Object writeReplace() throws ObjectStreamException;
+ANY-ACCESS-MODIFIER Object readResolve() throws ObjectStreamException;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>writeReplace</code>：在序列化时，会先调用此方法，再调用writeObject方法。此方法可将任意对象代替目标序列化对象-</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Person implements Serializable {
+  private String name;
+  private int age;
+  //省略构造方法，get及set方法
+ 
+  private Object writeReplace() throws ObjectStreamException {
+      ArrayList&lt;Object&gt; list = new ArrayList&lt;&gt;(2);
+      list.add(this.name);
+      list.add(this.age);
+      return list;
+  }
+ 
+   public static void main(String[] args) throws Exception {
+      try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.txt"));
+           ObjectInputStream ios = new ObjectInputStream(new FileInputStream("person.txt"))) {
+          Person person = new Person("9龙", 23);
+          oos.writeObject(person);
+          ArrayList list = (ArrayList)ios.readObject();
+          System.out.println(list);
+      }
+  }
+}
+//输出结果
+//[9龙, 23]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>readResolve</code>：反序列化时替换反序列化出的对象，反序列化出来的对象被立即丢弃。此方法在readeObject后调用</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Person implements Serializable {
+    private String name;
+    private int age;
+    //省略构造方法，get及set方法
+     private Object readResolve() throws ObjectStreamException{
+        return new ("brady", 23);
+    }
+    public static void main(String[] args) throws Exception {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.txt"));
+             ObjectInputStream ios = new ObjectInputStream(new FileInputStream("person.txt"))) {
+            Person person = new Person("9龙", 23);
+            oos.writeObject(person);
+            HashMap map = (HashMap)ios.readObject();
+            System.out.println(map);
+        }
+    }
+}
+//输出结果
+//{brady=23}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>readResolve常用来反序列单例类，保证单例类的唯一性。</p>
+<blockquote>
+<p>注意：readResolve与writeReplace的访问修饰符可以是private、protected、public，如果父类重写了这两个方法，子类都需要根据自身需求重写，这显然不是一个好的设计。通常建议对于final修饰的类重写readResolve方法没有问题；否则，重写readResolve使用private修饰。</p>
+</blockquote>
+<h3 id="3-2-Externalizable：强制自定义序列化"><a href="#3-2-Externalizable：强制自定义序列化" class="headerlink" title="3.2 Externalizable：强制自定义序列化"></a>3.2 Externalizable：强制自定义序列化</h3><p>通过实现<code>Externalizable</code>接口，必须实现<code>writeExternal</code>、<code>readExternal</code>方法。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface Externalizable extends java.io.Serializable {
+     void writeExternal(ObjectOutput out) throws IOException;
+     void readExternal(ObjectInput in) throws IOException, ClassNotFoundException;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class ExPerson implements Externalizable {
+ 
+    private String name;
+    private int age;
+    //注意，必须加上pulic 无参构造器
+    public ExPerson() {
+    }
+ 
+    public ExPerson(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+ 
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        //将name反转后写入二进制流
+        StringBuffer reverse = new StringBuffer(name).reverse();
+        System.out.println(reverse.toString());
+        out.writeObject(reverse);
+        out.writeInt(age);
+    }
+ 
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        //将读取的字符串反转后赋值给name实例变量
+        this.name = ((StringBuffer) in.readObject()).reverse().toString();
+        System.out.println(name);
+        this.age = in.readInt();
+    }
+ 
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("ExPerson.txt"));
+             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ExPerson.txt"))) {
+            oos.writeObject(new ExPerson("brady", 23));
+            ExPerson ep = (ExPerson) ois.readObject();
+            System.out.println(ep);
+        }
+    }
+}
+//输出结果
+//ydarb
+//brady
+//ExPerson{name='brady', age=23}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>==注意：==</p>
+<p>Externalizable接口不同于Serializable接口，实现此接口必须实现接口中的两个方法实现自定义序列化，这是强制性的；特别之处是必须提供pulic的无参构造器，因为在反序列化的时候需要反射创建对象。</p>
+</blockquote>
+<h3 id="2-3-两种序列化对比"><a href="#2-3-两种序列化对比" class="headerlink" title="2.3 两种序列化对比"></a>2.3 两种序列化对比</h3><table>
+<thead>
+<tr>
+<th>实现Serializable接口</th>
+<th>实现Externalizable接口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统自动存储必要的信息</td>
+<td>程序员决定存储哪些信息</td>
+</tr>
+<tr>
+<td>Java内建支持，易于实现，只需要实现该接口即可，无需任何代码支持</td>
+<td>必须实现接口内的两个方法</td>
+</tr>
+<tr>
+<td>性能略差</td>
+<td>性能略好</td>
+</tr>
+</tbody></table>
+<p>虽然Externalizable接口带来了一定的性能提升，但变成复杂度也提高了，所以一般通过实现Serializable接口进行序列化。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/tur-study/about" rel="external nofollow noreferrer">Tur</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://github.com/MathisonTur/tur-study/2023/05/12/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E8%AF%A6%E8%A7%A3/">https://github.com/MathisonTur/tur-study/2023/05/12/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E8%AF%A6%E8%A7%A3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/tur-study/about" target="_blank">Tur</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tur-study/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/tur-study/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/tur-study/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/tur-study/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/tur-study/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/tur-study/2023/05/12/Java/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E8%AF%A6%E8%A7%A3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/tur-study/medias/featureimages/4.jpg" class="responsive-img" alt="Java 序列化与反序列化详解">
+                        
+                        <span class="card-title">Java 序列化与反序列化详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tur-study/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/tur-study/2023/05/10/MQ/RocketMQ%E8%AF%A6%E8%A7%A3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/tur-study/medias/featureimages/3.jpg" class="responsive-img" alt="RocketMQ详解">
+                        
+                        <span class="card-title">RocketMQ详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-category">
+                                    消息队列
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tur-study/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                        <span class="chip bg-color">消息队列</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/tur-study/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/tur-study/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/tur-study/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+            <a href="/tur-study/about" target="_blank">Tur</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">111k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://gitee.com/mathison-tur" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1851727656@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1851727656" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1851727656" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/tur-study/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/tur-study/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/tur-study/libs/materialize/materialize.min.js"></script>
+    <script src="/tur-study/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/tur-study/libs/aos/aos.js"></script>
+    <script src="/tur-study/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/tur-study/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/tur-study/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/tur-study/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/tur-study/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/tur-study/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/tur-study/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/tur-study/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

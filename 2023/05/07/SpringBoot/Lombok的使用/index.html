@@ -4,11 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="阿里Java代码规范解读, Tur的学习笔记">
-    <meta name="description" content="一、编程规约1.1 命名风格1. 命名起始与结束规约程度：==【强制】==
-代码中的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束
+    <meta name="keywords" content="Lombok 详解, Tur的学习笔记">
+    <meta name="description" content="一、Lombok 简介
+lombok 官网：https://projectlombok.org/
 
-反例：_name / __name / $name / name_ / name$ / n">
+官方说明：Project Lombok is a java library that automatically plugs into yo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>阿里Java代码规范解读 | Tur的学习笔记</title>
+    <title>Lombok 详解 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -340,12 +340,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">阿里Java代码规范解读</h1>
+                    <h1 class="description center-align post-title">Lombok 详解</h1>
                 </div>
             </div>
         </div>
@@ -369,14 +369,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/Java/">
-                                <span class="chip bg-color">Java</span>
+                            <a href="/tur-study/tags/SpringBoot/">
+                                <span class="chip bg-color">SpringBoot</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/tur-study/categories/SpringBoot/" class="post-category">
+                                SpringBoot
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -385,28 +394,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-06
+                    2023-05-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-06
+                    2023-05-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -429,167 +438,225 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、编程规约"><a href="#一、编程规约" class="headerlink" title="一、编程规约"></a>一、编程规约</h2><h3 id="1-1-命名风格"><a href="#1-1-命名风格" class="headerlink" title="1.1 命名风格"></a>1.1 命名风格</h3><h5 id="1-命名起始与结束"><a href="#1-命名起始与结束" class="headerlink" title="1. 命名起始与结束"></a>1. 命名起始与结束</h5><p>规约程度：==【强制】==</p>
-<p>代码中的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束</p>
-<ul>
-<li>反例：<code>_name / __name / $name / name_ / name$ / name__</code></li>
-</ul>
-<h5 id="2-中英文命名"><a href="#2-中英文命名" class="headerlink" title="2. 中英文命名"></a>2. 中英文命名</h5><p>规约程度：==【强制】==</p>
-<p>代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。</p>
-<blockquote>
-<p>说明：正确的英文拼写和语法可以让阅读者易于理解，避免歧义。注意，即使纯拼音命名方式<br>也要避免采用。</p>
+                <h2 id="一、Lombok-简介"><a href="#一、Lombok-简介" class="headerlink" title="一、Lombok 简介"></a>一、Lombok 简介</h2><blockquote>
+<p>lombok 官网：<a target="_blank" rel="noopener" href="https://projectlombok.org/">https://projectlombok.org/</a></p>
 </blockquote>
-<ul>
-<li>正例：<code>alibaba / taobao / youku / hangzhou</code> 等国际通用的名称，可视同英文。</li>
-<li>反例：<code>DaZhePromotion </code>[打折] / <code>getPingfenByName</code>() [评分] / int 某变量 = 3</li>
-</ul>
-<h5 id="3-类名使用-UpperCamelCase"><a href="#3-类名使用-UpperCamelCase" class="headerlink" title="3. 类名使用 UpperCamelCase"></a>3. 类名使用 UpperCamelCase</h5><p>规约程度：==【强制】==</p>
-<p>类名使用 <code>UpperCamelCase </code>风格，但以下情形例外：<code>DO / BO / DTO / VO / AO / PO / UID</code> 等， 后缀需要保持全大写。</p>
-<ul>
-<li>正例：MarcoPolo / UserDO / XmlService / TcpUdpDeal / TaPromotion</li>
-<li>反例：macroPolo / UserDo / XMLService / TCPUDPDeal / TAPromotion</li>
-</ul>
-<h5 id="4-方法名、参数名、成员变量、局部变量：lowerCamelCase-风格"><a href="#4-方法名、参数名、成员变量、局部变量：lowerCamelCase-风格" class="headerlink" title="4. 方法名、参数名、成员变量、局部变量：lowerCamelCase 风格"></a>4. 方法名、参数名、成员变量、局部变量：lowerCamelCase 风格</h5><p>规约程度：==【强制】==</p>
-<p>方法名、参数名、成员变量、局部变量都统一使用 <code>lowerCamelCase </code>风格，必须遵从<br>驼峰形式。</p>
-<ul>
-<li>正例： localValue / getHttpMessage() / inputUserId</li>
-</ul>
-<h5 id="5-常量名"><a href="#5-常量名" class="headerlink" title="5. 常量名"></a>5. 常量名</h5><p>规约程度：==【强制】==</p>
-<p>常量命名全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。</p>
-<ul>
-<li>正例：MAX_STOCK_COUNT</li>
-<li>反例：MAX_COUNT</li>
-</ul>
-<h5 id="6-抽象类名"><a href="#6-抽象类名" class="headerlink" title="6. 抽象类名"></a>6. 抽象类名</h5><p>规约程度：==【强制】==</p>
-<p>抽象类命名使用 Abstract 或 Base 开头；异常类命名使用 Exception 结尾；测试类命名以它要测试的类的名称开始，以 Test 结尾。</p>
-<h5 id="7-数组表示"><a href="#7-数组表示" class="headerlink" title="7. 数组表示"></a>7. 数组表示</h5><p>规约程度：==【强制】==</p>
-<p>类型与中括号紧挨相连来表示数组。</p>
-<ul>
-<li>正例：定义整形数组 int[] arrayDemo;</li>
-<li>反例：在 main 参数中，使用 String args[]来定义。</li>
-</ul>
-<h5 id="8-POJO-类中的布尔变量"><a href="#8-POJO-类中的布尔变量" class="headerlink" title="8. POJO 类中的布尔变量"></a>8. POJO 类中的布尔变量</h5><p>规约程度：==【强制】==</p>
-<p><font color="red">POJO 类中布尔类型的变量，都不要加 is 前缀</font>，否则部分框架解析会引起序列化错误。建议统一使用 <code>flag </code>结尾</p>
-<ul>
-<li><p>正例：deletedFlag, deleted_flag</p>
-</li>
-<li><p>反例：定义为基本数据类型 Boolean isDeleted 的属性，它的方法也是 isDeleted()，RPC框架在反向解析的时候，“误以为”对应的属性名称是 deleted，导致属性获取不到，进而抛出异常。</p>
-</li>
-</ul>
-<h5 id="9-软件包名"><a href="#9-软件包名" class="headerlink" title="9. 软件包名"></a>9. 软件包名</h5><p>规约程度：==【强制】==</p>
-<p>包名统一使用小写，点分隔符之间有且仅有一个自然语义的英语单词。包名统一使用单数形式，但是类名如果有复数含义，类名可以使用复数形式。</p>
-<ul>
-<li>正例：应用工具类包名为 com.alibaba.ai.util、类名为 MessageUtils（此规则参考 spring<br>的框架结构）</li>
-</ul>
-<h5 id="10-杜绝完全不规范缩写"><a href="#10-杜绝完全不规范缩写" class="headerlink" title="10. 杜绝完全不规范缩写"></a>10. 杜绝完全不规范缩写</h5><p>规约程度：==【强制】==</p>
-<p>杜绝完全不规范的缩写，避免望文不知义。</p>
-<ul>
-<li>反例：AbstractClass“缩写”命名成 AbsClass；condition“缩写”命名成 condi，此类随<br>意缩写严重降低了代码的可阅读性</li>
-</ul>
-<h5 id="11-任何自定义元素，使用尽量完整的单词组表达"><a href="#11-任何自定义元素，使用尽量完整的单词组表达" class="headerlink" title="11. 任何自定义元素，使用尽量完整的单词组表达"></a>11. 任何自定义元素，使用尽量完整的单词组表达</h5><p>规约程度：==【推荐】==</p>
-<p>为了达到代码自解释的目标，任何自定义编程元素在命名时，使用尽量完整的单词组合来表达其意</p>
-<ul>
-<li>正例：在 JDK 中，表达原子更新的类名为：AtomicReferenceFieldUpdater。</li>
-<li>反例：变量 int a 的随意命名方式。</li>
-</ul>
-<h5 id="12-若-使用了设计模式，则应体现在命名上"><a href="#12-若-使用了设计模式，则应体现在命名上" class="headerlink" title="12.若 使用了设计模式，则应体现在命名上"></a>12.若 使用了设计模式，则应体现在命名上</h5><p>规约程度：==【推荐】==</p>
-<p>如果模块、接口、类、方法使用了设计模式，在命名时需体现出具体模式</p>
-<blockquote>
-<p>说明：将设计模式体现在名字中，有利于阅读者快速理解架构设计理念。</p>
+<p>官方说明：<br>Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.<br>Never write another getter or equals method again, with one annotation your class has a fully featured builder, Automate your logging variables, and much more.</p>
+<p>Project Lombok是一个java库，它可以自动插入到您的编辑器和构建工具中，为您的java增添趣味。<br>永远不要再写另一个getter或equals方法了，只要有一个注释，你的类就有了一个功能齐全的构建器，自动化你的日志变量，等等。</p>
+<p>Lombok简单理解就是一个Java类库，通过注解的形式帮助开发减少一些结构化代码的开发工作，提高开发效率，比如通过@Data注解，class在编译的时候会自动生成get，set，equals，hash，toString等方法，避免写大量的代码，减少了代码量，也使代码看起来更加简洁。尤其是一些对象属性需要改动的时候，每次改动都需要重新生成get，set，equals，hash，toString等方法，而使用注解则可以避免此问题。</p>
+<h2 id="二、Lombok-的使用说明"><a href="#二、Lombok-的使用说明" class="headerlink" title="二、Lombok 的使用说明"></a>二、Lombok 的使用说明</h2><p>如果要使用 lombok，需要在开发工具中安装插件 lombok，其次在项目中引入依赖</p>
+<h2 id="三、Lombok-的使用"><a href="#三、Lombok-的使用" class="headerlink" title="三、Lombok 的使用"></a>三、Lombok 的使用</h2><blockquote>
+<p>lombok 官方 api 文档：<a target="_blank" rel="noopener" href="https://projectlombok.org/api/">https://projectlombok.org/api/</a></p>
 </blockquote>
-<ul>
-<li>正例：<ul>
-<li>public class OrderFactory;  </li>
-<li>public class LoginProxy;  </li>
-<li>public class ResourceObserver;</li>
-</ul>
-</li>
-</ul>
-<h5 id="13-接口类方法属性修饰符"><a href="#13-接口类方法属性修饰符" class="headerlink" title="13. 接口类方法属性修饰符"></a>13. 接口类方法属性修饰符</h5><p>规约程度：==【推荐】==</p>
-<p>接口类中的方法和属性不要加任何修饰符号（public 也不要加），保持代码的简洁性，并加上有效的 Javadoc 注释。尽量不要在接口里定义变量，如果一定要定义变量，肯定是与接口方法相关，并且是整个应用的基础常量。</p>
-<ul>
-<li>正例：接口方法签名 void commit();   接口基础常量 String COMPANY = “alibaba”;</li>
-<li>反例：接口方法定义 public abstract void f();</li>
-</ul>
-<blockquote>
-<p>说明：JDK8 中接口允许有默认实现，那么这个 default 方法，是对所有实现类都有价值的默<br>认实现。 </p>
-</blockquote>
-<h5 id="14-接口和其实现类的命名"><a href="#14-接口和其实现类的命名" class="headerlink" title="14. 接口和其实现类的命名"></a>14. 接口和其实现类的命名</h5><p>接口和实现类的命名有两套规则：</p>
-<h6 id="1-Service-和-DAO-类"><a href="#1-Service-和-DAO-类" class="headerlink" title="1.  Service 和 DAO 类"></a>1.  Service 和 DAO 类</h6><p>规约程度：==【强制】==</p>
-<p>对于 Service 和 DAO 类，基于 SOA 的理念，暴露出来的服务一定是接口，内部的实现类用 Impl 的后缀与接口区别。</p>
-<ul>
-<li>正例：CacheServiceImpl 实现 CacheService 接口。</li>
-</ul>
-<h6 id="2-形容能力的接口名称"><a href="#2-形容能力的接口名称" class="headerlink" title="2. 形容能力的接口名称"></a>2. 形容能力的接口名称</h6><p>规约程度：==【推荐】==</p>
-<p>如果是形容能力的接口名称，取对应的形容词为接口名（通常是–able 的形式）。</p>
-<ul>
-<li>正例：AbstractTranslator 实现 Translatable 接口。</li>
-</ul>
-<h5 id="15-枚举类"><a href="#15-枚举类" class="headerlink" title="15. 枚举类"></a>15. 枚举类</h5><p>规约程度：==【参考】==</p>
-<p>枚举类名建议带上 Enum 后缀，枚举成员名称需要全大写，单词间用下划线隔开。</p>
-<blockquote>
-<p>说明：枚举其实就是特殊的类，域成员均为常量，且构造方法被默认强制是私有。</p>
-</blockquote>
-<ul>
-<li>正例：枚举名字为 ProcessStatusEnum 的成员名称：SUCCESS / UNKNOWN_REASON。</li>
-</ul>
-<h5 id="16-各层命名"><a href="#16-各层命名" class="headerlink" title="16. 各层命名"></a>16. 各层命名</h5><p>规约程度：==【参考】==</p>
-<h6 id="1-Service-x2F-DAO-层方法命名规约"><a href="#1-Service-x2F-DAO-层方法命名规约" class="headerlink" title="1. Service/DAO 层方法命名规约"></a>1. Service/DAO 层方法命名规约</h6><ul>
-<li>获取单个对象的方法用 get 做前缀。</li>
-<li>获取多个对象的方法用 list 做前缀，复数形式结尾如：listObjects。</li>
-<li>获取统计值的方法用 count 做前缀。</li>
-<li>插入的方法用 save/insert 做前缀。</li>
-<li>删除的方法用 remove/delete 做前缀。</li>
-<li>修改的方法用 update 做前缀。</li>
-</ul>
-<h6 id="2-领域模型命名规约"><a href="#2-领域模型命名规约" class="headerlink" title="2. 领域模型命名规约"></a>2. 领域模型命名规约</h6><ul>
-<li>数据对象：xxxDO，xxx 即为 数据表名。</li>
-<li>数据传输对象：xxxDTO，xxx 为业务领域相关的名称。</li>
-<li>展示对象：xxxVO，xxx 一般为网页名称。</li>
-<li>POJO 是 DO/DTO/BO/VO 的统称，禁止命名成 xxxPOJO。</li>
-</ul>
-<h3 id="1-2-常量定义"><a href="#1-2-常量定义" class="headerlink" title="1.2 常量定义"></a>1.2 常量定义</h3><h5 id="1-不允许任何魔法值"><a href="#1-不允许任何魔法值" class="headerlink" title="1. 不允许任何魔法值"></a>1. 不允许任何魔法值</h5><p>规约程度：==【强制】==</p>
-<p>不允许任何魔法值（即未经预先定义的常量）直接出现在代码中。</p>
-<ul>
-<li>反例：String key = <font color="cyan">“Id#taobao_”</font> + tradeId;cache.put(key, value);</li>
-</ul>
-<h5 id="2-long-或-Long-赋值时，数值后使用大写-L"><a href="#2-long-或-Long-赋值时，数值后使用大写-L" class="headerlink" title="2. long 或 Long 赋值时，数值后使用大写 L"></a>2. long 或 Long 赋值时，数值后使用大写 L</h5><p>规约程度：==【强制】==</p>
-<p>在 long 或者 Long 赋值时，数值后使用大写的 L，不能是小写的 l，小写容易跟数字1 混淆，造成误解</p>
-<blockquote>
-<p>说明：Long a = 2l; 写的是数字的 21，还是 Long 型的 2?</p>
-</blockquote>
-<h5 id="3-常量功能分类"><a href="#3-常量功能分类" class="headerlink" title="3. 常量功能分类"></a>3. 常量功能分类</h5><p>规约程度：==【推荐】==</p>
-<p>不要使用一个常量类维护所有常量，要按常量功能进行归类，分开维护。</p>
-<blockquote>
-<p>说明：大而全的常量类，杂乱无章，使用查找功能才能定位到修改的常量，不利于理解和维护。</p>
-</blockquote>
-<ul>
-<li>正例：缓存相关常量放在类 CacheConsts 下；系统配置相关常量放在类 ConfigConsts 下。</li>
-</ul>
-<h5 id="4-常量复用"><a href="#4-常量复用" class="headerlink" title="4. 常量复用"></a>4. 常量复用</h5><p>规约程度：==【推荐】==</p>
-<p>常量的复用层次有五层：跨应用共享常量、应用内共享常量、子工程内共享常量、包内共享常量、类内共享常量</p>
-<h6 id="1-跨应用共享常量"><a href="#1-跨应用共享常量" class="headerlink" title="1. 跨应用共享常量"></a>1. 跨应用共享常量</h6><p>放置在二方库中，通常是 client.jar 中的 constant 目录下。</p>
-<h6 id="2-应用内共享常量"><a href="#2-应用内共享常量" class="headerlink" title="2.应用内共享常量"></a>2.应用内共享常量</h6><p>放置在一方库中，通常是子模块中的 constant 目录下。</p>
-<p>反例：易懂变量也要统一定义成应用内共享常量，两位攻城师在两个类中分别定义了表示<br>“是”的变量：</p>
-<ul>
-<li>类 A 中：public static final String YES = “yes”;</li>
-<li>类 B 中：public static final String YES = “y”; </li>
-<li>A.YES.equals(B.YES)，预期是 true，但实际返回为 false，导致线上问题。</li>
-</ul>
-<h6 id="3-子工程内部共享常量"><a href="#3-子工程内部共享常量" class="headerlink" title="3.子工程内部共享常量"></a>3.子工程内部共享常量</h6><p>即在当前子工程的 constant 目录下</p>
-<h6 id="4-包内共享常量"><a href="#4-包内共享常量" class="headerlink" title="4.包内共享常量"></a>4.包内共享常量</h6><p>即在当前包下单独的 constant 目录下</p>
-<h6 id="5-类内共享常量"><a href="#5-类内共享常量" class="headerlink" title="5. 类内共享常量"></a>5. 类内共享常量</h6><p>直接在类内部 private static final 定义</p>
-<h5 id="5-固定范围变化的变量使用-enum-来定义"><a href="#5-固定范围变化的变量使用-enum-来定义" class="headerlink" title="5. 固定范围变化的变量使用 enum 来定义"></a>5. 固定范围变化的变量使用 enum 来定义</h5><p>规约程度：==【推荐】==</p>
-<p>如果变量值仅在一个固定范围内变化用 enum 类型来定义</p>
-<p>说明：如果存在名称之外的延伸属性应使用 enum 类型，下面正例中的数字就是延伸信息，表示一年中的第几个季节。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public enum SeasonEnum{
-    SPRING(1), SUMMER(2), AUTUMN(3), WINTER(4);
-    private int seq;
-    SeasonEnum(int seq){
-        this.seq = se
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-1-NonNull"><a href="#3-1-NonNull" class="headerlink" title="3.1 @NonNull"></a>3.1 @NonNull</h3><p><code>@NonNull</code> 注解使用在<strong>属性或构造器</strong>上，lombok 会生成一个非空的声明，可用于校验参数，能够帮助避免空指针</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+/**
+ * 1.@NonNull该注解用在属性或构造器上，Lombok会生成一个非空的声明，可用于校验参数，能帮助避免空指针。
+ * 参数User为null时产生异常：NullPointerException
+ */
+public static String getName(@NonNull User user) {
+    return user.getName();
+}
 
+/**
+ * 等价@NonNull
+ */
+public static String getName2(User user) {
+    if (user == null) {throw new NullPointerException("user is marked non-null but is null");}
+    return user.getName();
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-Getter-和-Setter"><a href="#3-2-Getter-和-Setter" class="headerlink" title="3.2 @Getter 和 @Setter"></a>3.2 @Getter 和 @Setter</h3><p><code>@Getter</code> 和<code>@Setter</code> 注解在<strong>类或字段</strong>，注解在类时为所有字段生成getter，setter方法，注解在字段上时只为该字段生成getter，setter方法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@ToString(exclude = {"phone"})
+public class Student {
+    @Getter
+    @Setter
+    private String name;
+
+    /**
+     * 只生成set方法，且作用范围 修饰符PROTECTED
+     */
+    @Setter(AccessLevel.PROTECTED)
+    private int age;
+    /**
+     * 只生成get方法，且作用范围 修饰符PUBLIC
+     */
+    @Getter(AccessLevel.PUBLIC)
+    private String address;
+
+    @Getter
+    @Setter
+    private String phone;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-3-Cleanup"><a href="#3-3-Cleanup" class="headerlink" title="3.3 @Cleanup"></a>3.3 @Cleanup</h3><p><code>@Cleanup</code>这个注解用在<strong>变量前面</strong>，可以保证此变量代表的资源会被自动关闭，默认是调用资源的close()方法，如果该资源有其它关闭方法，可使用<code>@Cleanup(“methodName”)</code>来指定要调用的方法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public static void main(String[] args) throws IOException {
+     @Cleanup 
+     InputStream in = new FileInputStream(args[0]);
+     @Cleanup 
+     OutputStream out = new FileOutputStream(args[1]);
+     byte[] b = new byte[1024];
+     while (true) {
+       int r = in.read(b);
+       if (r == -1) break;
+       out.write(b, 0, r);
+     }
+ }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-4-ToString"><a href="#3-4-ToString" class="headerlink" title="3.4 @ToString"></a>3.4 @ToString</h3><p><code>@ToString</code> 注解在类，添加toString方法。@ToString在JavaBean或类JavaBean中使用，使用此注解会自动重写对应的toStirng方法，默认情况下，会输出类名、所有属性（会按照属性定义顺序），用逗号来分割，通过callSuper参数来指定是否引用父类，<code>includeFieldNames</code>参数设为true，就能明确的输出toString()属性</p>
+<pre class="line-numbers language-none"><code class="language-none">@ToString(exclude=”column”)
+意义：排除column列所对应的元素，即在生成toString方法时不包含column参数；
+
+@ToString(exclude={“column1″,”column2″})
+意义：排除多个column列所对应的元素，其中间用英文状态下的逗号进行分割，即在生成toString方法时不包含多个column参数；
+
+@ToString(of=”column”)
+意义：只生成包含column列所对应的元素的参数的toString方法，即在生成toString方法时只包含column参数；；
+
+@ToString(of={“column1″,”column2”})
+意义：只生成包含多个column列所对应的元素的参数的toString方法，其中间用英文状态下的逗号进行分割，即在生成toString方法时只包含多个column参数；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-5-EqualsAndHashCode"><a href="#3-5-EqualsAndHashCode" class="headerlink" title="3.5 @EqualsAndHashCode"></a>3.5 @EqualsAndHashCode</h3><p><code>@EqualsAndHashCode</code> 注解在类，生成hashCode和equals方法。@EqualsAndHashCode默认情况下，会使用所有非静态（non-static）和非瞬态（non-transient）属性来生成equals和hasCode，也能通过<code>exclude</code>注解来排除一些属性</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@EqualsAndHashCode(exclude={"id", "shape"})
+public class EqualsAndHashCodeExample {
+  private transient int transientVar = 10;
+  private String name;
+  private double score;
+  private Shape shape = new Square(5, 10);
+  private String[] tags;
+  private int id;
+  
+  public String getName() {
+    return this.name;
+  }
+  
+  @EqualsAndHashCode(callSuper=true)
+  public static class Square extends Shape {
+    private final int width, height;
+    
+    public Square(int width, int height) {
+      this.width = width;
+      this.height = height;
+    }
+  }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-6-NoArgsConstructor、-RequiredArgsConstructor和-AllArgsConstructor"><a href="#3-6-NoArgsConstructor、-RequiredArgsConstructor和-AllArgsConstructor" class="headerlink" title="3.6 @NoArgsConstructor、@RequiredArgsConstructor和@AllArgsConstructor"></a>3.6 @NoArgsConstructor、@RequiredArgsConstructor和@AllArgsConstructor</h3><p>这三个注解都是用在类上的，</p>
+<ul>
+<li>NoArgsConstructor 注解在类生成无参的构造方法。</li>
+<li>@RequiredArgsConstructor 注解在类，为类中需要特殊处理的字段生成构造方法，比如final和被@NonNull注解的字段。</li>
+<li>@AllArgsConstructor 注解在类，生成包含类中所有字段的构造方法。</li>
+</ul>
+<p>三个注解都可以指定生成的构造方法的访问权限，同时，第二个注解还可以用<code>@RequiredArgsConstructor(staticName=”methodName”)</code>的形式生成一个指定名称的静态方法，返回一个调用相应的构造方法产生的对象。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@RequiredArgsConstructor(staticName = "myShape")
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
+public class Shape {
+    private int x;
+    @NonNull
+    private double y;
+    @NonNull
+    private String name;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-7-Data"><a href="#3-7-Data" class="headerlink" title="3.7 @Data"></a>3.7 @Data</h3><p><code>@Data</code> 注解在类，生成setter/getter、equals、canEqual、hashCode、toString方法，如为final属性，则不会为该属性生成setter方法。</p>
+<p>特别注意：Lombok的@Data注解生成的EqualsAndHashCode默认不支持父类在使用Lombok过程中，如果对于各种注解的底层原理不理解的话，很容易产生意想不到的结果。举一个简单的例子：我们知道，当我们使用@Data定义一个类的时候，会自动帮我们生成equals()方法 。但是如果只使用了@Data，而不使用@EqualsAndHashCode(callSuper=true)的话，会默认是@EqualsAndHashCode(callSuper=false)，这时候生成的equals()方法只会比较子类的属性，不会考虑从父类继承的属性，无论父类属性访问权限是否开放，这就可能得到意想不到的结果。以下是测试验证。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+    private String name;
+}
+@Data
+public class UserCustomer extends User {
+    private String customerId;
+}
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class UserEmployee extends User{
+    private String empId;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class LombokDataTest {
+    public static void main(String[] args) {
+        //1.@Data默认@EqualsAndHashCode(callSuper = false)
+        compareUserCustomerWithCallSuperFalse();
+
+        System.out.println("--------------------------------");
+
+        //2.@Data指定@EqualsAndHashCode(callSuper = true)
+        compareUserEmployeeWithCallSuperFalse();
+    }
+
+    /**
+     * 2.@Data指定@EqualsAndHashCode(callSuper = true)
+     */
+    private static void compareUserEmployeeWithCallSuperFalse() {
+        UserEmployee userEmployee = new UserEmployee();
+        userEmployee.setName("jerry");
+        userEmployee.setEmpId("123");
+
+        UserEmployee userEmployee2 = new UserEmployee();
+        userEmployee2.setName("jerry");
+        userEmployee2.setEmpId("123456");
+
+        UserEmployee userEmployee3 = new UserEmployee();
+        userEmployee3.setName("jerry2");
+        userEmployee3.setEmpId("123");
+
+        //false，父类中的Name相同，子类中的EmpId不同，可以校验出来
+        System.out.println("【userEmployee】：" + userEmployee.toString());
+        System.out.println("【userEmployee2】：" + userEmployee2.toString());
+        System.out.println("【userEmployee3】：" + userEmployee3.toString());
+
+        System.out.println("【userEmployee &amp; userEmployee2】：" + userEmployee.equals(userEmployee2));
+        //false，父类中的Name不同，子类中的EmpId相同，可以校验出来
+        System.out.println("【userEmployee &amp; userEmployee3】：" + userEmployee.equals(userEmployee3));
+    }
+
+    /**
+     * 1.@Data默认@EqualsAndHashCode(callSuper = false)
+     */
+    private static void compareUserCustomerWithCallSuperFalse() {
+        UserCustomer userCustomer = new UserCustomer();
+        userCustomer.setName("jerry");
+        userCustomer.setCustomerId("123");
+
+        UserCustomer userCustomer2 = new UserCustomer();
+        userCustomer2.setName("jerry");
+        userCustomer2.setCustomerId("123456");
+
+        UserCustomer userCustomer3 = new UserCustomer();
+        userCustomer3.setName("jerry2");
+        userCustomer3.setCustomerId("123");
+
+        System.out.println("【userCustomer】：" + userCustomer.toString());
+        System.out.println("【userCustomer2】：" + userCustomer2.toString());
+        System.out.println("【userCustomer3】：" + userCustomer3.toString());
+
+        //false，父类中的Name相同，子类中的customerId不同，可以校验出来
+        System.out.println("【userCustomer &amp; userCustomer2】：" + userCustomer.equals(userCustomer2));
+        //true，父类中的Name不同，子类中的customerId相同，无法校验出来
+        System.out.println("【userCustomer &amp; userCustomer3】：" + userCustomer.equals(userCustomer3));
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-8-SneakyThrows"><a href="#3-8-SneakyThrows" class="headerlink" title="3.8 @SneakyThrows"></a>3.8 @SneakyThrows</h3><p><code>@SneakyThrows</code>这个注解用在方法上，可以将方法中的代码用try-catch语句包裹起来，捕获异常并在catch中用Lombok.sneakyThrow(e)把异常抛出，可以使用.</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class SneakyThrows implements Runnable {
+    @SneakyThrows(UnsupportedEncodingException.class)
+    public String utf8ToString(byte[] bytes) {
+        return new String(bytes, "UTF-8");
+    }
+ 
+    @SneakyThrows
+    public void run() {
+        throw new Throwable();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-9-Synchronized"><a href="#3-9-Synchronized" class="headerlink" title="3.9 @Synchronized"></a>3.9 @Synchronized</h3><p><code>@Synchronized</code>这个注解用在类方法或者实例方法上，效果和synchronized关键字相同，区别在于锁对象不同，对于类方法和实例方法，synchronized关键字的锁对象分别是类的class对象和this对象，而@Synchronized得锁对象分别是私有静态final对象LOCK和私有final对象lock，当然，也可以自己指定锁对象</p>
+<h3 id="3-10-Slf4j"><a href="#3-10-Slf4j" class="headerlink" title="3.10 @Slf4j"></a>3.10 @Slf4j</h3><p>@Slf4j 注解在类，生成log变量，严格意义来说是常量。private static final Logger log = LoggerFactory.getLogger(UserController.class);</p>
 
                 
             </div>
@@ -616,7 +683,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/04/06/Java/%E9%98%BF%E9%87%8CJava%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E8%A7%A3%E8%AF%BB/">https://github.com/MathisonTur/tur-study/2023/04/06/Java/%E9%98%BF%E9%87%8CJava%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E8%A7%A3%E8%AF%BB/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/05/07/SpringBoot/Lombok%E7%9A%84%E4%BD%BF%E7%94%A8/">https://github.com/MathisonTur/tur-study/2023/05/07/SpringBoot/Lombok%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -654,8 +721,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
+                                <a href="/tur-study/tags/SpringBoot/">
+                                    <span class="chip bg-color">SpringBoot</span>
                                 </a>
                             
                         </div>
@@ -738,13 +805,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/04/08/SpringCloud/Gateway%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3/">
+                <a href="/tur-study/2023/05/08/SpringCloud/Dubbo%20%E8%AF%A6%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/2.jpg" class="responsive-img" alt="Gateway服务网关">
+                        <img src="/tur-study/medias/featureimages/23.jpg" class="responsive-img" alt="Dubbo 详解">
                         
-                        <span class="card-title">Gateway服务网关</span>
+                        <span class="card-title">Dubbo 详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -755,7 +822,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-08
                         </span>
                         <span class="publish-author">
                             
@@ -787,13 +854,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/04/05/%E6%8A%A5%E9%94%99%E5%90%88%E9%9B%86/">
+                <a href="/tur-study/2023/05/06/MybatisPlus/Mybatis-Plus%20%E6%B3%A8%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/10.jpg" class="responsive-img" alt="报错合集">
+                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Mybatis-Plus 注解">
                         
-                        <span class="card-title">报错合集</span>
+                        <span class="card-title">Mybatis-Plus 注解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -804,14 +871,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/tur-study/categories/%E9%94%99%E8%AF%AF/" class="post-category">
-                                    错误
+                            <a href="/tur-study/categories/Mybatis-Plus/" class="post-category">
+                                    Mybatis-Plus
                                 </a>
                             
                             
@@ -821,8 +888,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/%E9%94%99%E8%AF%AF/">
-                        <span class="chip bg-color">错误</span>
+                    <a href="/tur-study/tags/Mybatis-Plus/">
+                        <span class="chip bg-color">Mybatis-Plus</span>
                     </a>
                     
                 </div>
@@ -966,7 +1033,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">39.5k</span>
+                        class="white-color">111k</span>
             
             
             

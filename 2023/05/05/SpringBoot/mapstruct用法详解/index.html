@@ -731,7 +731,7 @@ public interface SourceTargetMapper {  ... }
 <li>typeConversionPolicy() :应该报告如何进行有损(缩小)转换，例如:long到integer的转换。</li>
 <li>collectionMappingStrategy(): 集合类型映射策略<br> 其他的，请阅读源码</li>
 </ol>
-<h3 id="3-使用自定义方法"><a href="#3-使用自定义方法" class="headerlink" title="3. 使用自定义方法"></a>3. 使用自定义方法</h3><h4 id="3-1-自定义类型转换方法"><a href="#3-1-自定义类型转换方法" class="headerlink" title="3.1 自定义类型转换方法"></a>3.1 自定义类型转换方法</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class DateMapper {
+<h2 id="3-使用自定义方法"><a href="#3-使用自定义方法" class="headerlink" title="3. 使用自定义方法"></a>3. 使用自定义方法</h2><h3 id="3-1-自定义类型转换方法"><a href="#3-1-自定义类型转换方法" class="headerlink" title="3.1 自定义类型转换方法"></a>3.1 自定义类型转换方法</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class DateMapper {
 
     public String asString(Date date) {
         return date != null ? new SimpleDateFormat( "yyyy-MM-dd" )
@@ -780,7 +780,7 @@ public interface PersonMapper{
 12345678910111213141516<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在进行类型转换的时候直接调用改转换方法<br> <code>@Mapper#uses</code>可以使用多个类</p>
-<h4 id="3-2-使用-Qualifier"><a href="#3-2-使用-Qualifier" class="headerlink" title="3.2 使用@Qualifier"></a>3.2 使用<code>@Qualifier</code></h4><p><code>@Qualifier</code>标记的自定义注解标记的方法，必须有输入, 否则编译时会抛出异常</p>
+<h3 id="3-2-使用-Qualifier"><a href="#3-2-使用-Qualifier" class="headerlink" title="3.2 使用@Qualifier"></a>3.2 使用<code>@Qualifier</code></h3><p><code>@Qualifier</code>标记的自定义注解标记的方法，必须有输入, 否则编译时会抛出异常</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java">public class DateFormtUtil {
 
     @DateFormat
@@ -810,7 +810,7 @@ public interface PersonMapper {
 
 12345678910<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="3-3-使用-namd"><a href="#3-3-使用-namd" class="headerlink" title="3.3 使用@namd"></a>3.3 使用@namd</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class DateFormtUtil {
+<h3 id="3-3-使用-namd"><a href="#3-3-使用-namd" class="headerlink" title="3.3 使用@namd"></a>3.3 使用@namd</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">public class DateFormtUtil {
 
     @Named("dateToString")
     public static String dateToString(Date date){
@@ -833,7 +833,7 @@ public interface PersonMapper {
 123456789<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>效果跟<code>@Qualifier</code>是一样的</strong></p>
-<h3 id="4-集合映射"><a href="#4-集合映射" class="headerlink" title="4.集合映射"></a>4.集合映射</h3><p><code>MapStruct</code>有<code>CollectionMappingStrategy</code>，与可能的值：<code>ACCESSOR_ONLY，SETTER_PREFERRED，ADDER_PREFERRED</code>和T<code>ARGET_IMMUTABLE</code>。</p>
+<h2 id="4-集合映射"><a href="#4-集合映射" class="headerlink" title="4.集合映射"></a>4.集合映射</h2><p><code>MapStruct</code>有<code>CollectionMappingStrategy</code>，与可能的值：<code>ACCESSOR_ONLY，SETTER_PREFERRED，ADDER_PREFERRED</code>和T<code>ARGET_IMMUTABLE</code>。</p>
 <p>在下表中，破折号-表示属性名称。接下来，尾部s表示复数形式。该表解释了这些选项以及它们是如何施加到存在/不存在的<code>set-s，add-s</code>和/或<code>get-s</code>在目标对象上的方法：</p>
 <table>
 <thead>
@@ -879,7 +879,7 @@ public interface PersonMapper {
 <td>set-s</td>
 </tr>
 </tbody></table>
-<h3 id="5-集成到-spring"><a href="#5-集成到-spring" class="headerlink" title="5.集成到 spring"></a>5.集成到 spring</h3><p>在<code>@Mapper#componentModel</code> 中指定依赖注入框架</p>
+<h2 id="5-集成到-spring"><a href="#5-集成到-spring" class="headerlink" title="5.集成到 spring"></a>5.集成到 spring</h2><p>在<code>@Mapper#componentModel</code> 中指定依赖注入框架</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java">@Mapper(componentModel = "spring")
 public interface ModelMapper {
 
@@ -905,8 +905,8 @@ class MapperSpringController {
     }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="6-高级运用"><a href="#6-高级运用" class="headerlink" title="6. 高级运用"></a>6. 高级运用</h3><h4 id="6-1-spi的运用"><a href="#6-1-spi的运用" class="headerlink" title="6.1 spi的运用"></a>6.1 spi的运用</h4><p><a target="_blank" rel="noopener" href="https://mapstruct.org/documentation/stable/reference/html/#using-spi">官方文档 关于spi的运用描述</a></p>
-<h4 id="6-2-freemarker生成代码"><a href="#6-2-freemarker生成代码" class="headerlink" title="6.2 freemarker生成代码"></a>6.2 freemarker生成代码</h4><p><a href="https://github.com/mapstruct/mapstruct-examples/tree/master/mapstruct-mapper-repo">github链接</a></p>
+<h2 id="6-高级运用"><a href="#6-高级运用" class="headerlink" title="6. 高级运用"></a>6. 高级运用</h2><h3 id="6-1-spi的运用"><a href="#6-1-spi的运用" class="headerlink" title="6.1 spi的运用"></a>6.1 spi的运用</h3><p><a target="_blank" rel="noopener" href="https://mapstruct.org/documentation/stable/reference/html/#using-spi">官方文档 关于spi的运用描述</a></p>
+<h3 id="6-2-freemarker生成代码"><a href="#6-2-freemarker生成代码" class="headerlink" title="6.2 freemarker生成代码"></a>6.2 freemarker生成代码</h3><p><a href="https://github.com/mapstruct/mapstruct-examples/tree/master/mapstruct-mapper-repo">github链接</a></p>
 
                 
             </div>
@@ -933,7 +933,7 @@ class MapperSpringController {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/05/05/SpringBoot/mapstruct%E5%AE%9E%E7%8E%B0%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%9A%84%E8%BD%AC%E6%8D%A2/">https://github.com/MathisonTur/tur-study/2023/05/05/SpringBoot/mapstruct%E5%AE%9E%E7%8E%B0%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%9A%84%E8%BD%AC%E6%8D%A2/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/05/05/SpringBoot/mapstruct%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/">https://github.com/MathisonTur/tur-study/2023/05/05/SpringBoot/mapstruct%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1051,18 +1051,17 @@ class MapperSpringController {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/05/05/SpringBoot/mapstruct%E5%AE%9E%E7%8E%B0%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%9A%84%E8%BD%AC%E6%8D%A2/">
+                <a href="/tur-study/2023/05/06/MybatisPlus/Mybatis-Plus%20%E6%B3%A8%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/10.jpg" class="responsive-img" alt="Mapstruct 的使用">
+                        <img src="/tur-study/medias/featureimages/1.jpg" class="responsive-img" alt="Mybatis-Plus 注解">
                         
-                        <span class="card-title">Mapstruct 的使用</span>
+                        <span class="card-title">Mybatis-Plus 注解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1072,23 +1071,26 @@ class MapperSpringController {
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-06
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/Mybatis-Plus/" class="post-category">
+                                    Mybatis-Plus
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tur-study/tags/Mybatis-Plus/">
+                        <span class="chip bg-color">Mybatis-Plus</span>
                     </a>
                     
                 </div>
@@ -1281,7 +1283,7 @@ class MapperSpringController {
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">39.5k</span>
+                        class="white-color">111k</span>
             
             
             
