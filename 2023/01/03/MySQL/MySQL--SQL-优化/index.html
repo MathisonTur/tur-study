@@ -5,7 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="MySQL--SQL 优化, Tur的学习笔记">
-    <meta name="description" content="">
+    <meta name="description" content="1. 插入数据1.1 insert一次性往数据库表中插入多条数据时，可从以下三个方面优化：
+批量插入数据：
+INSERT INTO tb_test values(1, &#39;Tome&#39;), (2, &#39;Cat&#39;), (3, &#39;Jerry&#39;);
+
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -405,14 +409,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    10 分
                 </div>
                 
 
@@ -435,7 +439,203 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="1-插入数据"><a href="#1-插入数据" class="headerlink" title="1. 插入数据"></a>1. 插入数据</h2><h3 id="1-1-insert"><a href="#1-1-insert" class="headerlink" title="1.1 insert"></a>1.1 insert</h3><p>一次性往数据库表中插入多条数据时，可从以下三个方面优化：</p>
+<p><strong>批量插入数据：</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">INSERT INTO tb_test values(1, 'Tome'), (2, 'Cat'), (3, 'Jerry');<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>手动控制事务：</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">start transaction;
+insert into tb_test values(1,'Tom'),(2,'Cat'),(3,'Jerry');
+insert into tb_test values(4,'Tom'),(5,'Cat'),(6,'Jerry');
+insert into tb_test values(7,'Tom'),(8,'Cat'),(9,'Jerry');
+commit;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>主键顺序插入</strong></p>
+<p>主键顺序插入的性能要高于乱序插入</p>
+<pre class="line-numbers language-none"><code class="language-none">主键乱序插入 : 8 1 9 21 88 2 4 15 89 5 7 3
+主键顺序插入 : 1 2 3 4 5 7 8 9 15 21 88 89<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="1-2-大批量插入数据"><a href="#1-2-大批量插入数据" class="headerlink" title="1.2 大批量插入数据"></a>1.2 大批量插入数据</h3><p>如果一次性需要插入大批量数据(比如: 几百万的记录)，使用 insert 语句插入性能较低，此时可以使用MySQL数据库提供的 <code>load </code>指令进行插入。操作如下：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171448093.png" alt="image-20230517144854966"></p>
+<p>可以执行如下指令，将数据脚本文件中的数据加载到表结构中：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 客户端连接服务端时，加上参数 --local-infile 开启允许本地加载数据
+mysql --local-infile -uroot -p
+
+-- 设置全局参数 local-infile 为1，开启从本地加载文件导入数据开关
+set global local_infile = 1;
+
+-- 执行 load 命令将准备好的数据加载到表结构
+load data local infile '/root/sql1.log' into table tb_user fields terminated by ',' lines terminated by '\n';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>本地数据文件中的数据建议是主键顺序的，提高插入性能</p>
+</blockquote>
+<h2 id="2-主键优化"><a href="#2-主键优化" class="headerlink" title="2. 主键优化"></a>2. 主键优化</h2><h3 id="2-1-数据组织结构"><a href="#2-1-数据组织结构" class="headerlink" title="2.1 数据组织结构"></a>2.1 数据组织结构</h3><p>在 InnoDB 存储引擎中，表数据都是根据主键顺序组织存放的，这种存储方式的表成为索引组织表</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171517306.png" alt="image-20230517151727248"></p>
+<p>行数据，都是存储在聚集索引的叶子节点上的，而 InnoDB 的逻辑结构图：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171518444.png" alt="image-20230517151830383"></p>
+<p>在InnoDB引擎中，数据行是记录在逻辑结构 page 页中的，而每一个页的大小是固定的，默认16K。那也就意味着， 一个页中所存储的行也是有限的，如果插入的数据行row在该页存储不小，将会存储到下一个页中，页与页之间会通过指针连接</p>
+<h3 id="3-2-页分裂"><a href="#3-2-页分裂" class="headerlink" title="3.2 页分裂"></a>3.2 页分裂</h3><p>页可以为空，也可以填充一半，也可以填充100%。每个页包含了2-N行数据(如果一行数据过大，会行溢出)，根据主键排列。</p>
+<p>页可以为空，也可以填充一半，也可以填充100%。每个页包含了2-N行数据(如果一行数据过大，会行溢出)，根据主键排列</p>
+<h4 id="3-2-1-主键顺序插入效果"><a href="#3-2-1-主键顺序插入效果" class="headerlink" title="3.2.1 主键顺序插入效果"></a>3.2.1 主键顺序插入效果</h4><ol>
+<li><p>从磁盘中申请页，主键顺序插入</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171547203.png" alt="image-20230517154757040"></p>
+</li>
+<li><p>第一个页没有满，继续往第一页插入</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171548279.png" alt="image-20230517154819223"></p>
+</li>
+<li><p>当第一个也写满之后，再写入第二个页，页与页之间会通过指针连接</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171548052.png" alt="image-20230517154846003"></p>
+</li>
+<li><p>当第二页写满了，再往第三页写入</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171549346.png" alt="image-20230517154913298"></p>
+</li>
+</ol>
+<h4 id="3-2-2-主键乱序插入效果"><a href="#3-2-2-主键乱序插入效果" class="headerlink" title="3.2.2 主键乱序插入效果"></a>3.2.2 主键乱序插入效果</h4><ol>
+<li><p>加入1#,2#页都已经写满了，存放了如图所示的数据</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171549009.png" alt="image-20230517154954945"></p>
+</li>
+<li><p>此时再插入id为50的记录，不会再次开启一个页，将数据写入新的页中，因为索引结构的叶子节点是由顺序的，50 应该存储在 47 之后，而 47 所在的 #1 页已经写满，此时会开辟新的页 #3， 将 #1 页后一半的数据移动到 #3 页，再在 #3 页中插入 50</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171552666.png" alt="image-20230517155241574"></p>
+</li>
+<li><p>移动数据，并插入id为50的数据之后，那么此时，这三个页之间的数据顺序是有问题的。 1#的下一个页，应该是3#， 3#的下一个页是2#。 所以，此时，需要重新设置链表指针</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171553841.png" alt="image-20230517155311786"></p>
+</li>
+</ol>
+<p>上述的这种现象，称之为 “<strong>页分裂</strong>“，是比较耗费性能的操作。</p>
+<h4 id="3-2-3-页合并"><a href="#3-2-3-页合并" class="headerlink" title="3.2.3 页合并"></a>3.2.3 页合并</h4><p>示例演示如下：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171619018.png" alt="image-20230517161901782"></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171619172.png" alt="image-20230517161917100"></p>
+<blockquote>
+<p>知识小贴士：<code>MERGE_THRESHOLD</code>：合并页的阈值，可以自己设置，在创建表或者创建索引时指定</p>
+</blockquote>
+<h4 id="3-2-4-索引设计原则"><a href="#3-2-4-索引设计原则" class="headerlink" title="3.2.4 索引设计原则"></a>3.2.4 索引设计原则</h4><ul>
+<li>满足业务需求的情况下，尽量降低主键的长度。</li>
+<li>插入数据时，尽量选择顺序插入，选择使用<code>AUTO_INCREMENT</code>自增主键。</li>
+<li>尽量不要使用<code>UUID</code>做主键或者是其他自然主键，如身份证号。</li>
+<li>业务操作时，避免对主键的修改</li>
+</ul>
+<h2 id="3-order-by-优化"><a href="#3-order-by-优化" class="headerlink" title="3. order by 优化"></a>3. order by 优化</h2><p>MySQL 的排序由以下两种方式：</p>
+<ul>
+<li><code>Using filesort</code>：通过表的索引或全表扫描，读取满足条件的数据行，然后在排序缓冲区 <code>sort buffer </code>中完成排序操作，所有不是通过索引直接返回排序结构的排序豆角 <code>FileSort </code>排序</li>
+<li><code>Using index</code>：通过有序索引扫描直接返回有序数据，不需要额外排序，操作效率高</li>
+</ul>
+<p>对于以上的两种排序方式，<code>Using index</code>的性能高，而<code>Using filesort</code>的性能低，我们在优化排序操作时，尽量要优化为 <code>Using index</code></p>
+<p>实例演示：</p>
+<p>tb_user 表中字段无索引，此时进行排序：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171627747.png"></p>
+<p><strong>升序排序：</strong></p>
+<p>为 age、phone 字段创建索引：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建索引
+create index idx_user_age_phone_aa on tb_user(age,phone);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>再次根据 age、phone 进行排序：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171629783.png" alt="image-20230517162906691"></p>
+<p>建立索引之后，再次进行排序查询，就由原来的Using filesort， 变为了 Using index，性能就是比较高的了</p>
+<p><strong>降序排序：</strong></p>
+<p>创建索引后，根据age, phone进行降序排序：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171629254.png" alt="image-20230517162940167"></p>
+<p>也出现 Using index， 但是此时Extra中出现了 Backward index scan，这个代表反向扫描索引，因为在MySQL中我们创建的索引，默认索引的叶子节点是从小到大排序的，而此时我们查询排序时，是从大到小，所以，在扫描时，就是反向扫描，就会出现 Backward index scan。 在 MySQL8版本中，支持降序索引，我们也可以创建降序索引。</p>
+<p><strong>遵循最左前缀法则：</strong></p>
+<p>根据phone，age进行升序排序，phone在前，age在后：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171630617.png" alt="image-20230517163025524"></p>
+<p>排序时,也需要满足<strong>最左前缀法则</strong>,否则也会出现 filesort。因为在创建索引的时候， age是第一个字段，phone是第二个字段，所以排序时，也就该按照这个顺序来，否则就会出现 Using filesort</p>
+<p><strong>联合索引字段排序方式不同：</strong></p>
+<p>根据age, phone进行降序一个升序，一个降序：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171633724.png" alt="image-20230517163306611"></p>
+<p>因为创建索引时，如果未指定顺序，默认都是按照升序排序的，而查询时，一个升序，一个降序，此时就会出现Using filesort</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171633792.png" alt="image-20230517163326698"></p>
+<p>为了解决上述的问题，可以创建一个索引，这个联合索引中 age 升序排序，phone 倒序排序。</p>
+<p><strong>自定义排序方式的联合索引：</strong></p>
+<p>创建联合索引(age 升序排序，phone 倒序排序)</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create index idx_user_age_phone_ad on tb_user(age asc ,phone desc);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171634935.png" alt="image-20230517163427836"></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171634031.png" alt="image-20230517163438951"></p>
+<p>升序/降序联合索引结构图示:</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171635610.png" alt="image-20230517163531562"></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171635162.png" alt="image-20230517163509074"></p>
+<p>由上述的测试,可以得出order by优化原则:</p>
+<ul>
+<li>根据排序字段建立合适的索引，多字段排序时，也遵循最左前缀法则。</li>
+<li>尽量使用覆盖索引。</li>
+<li>多字段排序, 一个升序一个降序，此时需要注意联合索引在创建时的规则（ASC/DESC）。</li>
+<li>如果不可避免的出现filesort，大数据量排序时，可以适当增大排序缓冲区大小 sort_buffer_size(默认256k)</li>
+</ul>
+<h2 id="4-group-by-优化"><a href="#4-group-by-优化" class="headerlink" title="4. group by 优化"></a>4. group by 优化</h2><p>在分组操作中，主要通过以下两点进行优化，以提升性能：</p>
+<ul>
+<li>在分组操作时，可以通过索引来提高效率。</li>
+<li>分组操作时，索引的使用也是满足最左前缀法则的</li>
+</ul>
+<p>实例演示：在 tb_user 表中基于 profession、age、status 进行分组</p>
+<ul>
+<li>当 profession 、age、status 没有联合索引时</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171643200.png" alt="image-20230517164311118"></p>
+<ul>
+<li>为 profession、age、status 建立索引后：</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171643072.png" alt="image-20230517164350976"></p>
+<ul>
+<li>最左前缀法则的演示</li>
+</ul>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171644568.png" alt="image-20230517164421422"></p>
+<p>如果仅仅根据age分组，就会出现 Using temporary ；而如果是 根据 profession,age两个字段同时分组，则不会出现 Using temporary。原因是因为对于分组操作，在联合索引中，也是符合最左前缀法则的</p>
+<h2 id="5-limit-优化"><a href="#5-limit-优化" class="headerlink" title="5. limit 优化"></a>5. limit 优化</h2><p>在数据量比较大时，如果进行limit分页查询，在查询时，越往后，分页查询效率越低</p>
+<p>limit 分页查询存在的问题：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171656115.png" alt="image-20230517165603008"></p>
+<p>通过测试可以看到，越往后，分页查询效率越低，这就是分页查询的问题所在。<br>因为，当在进行分页查询时，如果执行 limit 2000000,10 ，此时需要MySQL排序前2000010 记录，仅仅返回 2000000 - 2000010 的记录，其他记录丢弃，查询排序的代价非常大</p>
+<p><strong>优化思路：</strong>一般分页查询时，通过创建<font color="red">覆盖索引</font>能够比较好的提高性能，可以通过<font color="red">覆盖索引加子查询</font>的形式进行优化</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">explain select * from tb_sku t, (select id from tb_sku order by id limit 2000000, 10) a where t.id = a.id;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="6-count-优化"><a href="#6-count-优化" class="headerlink" title="6. count 优化"></a>6. count 优化</h2><h3 id="6-1-概述"><a href="#6-1-概述" class="headerlink" title="6.1 概述"></a>6.1 概述</h3><p>在数据量很大时，执行 count 操作时非常耗时的，如下：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305171803942.png" alt="image-20230517180304888"></p>
+<p>上述演示是在 InnoDB 存储引擎下的。<code>InnoDB </code>执行 <code>count(*)</code> 时是将数据一行一行的从引擎里读取出来，然后累计计数。</p>
+<blockquote>
+<p>知识小贴士：MyISAM 引擎把一个表的总行数存在了磁盘上，因此执行<code>count(*)</code>的时候会直接返回这个数，效率很高； 但是如果是带条件的 count，MyISAM也慢。</p>
+</blockquote>
+<p>如果说要大幅度提升InnoDB表的count效率，主要的优化思路：自己计数(可以借助于redis这样的数据库进行,但是如果是带条件的count又比较麻烦了)。</p>
+<h3 id="6-2-count-用法"><a href="#6-2-count-用法" class="headerlink" title="6.2 count 用法"></a>6.2 count 用法</h3><p>count 是一个聚合函数，对于返回的结果集一行行的判断。如果 count 函数的参数不是 NULL，累计值就加1，否则不加，最后返回累计值</p>
+<p>用法：<code>count(*)、count(主键)、count(字段)、count(数字)</code></p>
+<table>
+<thead>
+<tr>
+<th>count 用法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>count(主键)</td>
+<td>InnoDB 引擎会遍历整张表，把每一行的 主键id 值都取出来，返回给服务层。服务层拿到主键后，直接按行进行累加(主键不可能为null)</td>
+</tr>
+<tr>
+<td>count(字段)</td>
+<td>1. 没有not null 约束 : InnoDB 引擎会遍历整张表把每一行的字段值都取出来，返回给服务层，服务层判断是否为null，不为null，计数累加。<br>2. 有not null 约束：InnoDB 引擎会遍历整张表把每一行的字段值都取出来，返回给服务层，直接按行进行累加。</td>
+</tr>
+<tr>
+<td>count(数字)</td>
+<td>InnoDB 引擎遍历整张表，但不取值。服务层对于返回的每一行，放一个数字 “1” 进去，直接按行进行累加。</td>
+</tr>
+<tr>
+<td>count(*)</td>
+<td>InnoDB引擎并不会把全部字段取出来，而是专门做了优化，不取值，服务层直接按行进行累加</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>按照效率排序：<code>count(字段) &lt; count(主键 id) &lt; count(1) ≈ count(*)</code>，所以尽量使用 <code>count(*)</code></p>
+</blockquote>
+<h2 id="7-update-优化"><a href="#7-update-优化" class="headerlink" title="7. update 优化"></a>7. update 优化</h2><p>主要需要注意一下update语句执行时的注意事项。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">update course set name = 'javaEE' where id = 1 ;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>当我们在执行删除的SQL语句时，会锁定id为1这一行的数据，然后事务提交之后，行锁释放。</p>
+<p>但是当我们在执行如下SQL时。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">update course set name = 'SpringBoot' where name = 'PHP' ;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>当我们开启多个事务，在执行上述的SQL时，我们发现行锁升级为了表锁。 导致该update语句的性能大大降低。</p>
+<p>InnoDB的行锁是针对索引加的锁，不是针对记录加的锁 ,并且该索引不能失效，否则会从行锁升级为表锁</p>
+
                 
             </div>
             <hr/>
@@ -583,13 +783,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/03/26/hello-world/">
+                <a href="/tur-study/2023/01/04/MySQL/MySQL--%E9%94%81/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/tur-study/medias/featureimages/9.jpg" class="responsive-img" alt="MySQL--锁">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">MySQL--锁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -600,15 +800,27 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-04
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tur
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/tur-study/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tur-study/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -799,7 +1011,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">111k</span>
+                        class="white-color">129.8k</span>
             
             
             
