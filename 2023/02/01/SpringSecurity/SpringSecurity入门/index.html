@@ -4,22 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MySQL管理, Tur的学习笔记">
-    <meta name="description" content="1. 系统数据库MySQL 数据库安装完成后，自带了四个数据库，具体作用如下：
-
-
-
-数据库
-含义
-
-
-
-mysql
-存储 MySQL 服务器正常运行所需要的各种信息（时区、主从、用户、权限等）
-
-
-information_schema
-提">
+    <meta name="keywords" content="SpringSecurity入门, Tur的学习笔记">
+    <meta name="description" content="1. 概述基本上，在所有的开发的系统中，都必须做认证(authentication)和授权(authorization)，以保证系统的安全性。
+对于认证（authentication）和授权（authorization）的区别，下面举个例子">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -31,7 +18,7 @@ information_schema
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MySQL管理 | Tur的学习笔记</title>
+    <title>SpringSecurity入门 | Tur的学习笔记</title>
     <link rel="icon" type="image/png" href="/tur-study/favicon.png">
     
 
@@ -351,12 +338,12 @@ information_schema
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/tur-study/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MySQL管理</h1>
+                    <h1 class="description center-align post-title">SpringSecurity入门</h1>
                 </div>
             </div>
         </div>
@@ -380,8 +367,8 @@ information_schema
                     
                     <div class="article-tag">
                         
-                            <a href="/tur-study/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tur-study/tags/SpringSecurity/">
+                                <span class="chip bg-color">SpringSecurity</span>
                             </a>
                         
                     </div>
@@ -392,8 +379,8 @@ information_schema
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/tur-study/categories/MySQL/" class="post-category">
-                                MySQL
+                            <a href="/tur-study/categories/SpringSecurity/" class="post-category">
+                                SpringSecurity
                             </a>
                         
                     </div>
@@ -405,28 +392,28 @@ information_schema
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-05
+                    2023-02-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-05-18
+                    2023-06-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 
@@ -449,108 +436,223 @@ information_schema
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-系统数据库"><a href="#1-系统数据库" class="headerlink" title="1. 系统数据库"></a>1. 系统数据库</h2><p>MySQL 数据库安装完成后，自带了四个数据库，具体作用如下：</p>
-<table>
-<thead>
-<tr>
-<th>数据库</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mysql</td>
-<td>存储 MySQL 服务器正常运行所需要的各种信息（时区、主从、用户、权限等）</td>
-</tr>
-<tr>
-<td>information_schema</td>
-<td>提供了访问数据库元数据的各种表和视图，包含数据库、表、字段类型和访问权限等</td>
-</tr>
-<tr>
-<td>performance_schema</td>
-<td>为 MySQL 服务器运行时状态提供了一个底层监控功能，主要用于收集数据库服务器性能参数</td>
-</tr>
-<tr>
-<td>sys</td>
-<td>包含了一系列方便 DBA 和开发人员利用 performance_schema 性能数据库进行性能调优和诊断的视图</td>
-</tr>
-</tbody></table>
-<h2 id="2-常用工具"><a href="#2-常用工具" class="headerlink" title="2. 常用工具"></a>2. 常用工具</h2><h3 id="2-1-mysql"><a href="#2-1-mysql" class="headerlink" title="2.1 mysql"></a>2.1 mysql</h3><blockquote>
-<p>该 mysql 指的是 MySQL 的客户端工具</p>
-</blockquote>
-<p>语法：<code>mysql [options] [database]</code><br>选项：</p>
+                <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>基本上，在所有的开发的系统中，都必须做认证(<code>authentication</code>)和授权(<code>authorization</code>)，以保证系统的安全性。</p>
+<p>对于认证（<code>authentication</code>）和授权（<code>authorization</code>）的区别，下面举个例子：</p>
 <ul>
-<li>-u，–user=name：指定用户</li>
-<li>-p，–pasword[=name] 指定密码</li>
-<li>-h，–host=name 指定服务器 IP 或域名</li>
-<li>-P，–port=port 指定连接端口</li>
-<li>-e，–execute=name 执行 SQL 语句并退出</li>
+<li>以<strong>登机</strong>举例子：<ul>
+<li>【认证】你要登机，你需要出示你的 passport 和 ticket，passport 是为了证明你张三确实是你张三，这就是 authentication。</li>
+<li>【授权】而机票是为了证明你张三确实买了票可以上飞机，这就是 authorization。</li>
 </ul>
-<p>-e 选项可以在Mysql客户端执行SQL语句，而不用连接到MySQL数据库再执行，对于一些批处理脚本，这种方式尤其方便。</p>
-<h3 id="2-2-mysqladmin"><a href="#2-2-mysqladmin" class="headerlink" title="2.2 mysqladmin"></a>2.2 mysqladmin</h3><p>mysqladmin 是一个执行管理操作的客户端程序。可以用它来检查服务器的配置和当前状态、创建并删除数据库等。</p>
+</li>
+<li>以<strong>论坛</strong>举例子：<ul>
+<li>【认证】你要登录论坛，输入用户名张三，密码 1234，密码正确，证明你张三确实是张三，这就是 authentication。</li>
+<li>【授权】再一 check 用户张三是个版主，所以有权限加精删别人帖，这就是 authorization</li>
+</ul>
+</li>
+</ul>
+<p>所以简单来说：认证解决“你是谁”的问题，授权解决“你能做什么”的问题。</p>
+<p>在 Java 生态中，目前有 <a target="_blank" rel="noopener" href="https://spring.io/projects/spring-security">Spring Security</a> 和 <a target="_blank" rel="noopener" href="https://shiro.apache.org/">Apache Shiro</a> 两个安全框架，可以完成认证和授权的功能。</p>
+<h2 id="2-快速入门"><a href="#2-快速入门" class="headerlink" title="2. 快速入门"></a>2. 快速入门</h2><p>实现：访问API接口时，需要先进行登录，才能进行访问</p>
+<h3 id="2-1-引入依赖"><a href="#2-1-引入依赖" class="headerlink" title="2.1 引入依赖"></a>2.1 引入依赖</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 实现对 Spring Security 的自动化配置--&gt;</span>                         
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>                                               
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>            
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-security<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>    
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>                                               
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>            
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>       
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>                                              <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-配置文件"><a href="#2-2-配置文件" class="headerlink" title="2.2 配置文件"></a>2.2 配置文件</h3><p>在 <code>application.yml</code>中，添加 Spring Security 配置，如下：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">spring:
+  # Spring Security 配置项，对应 SecurityProperties 配置类
+  security:
+    # 配置默认的 InMemoryUserDetailsManager 的用户账号和密码
+    user:
+      name: user  # 账号
+      password: 123456 # 密码
+      roles: ADMIN # 角色<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 <code>spring.security</code> 配置项，设置 Spring Security 的配置，对应 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/SecurityProperties.java">SecurityProperties</a> 配置类。</p>
+<p>默认情况下，Spring Boot <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/servlet/UserDetailsServiceAutoConfiguration.java">UserDetailsServiceAutoConfiguration</a> 自动化配置类，会创建一个<strong>内存级别</strong>的 <a href="https://github.com/spring-projects/spring-security/blob/master/core/src/main/java/org/springframework/security/provisioning/InMemoryUserDetailsManager.java">InMemoryUserDetailsManager</a> Bean 对象，提供认证的用户信息。</p>
+<ul>
+<li>这里<strong>添加了</strong> <code>spring.security.user</code> 配置项，UserDetailsServiceAutoConfiguration 会基于配置的信息创建一个用户 <a href="https://github.com/spring-projects/spring-security/blob/master/core/src/main/java/org/springframework/security/core/userdetails/User.java">User</a> 在内存中。</li>
+<li>如果<strong>未添加</strong> <code>spring.security.user</code> 配置项，UserDetailsServiceAutoConfiguration 会自动创建一个用户名为 <code>"user"</code> ，密码为 UUID 随机的用户 <a href="https://github.com/spring-projects/spring-security/blob/master/core/src/main/java/org/springframework/security/core/userdetails/User.java">User</a> 在内存中</li>
+</ul>
+<h3 id="2-3-AdminController"><a href="#2-3-AdminController" class="headerlink" title="2.3 AdminController"></a>2.3 AdminController</h3><p>在 controller 包下创建 API 接口：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping("/admin")
+public class AdminController {
+    
+    @GetMapping("/demo")
+    public String demo() {
+        return "Demo";
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-4-简单测试"><a href="#2-4-简单测试" class="headerlink" title="2.4 简单测试"></a>2.4 简单测试</h3><p>启动服务后，访问：<code>http://loclahost:8080/admin/demo</code>，因为未登录，会被 Spring Security 拦截到登录界面：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305272232122.png" alt="image-20230527223223894"></p>
+<p>因为没有<strong>自定义</strong>登录界面，所以默认会使用 <a href="https://github.com/spring-projects/spring-security/blob/master/web/src/main/java/org/springframework/security/web/authentication/ui/DefaultLoginPageGeneratingFilter.java">DefaultLoginPageGeneratingFilter</a> 类，生成上述界面。</p>
+<p>输入配置的「user/123456」账号，进行登录。登录完成后，因为 Spring Security 会记录被拦截的访问地址，所以浏览器自动动跳转 <a target="_blank" rel="noopener" href="http://127.0.0.1:8080/admin/demo">http://127.0.0.1:8080/admin/demo</a> 接口。访问结果如下图所示：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305272234863.png" alt="image-20230527223400814"></p>
+<h2 id="3-进阶使用"><a href="#3-进阶使用" class="headerlink" title="3. 进阶使用"></a>3. 进阶使用</h2><p>实现：自定义 Spring Security 配置，实现权限控制</p>
+<p><em>基于上述示例</em></p>
+<h3 id="3-1-方法实现权限控制"><a href="#3-1-方法实现权限控制" class="headerlink" title="3.1 方法实现权限控制"></a>3.1 方法实现权限控制</h3><h4 id="3-1-1-SecurityConfig"><a href="#3-1-1-SecurityConfig" class="headerlink" title="3.1.1 SecurityConfig"></a>3.1.1 SecurityConfig</h4><p>在 config 包下，创建 SecurityConfig 配置类，实现 Spring Security 在 Web 场景下的自定义配置</p>
 <blockquote>
-<p>通过帮助文档查看选项：mysqladmin –help</p>
+<p>以下配置在 Spring Security 5.4 之后版本使用的。5.4 版本之前使用的是继承 WebSecurityConfigurerAdapter</p>
 </blockquote>
-<p>语法: <code>mysqladmin [options] command ...</code></p>
-<p>选项:</p>
-<ul>
-<li>-u, –user=name #指定用户名</li>
-<li>-p, –password[=name] #指定密码</li>
-<li>-h, –host=name #指定服务器IP或域名</li>
-<li>-P, –port=port #指定连接端口</li>
-</ul>
-<h3 id="2-3-mysqlbinlog"><a href="#2-3-mysqlbinlog" class="headerlink" title="2.3 mysqlbinlog"></a>2.3 mysqlbinlog</h3><p>由于服务器生成的二进制日志文件以二进制格式保存，所以如果想要检查这些文本的文本格式，就会使用到mysqlbinlog 日志管理工具</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">语法 ：mysqlbinlog [options] log-files1 log-files2 ...
-选项 ：
--d, --database=name 指定数据库名称，只列出指定的数据库相关操作。
--o, --offset=# 忽略掉日志中的前n行命令。
--r,--result-file=name 将输出的文本格式日志输出到指定文件。
--s, --short-form 显示简单格式， 省略掉一些信息。
---start-datatime=date1 --stop-datetime=date2 指定日期间隔内的所有日志。
---start-position=pos1 --stop-position=pos2 指定位置间隔内的所有日志。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class SecurityConfig {
 
-<h3 id="2-4-mysqlshow"><a href="#2-4-mysqlshow" class="headerlink" title="2.4 mysqlshow"></a>2.4 mysqlshow</h3><p>mysqlshow 客户端对象查找工具，用来很快地查找存在哪些数据库、数据库中的表、表中的列或者索引。</p>
-<p>语法 ：<code>mysqlshow [options] [db_name [table_name [col_name]]]</code></p>
-<p>选项 ：</p>
-<ul>
-<li>–count 显示数据库及表的统计信息（数据库，表 均可以不指定）</li>
-<li>-i 显示指定数据库或者指定表的状态信息</li>
-</ul>
-<h3 id="2-5-mysqldump"><a href="#2-5-mysqldump" class="headerlink" title="2.5 mysqldump"></a>2.5 mysqldump</h3><p>mysqldump 客户端工具用来备份数据库或在不同数据库之间进行数据迁移。备份内容包含创建表，及插入表的SQL语句</p>
-<p>语法 ：</p>
-<ul>
-<li>mysqldump [options] db_name [tables]</li>
-<li>mysqldump [options] –database/-B db1 [db2 db3…]</li>
-<li>mysqldump [options] –all-databases/-A</li>
-</ul>
-<p>连接选项 ：</p>
-<ul>
-<li>-u, –user=name 指定用户名</li>
-<li>-p, –password[=name] 指定密码</li>
-<li>-h, –host=name 指定服务器ip或域名</li>
-<li>-P, –port=# 指定连接端口</li>
-</ul>
-<p>输出选项：</p>
-<ul>
-<li>–add-drop-database 在每个数据库创建语句前加上 drop database 语句</li>
-<li>–add-drop-table 在每个表创建语句前加上 drop table 语句 , 默认开启 ; 不开启 (–skip-add-drop-table)</li>
-<li>-n, –no-create-db 不包含数据库的创建语句</li>
-<li>-t, –no-create-info 不包含数据表的创建语句</li>
-<li>-d –no-data 不包含数据</li>
-<li>-T, –tab=name 自动生成两个文件：一个.sql文件，创建表结构的语句；一个.txt文件，数据文件</li>
-</ul>
-<p>备份出来的数据包含：</p>
-<ul>
-<li>删除表的语句</li>
-<li>创建表的语句</li>
-<li>数据插入语句</li>
-</ul>
-<p>如果我们在数据备份时，不需要创建表，或者不需要备份数据，只需要备份表结构，都可以通过对应的参数来实现。</p>
-<h3 id="2-6-mysqlimport-x2F-source"><a href="#2-6-mysqlimport-x2F-source" class="headerlink" title="2.6 mysqlimport/source"></a>2.6 mysqlimport/source</h3><h4 id="2-6-1-mysqlimport"><a href="#2-6-1-mysqlimport" class="headerlink" title="2.6.1 mysqlimport"></a>2.6.1 mysqlimport</h4><p>mysqlimport 是客户端数据导入工具，用来导入mysqldump 加 -T 参数后导出的文本文件。</p>
-<p>语法 ：<code>mysqlimport [options] db_name textfile1 [textfile2...]</code></p>
-<p>示例 ：<code>mysqlimport -uroot -p2143 test /tmp/city.txt</code></p>
-<h4 id="2-6-2-source"><a href="#2-6-2-source" class="headerlink" title="2.6.2 source"></a>2.6.2 source</h4><p>如果需要导入sql文件,可以使用mysql中的source 指令 :</p>
-<p>语法 ：<code>source /root/xxxxx.sql</code></p>
+    /**
+     * 用户配置，使用内存级别的 InMemoryUserDetailsManager Bean 对象，提供认证的用户信息
+     * */
+    @Bean
+    public InMemoryUserDetailsManager userDetailsManager() {
+        // 配置 admin 用户
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password("admin")
+                .roles("ADMIN")
+                .build();
+        // 配置 normal 用户
+        UserDetails normal = User.builder()
+                .username("normal")
+                .password("normal")
+                .roles("NORMAL")
+                .build();
+        return new InMemoryUserDetailsManager(admin, normal);
+    }
 
+    /**
+     * 配置 URL 的权限控制
+     * */
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/test/echo").permitAll()
+                .antMatchers("/test/admin").hasRole("ADMIN")
+                .antMatchers("/test/normal").access("hasRole('ROLE_NORMAL')")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                    // .loginPage("/login")//  登录 URL 地址，通常用来自定义登录界面
+                    .permitAll()
+                .and()
+                .logout()
+                    // .logoutUrl("/logout") // 退出 URL 地址，可自定义退出页面
+                    .permitAll();
+        return http.build();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>用户配置：</strong></p>
+<p>使用<strong>内存级别</strong>的 <code>InMemoryUserDetailsManagerBean </code>对象，提供认证的用户信息。</p>
+<ul>
+<li>Spring 内置了两种 <code>UserDetailsManager </code>实现：<ul>
+<li>InMemoryUserDetailsManager 与在 application.yml 中配置的一样</li>
+<li>JdbcUserDetailsManager 是基于 <strong>JDBC</strong>的 <a href="https://github.com/spring-projects/spring-security/blob/master/core/src/main/java/org/springframework/security/provisioning/JdbcUserDetailsManager.java">JdbcUserDetailsManager</a> 。</li>
+</ul>
+</li>
+</ul>
+<p>实际项目中，我们更多采用调用 AuthenticationManagerBuilder#userDetailsService(userDetailsService)方法，使用自定义实现的 UserDetailsService 实现类，更加<strong>灵活</strong>且<strong>自由</strong>的实现认证的用户信息的读取。</p>
+<p><strong>URL 权限配置：</strong></p>
+<p>调用 <code>HttpSecurity#authorizeRequests()</code> 方法，开始配置 URL 的<strong>权限控制</strong></p>
+<p>配置权限控制会使用到的方法：</p>
+<ul>
+<li><code>#(String... antPatterns)</code> 方法，配置匹配的 URL 地址，基于 <a target="_blank" rel="noopener" href="https://blog.csdn.net/songdexv/article/details/7219686">Ant 风格路径表达式</a> ，可传入多个。</li>
+<li>【常用】<code>#permitAll()</code> 方法，所有用户可访问。</li>
+<li>【常用】<code>#denyAll()</code> 方法，所有用户不可访问。</li>
+<li>【常用】<code>#authenticated()</code> 方法，登录用户可访问。</li>
+<li><code>#anonymous()</code> 方法，无需登录，即匿名用户可访问。</li>
+<li><code>#rememberMe()</code> 方法，通过 <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/site/docs/3.0.x/reference/remember-me.html">remember me</a> 登录的用户可访问。</li>
+<li><code>#fullyAuthenticated()</code> 方法，非 <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/site/docs/3.0.x/reference/remember-me.html">remember me</a> 登录的用户可访问。</li>
+<li><code>#hasIpAddress(String ipaddressExpression)</code> 方法，来自指定 IP 表达式的用户可访问。</li>
+<li>【常用】<code>#hasRole(String role)</code> 方法，	拥有指定角色的用户可访问。</li>
+<li>【常用】<code>#hasAnyRole(String... roles)</code> 方法，拥有指定任一角色的用户可访问。</li>
+<li>【常用】<code>#hasAuthority(String authority)</code> 方法，拥有指定权限(<code>authority</code>)的用户可访问。</li>
+<li>【常用】<code>#hasAuthority(String... authorities)</code> 方法，拥有指定任一权限(<code>authority</code>)的用户可访问。</li>
+<li>【最牛】<code>#access(String attribute)</code> 方法，当 <a target="_blank" rel="noopener" href="https://docs.spring.io/spring/docs/4.3.10.RELEASE/spring-framework-reference/html/expressions.html">Spring EL 表达式</a>的执行结果为 <code>true</code> 时，可以访问。</li>
+</ul>
+<h4 id="3-1-2-TestController"><a href="#3-1-2-TestController" class="headerlink" title="3.1.2 TestController"></a>3.1.2 TestController</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RestController
+@RequestMapping("/test")
+public class TestController {
+
+    @GetMapping("/echo")
+    public String demo() {
+        return "示例返回";
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "我是首页";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "我是管理员";
+    }
+
+    @GetMapping("/normal")
+    public String normal() {
+        return "我是普通用户";
+    }
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>对于 <code>/test/echo</code> 接口，直接访问，无需登录。</li>
+<li>对于 <code>/test/home</code> 接口，无法直接访问，需要进行登录。</li>
+<li>对于 <code>/test/admin</code> 接口，需要登录「admin/admin」用户，因为需要 ADMIN 角色。</li>
+<li>对于 <code>/test/normal</code> 接口，需要登录「normal/normal」用户，因为需要 NORMAL 角色。</li>
+</ul>
+<h3 id="3-2-注解实现权限控制"><a href="#3-2-注解实现权限控制" class="headerlink" title="3.2 注解实现权限控制"></a>3.2 注解实现权限控制</h3><h4 id="3-2-1-SecurityConfig"><a href="#3-2-1-SecurityConfig" class="headerlink" title="3.2.1 SecurityConfig"></a>3.2.1 SecurityConfig</h4><p>修改 SecurityConfig 配置类，增加 <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/method/configuration/EnableGlobalMethodSecurity.html"><code>@EnableGlobalMethodSecurity</code></a> 注解，开启对 Spring Security 注解的方法，进行权限验证。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig {<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-2-2-DemoController"><a href="#3-2-2-DemoController" class="headerlink" title="3.2.2 DemoController"></a>3.2.2 DemoController</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">
+@RestController
+@RequestMapping("/demo")
+public class DemoController {
+
+    @PermitAll
+    @GetMapping("/echo")
+    public String demo() {
+        return "示例返回";
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "我是首页";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin")
+    public String admin() {
+        return "我是管理员";
+    }
+
+    @PreAuthorize("hasRole('ROLE_NORMAL')")
+    @GetMapping("/normal")
+    public String normal() {
+        return "我是普通用户";
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p><code>@PermitAll</code> 注解，等价于 <code>#permitAll()</code> 方法，所有用户可访问。</p>
+<blockquote>
+<p>重要！！！因为在 <code>SecurityConfig </code>中，配置了 <code>.anyRequest().authenticated()</code> ，任何请求，访问的用户都需要经过认证。所以这里 <code>@PermitAll</code> <strong>注解实际是不生效的</strong>。</p>
+<p>也就是说，Java Config 配置的权限，和注解配置的权限，两者是<strong>叠加</strong>的。</p>
+</blockquote>
+</li>
+<li><p><code>@PreAuthorize</code> 注解，等价于 <code>#access(String attribute)</code> 方法，，当 Spring EL 表达式的执行结果为 true 时，可以访问。</p>
+</li>
+</ul>
+<p>Spring Security 还有其它注解，不过不太常用，见：</p>
+<h2 id="4-整合-Spring-Session"><a href="#4-整合-Spring-Session" class="headerlink" title="4. 整合 Spring Session"></a>4. 整合 Spring Session</h2><h2 id="5-整合-OAuth2"><a href="#5-整合-OAuth2" class="headerlink" title="5. 整合 OAuth2"></a>5. 整合 OAuth2</h2><h2 id="6-整合-JWT"><a href="#6-整合-JWT" class="headerlink" title="6. 整合 JWT"></a>6. 整合 JWT</h2>
                 
             </div>
             <hr/>
@@ -576,7 +678,7 @@ information_schema
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/MathisonTur/tur-study/2023/01/05/MySQL/MySQL%E7%AE%A1%E7%90%86/">https://github.com/MathisonTur/tur-study/2023/01/05/MySQL/MySQL%E7%AE%A1%E7%90%86/</a>
+                    <a href="https://github.com/MathisonTur/tur-study/2023/02/01/SpringSecurity/SpringSecurity%E5%85%A5%E9%97%A8/">https://github.com/MathisonTur/tur-study/2023/02/01/SpringSecurity/SpringSecurity%E5%85%A5%E9%97%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -614,8 +716,8 @@ information_schema
                     
                         <div class="article-tag">
                             
-                                <a href="/tur-study/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tur-study/tags/SpringSecurity/">
+                                    <span class="chip bg-color">SpringSecurity</span>
                                 </a>
                             
                         </div>
@@ -698,13 +800,13 @@ information_schema
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/tur-study/2023/01/05/MySQL/MySQL--InnoDB%E5%BC%95%E6%93%8E/">
+                <a href="/tur-study/2023/02/02/SpringSecurity/SpringSecurity-OAuth2%E5%85%A5%E9%97%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/17.jpg" class="responsive-img" alt="MySQL--InnoDB引擎">
+                        <img src="/tur-study/medias/featureimages/10.jpg" class="responsive-img" alt="SpringSecurity-OAuth2入门">
                         
-                        <span class="card-title">MySQL--InnoDB引擎</span>
+                        <span class="card-title">SpringSecurity-OAuth2入门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -715,14 +817,14 @@ information_schema
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-02
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/tur-study/categories/MySQL/" class="post-category">
-                                    MySQL
+                            <a href="/tur-study/categories/SpringSecurity/" class="post-category">
+                                    SpringSecurity
                                 </a>
                             
                             
@@ -732,8 +834,8 @@ information_schema
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tur-study/tags/SpringSecurity/">
+                        <span class="chip bg-color">SpringSecurity</span>
                     </a>
                     
                 </div>
@@ -747,13 +849,13 @@ information_schema
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/01/04/MySQL/MySQL--%E8%A7%86%E5%9B%BE-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B-%E8%A7%A6%E5%8F%91%E5%99%A8/">
+                <a href="/tur-study/2023/01/10/MySQL/MySQL--%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/7.jpg" class="responsive-img" alt="MySQL--视图-存储过程-触发器">
+                        <img src="/tur-study/medias/featureimages/9.jpg" class="responsive-img" alt="MySQL--分库分表">
                         
-                        <span class="card-title">MySQL--视图-存储过程-触发器</span>
+                        <span class="card-title">MySQL--分库分表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -764,7 +866,7 @@ information_schema
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-10
                             </span>
                         <span class="publish-author">
                             
