@@ -402,21 +402,21 @@ lilishop商城源码地址：https://gitee.com/beijing_hongye_huicheng/lilishop
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-01
+                    2023-06-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -464,6 +464,9 @@ lilishop商城源码地址：https://gitee.com/beijing_hongye_huicheng/lilishop
 <blockquote>
 <p><font color="purple">个人想法：</font></p>
 <p>项目是单体架构的，而不是微服务架构的，为了熟悉微服务架构，尝试将其重构，可以更好的熟悉微服务架构</p>
+</blockquote>
+<blockquote>
+<p><font color="green">PS：</font>这个项目的源码有很多不好的地方，加油努力完善它</p>
 </blockquote>
 <h2 id="学习步骤"><a href="#学习步骤" class="headerlink" title="学习步骤"></a>学习步骤</h2><blockquote>
 <p><font color="cornflowerblue">提示：</font></p>
@@ -663,10 +666,16 @@ lilishop商城源码地址：https://gitee.com/beijing_hongye_huicheng/lilishop
 `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 `update_by` varchar(255) not null comment '更新者',
 `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-`is_delete` tinyint unsigned not null default '0' comment '是否删除'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+`delete_flag` boolean not null default '0' comment '是否删除'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>必备的字段在每个表中都存在，因此，可以定义一个基类，包括以上字段，让其他实体类继承基类，减少重复代码</p>
-<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202305311055871.png" alt="image-20230531105321940"></p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202306012226035.png" alt="image-20230601222625924"></p>
+<p>说明：</p>
+<ul>
+<li><p><code>BOOLEAN</code>  类型实际上是  <code>TINYINT(1)</code>  类型的别名。这意味着，在 MySQL 中使用  <code>BOOLEAN</code>  类型时，实际上会将其转换为  <code>TINYINT(1)</code>  类型，并在表结构中显示为  <code>TINYINT(1)</code>  类型。   </p>
+<p>虽然  <code>BOOLEAN</code>  和  <code>TINYINT(1)</code>  类型在 MySQL 中是等价的，但是使用  <code>BOOLEAN</code>  类型可以更清晰地表达数据的含义，使代码更易于理解。此外，使用  <code>BOOLEAN</code>  类型还可以使代码更加可移植，因为不同数据库管理系统对  <code>TINYINT(1)</code>  类型的处理方式可能不同。</p>
+</li>
+</ul>
 <blockquote>
 <p><font color="orange">注：</font>在 mysql 8.0 以后整数类型不用指定长度，已经被废弃</p>
 </blockquote>
@@ -867,13 +876,13 @@ lilishop商城源码地址：https://gitee.com/beijing_hongye_huicheng/lilishop
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tur-study/2023/04/24/Project/README/">
+                <a href="/tur-study/2023/05/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F--%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/tur-study/medias/featureimages/15.jpg" class="responsive-img" alt="商城项目文档">
+                        <img src="/tur-study/medias/featureimages/23.jpg" class="responsive-img" alt="设计模式--创建型模式">
                         
-                        <span class="card-title">商城项目文档</span>
+                        <span class="card-title">设计模式--创建型模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -884,14 +893,14 @@ lilishop商城源码地址：https://gitee.com/beijing_hongye_huicheng/lilishop
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/tur-study/categories/%E9%A1%B9%E7%9B%AE/" class="post-category">
-                                    项目
+                            <a href="/tur-study/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
                                 </a>
                             
                             
@@ -901,8 +910,8 @@ lilishop商城源码地址：https://gitee.com/beijing_hongye_huicheng/lilishop
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tur-study/tags/%E9%A1%B9%E7%9B%AE/">
-                        <span class="chip bg-color">项目</span>
+                    <a href="/tur-study/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
                     </a>
                     
                 </div>
@@ -1046,7 +1055,7 @@ lilishop商城源码地址：https://gitee.com/beijing_hongye_huicheng/lilishop
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">156.1k</span>
+                        class="white-color">169.5k</span>
             
             
             

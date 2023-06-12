@@ -5,13 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="【lilishop商城】开始搭建服务模块前的准备, Tur的学习笔记">
-    <meta name="description" content="统一响应结果的定义1. 响应码定义枚举方式：
-/**
- * @author tur
- * @version 1.0
- * @date 2023/5/22 16:58
- * @description 全局响应码&amp;lt;br&amp;gt;
- * 第一">
+    <meta name="description" content="搭建代码生成器模块采用 mybatis-plus 来生成 entity、service、controller、mapper 层的代码：
+
+
+注：详细的用法，见：https://baomidou.com/pages/981406/
+
+具体的 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -404,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-01
+                    2023-06-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    896
+                    352
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -441,181 +440,36 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="统一响应结果的定义"><a href="#统一响应结果的定义" class="headerlink" title="统一响应结果的定义"></a>统一响应结果的定义</h2><h3 id="1-响应码定义"><a href="#1-响应码定义" class="headerlink" title="1. 响应码定义"></a>1. 响应码定义</h3><p><strong>枚举方式：</strong></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">/**
- * @author tur
- * @version 1.0
- * @date 2023/5/22 16:58
- * @description 全局响应码&lt;br&gt;
- * 第一位 1:商品；2:用户；3:交易,4:促销,5:店铺,6:页面,7:设置,8:其他
- */
-@Getter
-@AllArgsConstructor
-public enum GlobalResultCode {
-
-    /**
-     * 成功
-     */
-    SUCCESS(200, "成功"),
-
-    /**
-     * 系统异常
-     */
-    ERROR(500, "服务器繁忙，请稍后重试"),
-
-    /**
-     * 参数异常
-     */
-    PARAMS_ERROR(4002, "参数异常");
-
-    /**
-     * 状态码
-     * */
-    private final Integer code;
-
-    /**
-     * 响应信息
-     * */
-    private final String message;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>类定义属性，接口定义常量：</strong></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Getter
-@AllArgsConstructor
-public class ErrorCode {
-
-    /**
-     * 响应码
-     * */
-    private final Integer code;
-
-    /**
-     * 响应信息
-     * */
-    private final String msg;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public interface GlobalErrorCodeConstants {
-
-    /**
-     * 操作成功
-     * */
-    ErrorCode SUCCESS = new ErrorCode(0, "操作成功");
-    
-    /**
-     * 请求参数不正确
-     * */
-    ErrorCode BAD_REQUEST = new ErrorCode(400, "请求参数不正确");
-
-    /**
-     * 系统异常
-     * */
-    ErrorCode INTERNAL_SERVER_ERROR = new ErrorCode(500, "系统异常");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>以上两种方式随意采用一种均可。算是都有利弊。</p>
-<p><strong>说明：</strong></p>
-<ul>
-<li>枚举方式：响应码值确定，但由于需要定义的响应码较多，故而将其分到各个模块中分别定义，会造成重复声明两个字段</li>
-<li>类、接口方式：各个模块分别定义时，可以直接使用响应码类，不用再次声明，坏处嘛暂未想到。</li>
-</ul>
-<blockquote>
-<p><font color="green">PS：</font>这里决定采用枚举定义，你想问为什么？答案就是我也不知道，别人也这么做的 (σﾟ∀ﾟ)σ..:*☆哎哟不错哦</p>
-</blockquote>
-<blockquote>
-<p><font color="orange">注：</font>此处采用接口来定义常量有以下原因：</p>
-<ul>
-<li>接口的大小比类要小得多</li>
-<li>接口可以省略<code>public static final</code>的声明</li>
-</ul>
-</blockquote>
-<h3 id="2-统一响应结果定义"><a href="#2-统一响应结果定义" class="headerlink" title="2. 统一响应结果定义"></a>2. 统一响应结果定义</h3><p>响应结果中必备的三个字段：</p>
-<ul>
-<li>code</li>
-<li>data</li>
-<li>message</li>
-</ul>
-<blockquote>
-<p><font color="green">PS：</font>必须遵守，你也不想前端看到乱七八糟的定义，跑来揍你 (╬￣皿￣)=○</p>
-</blockquote>
-<p>以下采用的是枚举定义的响应码：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Data
-@AllArgsConstructor
-public class ResponseResult&lt;T&gt; {
-
-    /**
-     * 状态码
-     * @see GlobalResultCode#getCode()
-     * */
-    private Integer code;
-
-    /**
-     * 响应信息
-     * @see GlobalResultCode#getMessage()
-     * */
-    private String message;
-
-    /**
-     * 响应结果
-     * */
-    private T data;
-
-    /**
-     * @description 操作成功
-     * @param message 响应信息
-     * @param data 相应数据
-     * @return 响应结果
-    */
-    public static &lt;T&gt; ResponseResult&lt;T&gt; success(String message, T data) {
-        return new ResponseResult&lt;&gt;(SUCCESS.getCode(), message, data);
-    }
-    public static &lt;T&gt; ResponseResult&lt;T&gt; success(T data) {
-        return new ResponseResult&lt;&gt;(SUCCESS.getCode(), SUCCESS.getMessage(), data);
-    }
-
-    /**
-     * @description 操作失败
-     * @param message 响应信息
-     * @return 响应结果
-    */
-    public static &lt;T&gt; ResponseResult&lt;T&gt; error(String message) {
-        return new ResponseResult&lt;&gt;(ERROR.getCode(), message, null);
-    }
-    public static &lt;T&gt; ResponseResult&lt;T&gt; error() {
-        return new ResponseResult&lt;&gt;(ERROR.getCode(), ERROR.getMessage(), null);
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="搭建代码生成器模块"><a href="#搭建代码生成器模块" class="headerlink" title="搭建代码生成器模块"></a>搭建代码生成器模块</h2><p>采用 mybatis-plus 来生成 entity、service、controller、mapper 层的代码：</p>
+                <h2 id="搭建代码生成器模块"><a href="#搭建代码生成器模块" class="headerlink" title="搭建代码生成器模块"></a>搭建代码生成器模块</h2><p>采用 mybatis-plus 来生成 entity、service、controller、mapper 层的代码：</p>
 <p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202306010809909.png" alt="image-20230601080933811"></p>
 <blockquote>
 <p><font color="orange">注：</font>详细的用法，见：<a target="_blank" rel="noopener" href="https://baomidou.com/pages/981406/">https://baomidou.com/pages/981406/</a></p>
 </blockquote>
 <p>具体的 CodeGenerator 为：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java">public class Generator {
-    private static final String URL = "jdbc:mysql://localhost:3306/mall_product?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;characterSetResults=utf8mb4";
+    private static final String URL = "jdbc:mysql://localhost:3306/mall_goods?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;characterSetResults=utf8mb4";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
     private static final String AUTHOR = "tur";
-    private static final String MODULENAME = "product";
-    private static final String OUTPUTDIR = System.getProperty("user.dir") + "/mall-product/mall-product-biz/src/main/java";
-
-    // 需要生成代码的表集合
+    private static final String MODULE_NAME = "product";
+    // 需要过滤的标签缀
+    private static final String TABLE_PREFIX = "";
+    // 生成的文件的位置
+    private static final String OUTPUT_DIR = System.getProperty("user.dir") + "/mall-product/mall-product-biz/src/main/java";
+    // 需要生成实体类的表的集合
     private static final String[] TABLES = {
-			
     };
+
     public static void main(String[] args) {
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
-                .globalConfig(builder -&gt; builder.outputDir(OUTPUTDIR)
+                .globalConfig(builder -&gt; builder.outputDir(OUTPUT_DIR)
                         .author(AUTHOR)
                         .disableOpenDir()
                         .dateType(DateType.TIME_PACK)
                         .commentDate("yyyy-MM-dd")
                 )
                 .packageConfig(builder -&gt; builder.parent("com.mall")
-                        .moduleName(MODULENAME)
+                        .moduleName(MODULE_NAME)
                         .entity("pojo.entity")
                         .service("service.intf")
                         .serviceImpl("service.impl")
@@ -625,16 +479,19 @@ public class ResponseResult&lt;T&gt; {
                 )
                 .strategyConfig(builder -&gt; builder
                         .addInclude(TABLES)
+                        .addTablePrefix(TABLE_PREFIX)
                         .entityBuilder()
                         .enableLombok()
                         .enableFileOverride()
                         .enableRemoveIsPrefix()
-                        .addSuperEntityColumns("id","create_time","update_time")
+                        .logicDeleteColumnName("is_delete")
+                        .logicDeletePropertyName("deleteFlag")
+                        .addSuperEntityColumns("id","create_time","update_time", "create_by", "update_by", "is_delete")
                         .addTableFills(new Column("create_time", FieldFill.INSERT))
                         .addTableFills(new Column("create_by", FieldFill.INSERT))
                         .addTableFills(new Column("update_time", FieldFill.INSERT_UPDATE))
                         .addTableFills(new Column("update_by", FieldFill.INSERT_UPDATE))
-                        .formatFileName("%sDO")
+                        // .formatFileName("%sDO")
                         .idType(IdType.AUTO)
                         .superClass(BaseDO.class)
 
@@ -649,7 +506,7 @@ public class ResponseResult&lt;T&gt; {
                         .formatServiceImplFileName("%sServiceImpl")
 
                         .mapperBuilder()
-                        .enableBaseResultMap()
+                        // .enableBaseResultMap()
                         .enableFileOverride()
                         .formatMapperFileName("%sMapper")
                         .formatXmlFileName("%sMapper")
@@ -657,12 +514,15 @@ public class ResponseResult&lt;T&gt; {
                 .templateEngine(new FreemarkerTemplateEngine())
                 .execute();
     }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p><font color="green">PS：</font>虽然 mp 被很多人所不屑，但它对我这种菜鸟真的很好用 (σﾟ∀ﾟ)σ..:*☆哎哟不错哦</p>
 </blockquote>
 <p>OK，接下来，开干!!!!!! (((((((((((っ•ω•)っ Σ(σ｀•ω•´)σ 起飞！</p>
+<h2 id="服务模块结构"><a href="#服务模块结构" class="headerlink" title="服务模块结构"></a>服务模块结构</h2><p>基础的目录如图：</p>
+<p><img src="https://tur-mg-img.oss-cn-guangzhou.aliyuncs.com/md-img/202306012212562.png" alt="image-20230601221221289"></p>
+<p>后续还需要 <code>enums、exception、config </code>等等软件包时再添加</p>
 
                 
             </div>
@@ -1039,7 +899,7 @@ public class ResponseResult&lt;T&gt; {
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">156.1k</span>
+                        class="white-color">169.5k</span>
             
             
             
